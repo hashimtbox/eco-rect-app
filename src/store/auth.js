@@ -5,7 +5,8 @@ export const initialState = {
   user: null,
   error: null,
   inProgress: false,
-  isReady: false
+  isReady: false,
+  cart: []
 };
 
 const authSlice = createSlice({
@@ -23,7 +24,10 @@ const authSlice = createSlice({
     },
     setReady : ((state, action) => {
       state.isReady = action.payload;
-    })
+    }),
+    addToCart: (state, action) => {
+      state.cart.push(action.payload)
+    }
   }
 });
 

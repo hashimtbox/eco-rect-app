@@ -69,7 +69,7 @@ const Template = ({ selected, children, ...props }) => {
   const history = useHistory();
   const theme = useTheme()
   const ref= useRef()
-  const {user} = useSelector(state => state.auth)
+  const {user, cart} = useSelector(state => state.auth)
   return (
       <div className={classes.root} {...props}>
         <CssBaseline />
@@ -93,7 +93,7 @@ const Template = ({ selected, children, ...props }) => {
             </Typography>
             {/*<IconButton style={{marginRight: 10, marginLeft: 15}} onClick={event => ref.current.open(event)}>*/}
             <IconButton style={{marginRight: 10, marginLeft: 15}}>
-              <Badge badgeContent={1} color="secondary" >
+              <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" >
                 <ShoppingCart />
               </Badge>
               {/*<Avatar className={classes.avatar} />*/}
@@ -141,30 +141,28 @@ const Template = ({ selected, children, ...props }) => {
                           <List component="div" disablePadding>
                             {
                               item.subItems.map(subItem => (
-                                 <div>
-                                <ListItem
-                                    key={subItem.title}
-                                    onClick={() => history.push(subItem.route) }
-                                    button
-                                    style={{ display: "flex", justifyContent: "left", height: 40 }}
-                                >
+                                  <ListItem
+                                      key={subItem.title}
+                                      onClick={() => history.push(subItem.route) }
+                                      button
+                                      style={{ display: "flex", justifyContent: "left", height: 40 }}
+                                  >
 
-                                  <div style={{display: 'flex', alignItems: 'center' }}>
-                                    <item.icon
-                                        fontSize="medium"
-                                        style={{
-                                          color:
-                                              subItem.title === selected
-                                                  ? colors.blue
-                                                  : theme.palette.grey.A700,
-                                          marginRight: 20,
-                                          marginLeft : 30
-                                        }}
-                                    />
-                                    <Typography >{subItem.title}</Typography>
-                                  </div>
-                                </ListItem>
-                                 </div>
+                                    <div style={{display: 'flex', alignItems: 'center' }}>
+                                      <item.icon
+                                          fontSize="medium"
+                                          style={{
+                                            color:
+                                                subItem.title === selected
+                                                    ? colors.blue
+                                                    : theme.palette.grey.A700,
+                                            marginRight: 20,
+                                            marginLeft : 30
+                                          }}
+                                      />
+                                      <Typography >{subItem.title}</Typography>
+                                    </div>
+                                  </ListItem>
                               ))
                             }
                           </List>

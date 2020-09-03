@@ -12,8 +12,11 @@ import {
   Typography
 } from "@material-ui/core";
 import { formatDate, getDayFromDate } from "../utils/helper";
+import {useDispatch} from "react-redux";
+import authSlice from "../store/auth";
 
 const EventView = ({ event }) => {
+    const dispatch = useDispatch()
   return (
     <Card>
       <CardMedia
@@ -38,7 +41,7 @@ const EventView = ({ event }) => {
       </CardContent>
       <CardActions>
         <div style={{ flexGrow: 1 }} />
-        <Button size="small" color="secondary">
+        <Button size="small" color="secondary" onClick={()=> dispatch(authSlice.actions.addToCart(event))}>
           Add to Cart
         </Button>
       </CardActions>

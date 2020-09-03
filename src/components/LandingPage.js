@@ -2,6 +2,11 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import Login from "./Login";
 import eventsSvg from "../assets/events.svg";
+import EventListView from "./EventListView";
+import macbook from "../assets/macbook.jpg";
+import jacket from "../assets/jacket.jpg";
+import jeans from "../assets/jeans.jpg";
+import Template from "./Template";
 
 const Banner = () => {
   return (
@@ -11,14 +16,14 @@ const Banner = () => {
         style={{ fontWeight: 300 }}
         color={"textSecondary"}
       >
-        Chalo Chalen
+        Amazon Comic Book Store
       </Typography>
       <Typography
         variant={"h6"}
         style={{ fontWeight: 400 }}
         color={"textSecondary"}
       >
-        Best Event Tracking Platform
+        Shop from millions of comic books
       </Typography>
       <img
         style={{ marginTop: 50 }}
@@ -31,16 +36,40 @@ const Banner = () => {
   );
 };
 
+const events = [
+    {
+        id: 1,
+        title: 'Macbook Pro',
+        price: 1000,
+        description: '14 inch macbook pro for latest and greatest use by smart people of America',
+        image: macbook,
+    },
+    {
+        id: 2,
+        title: 'Mens Jacket',
+        price: 150,
+        description: 'Awesome leather jacket for men to wear in summer or winter whatever',
+        image: jacket,
+    },
+    {
+        id: 2,
+        title: 'Leather Jeans',
+        price: 350,
+        description: 'Beautiful leather jeans for women to wear in summer or winter whatever',
+        image: jeans
+    },
+]
+
 const LandingPage = () => {
   return (
     <Grid container style={{ height: "100%" }}>
       <Grid
         item
-        xl={6}
-        lg={6}
-        md={6}
-        sm={6}
-        xs={6}
+        xl={12}
+        lg={12}
+        md={12}
+        sm={12}
+        xs={12}
         // style={{ background: props.theme.palette.primary.main }}
       >
         <div
@@ -48,42 +77,24 @@ const LandingPage = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
-            marginTop: "20%"
           }}
         >
           <Banner />
         </div>
       </Grid>
-      <Grid
-        item
-        xl={6}
-        lg={6}
-        md={6}
-        xs={6}
-        sm={6}
-        // style={{ background: props.theme.palette.background.default }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end"
-            // color: props.theme.palette.primary.main
-          }}
-        >
-          {/*<CustomMenu />*/}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: "25%"
-          }}
-        >
-          <Login />
-        </div>
-      </Grid>
+        <Grid item>
+            <div
+                style={{
+                    marginBottom : 30,
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                }}
+            >
+                <Typography variant="h4">Trending Products</Typography>
+            </div>
+            <EventListView events={events} />
+        </Grid>
     </Grid>
   );
 };

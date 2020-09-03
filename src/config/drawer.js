@@ -1,12 +1,22 @@
-import {DashboardOutlined, EventOutlined, SettingsOutlined,} from '@material-ui/icons';
+import {
+  DashboardOutlined,
+  EventOutlined,
+  SettingsOutlined,
+  PhoneIphoneOutlined,
+  EmojiPeopleOutlined,
+  BookmarkOutlined,
+  ShopOutlined
+} from '@material-ui/icons';
 
 export const dashboard = 'Dashboard';
 export const home = 'Home';
 export const event = 'Products';
-export const settings = 'Settings';
-export const subItemTest1 = 'Sub Item Test 1';
-export const subItemTest2 = 'Sub Item Test 2';
-export const subItemTest3 = 'Sub Item Test 3';
+export const preferences = 'Preferences';
+export const subItemTest1 = 'Apparel';
+export const subItemTest2 = 'Comic Books';
+export const subItemTest3 = 'Figurines & our own Cereal';
+
+// Apparel , Accessories, Exclusive Comic Books, Figurines & our own Cereal(Produce)
 const drawerConfig = {
   items: [
     {
@@ -16,31 +26,30 @@ const drawerConfig = {
     },
     {
       title: event,
-      icon: EventOutlined,
-      route: '/',
+      icon: ShopOutlined,
+      route: '/products',
       subItems : [
         {
           title: subItemTest1,
-          icon: DashboardOutlined,
-          route: '/',
+          icon: PhoneIphoneOutlined,
+          route: '/comicbooks',
         },
         {
           title: subItemTest2,
-          icon: DashboardOutlined,
-          route: '/',
+          icon: EmojiPeopleOutlined,
+          route: '/comicbooks',
         },
         {
           title: subItemTest3,
-          icon: DashboardOutlined,
-          route: '/',
+          icon: BookmarkOutlined,
+          route: '/comicbooks',
         }
       ]
-
     },
     {
-      title: settings,
+      title: preferences,
       icon: SettingsOutlined,
-      route: '/',
+      route: '/preferences',
     }
   ],
   drawerWidth: 240,

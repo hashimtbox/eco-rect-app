@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./views/Dashboard";
 import { toast } from "react-toastify";
 import { MuiThemeProvider } from "@material-ui/core";
 import { lightTheme } from "./config/theme";
@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreateEventForm from "./components/CreateEventForm";
 import SecureRoute from "./components/SecureRoute";
+import Electronics from "./views/Electronics";
+import ComicBooks from "./views/ComicBooks";
 toast.configure();
 
 const App = () => {
@@ -17,9 +19,12 @@ const App = () => {
     <MuiThemeProvider theme={lightTheme}>
       <Router>
         <Switch>
-          <Route path="/login" component={LandingPage} />
-          <SecureRoute path="/create" component={CreateEventForm} />
-          <SecureRoute path="/" component={Dashboard} />
+          <Route exact path="/login" component={LandingPage} />
+          <SecureRoute exact path="/create" component={CreateEventForm} />
+          <SecureRoute exact path="/" component={Dashboard} />
+          <SecureRoute path="/electronics" exact component={Electronics} />
+          <SecureRoute path="/comicbooks" exact component={ComicBooks} />
+
         </Switch>
       </Router>
     </MuiThemeProvider>
