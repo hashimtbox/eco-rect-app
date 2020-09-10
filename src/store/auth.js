@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {API_HOST} from "../config/api";
+import { API_HOST } from "../config/api";
 
 export const initialState = {
   user: null,
@@ -22,7 +22,7 @@ const authSlice = createSlice({
     setProgress: (state, action) => {
       state.inProgress = action.payload;
     },
-    setReady : ((state, action) => {
+    setReady: ((state, action) => {
       state.isReady = action.payload;
     }),
     addToCart: (state, action) => {
@@ -31,8 +31,8 @@ const authSlice = createSlice({
   }
 });
 
-export const checkAuthorization = ()=> async dispatch => {
-  try{
+export const checkAuthorization = () => async dispatch => {
+  try {
     dispatch(authSlice.actions.setReady(false))
     const res = await fetch(`${API_HOST}/web_api/auth/current_user`, {
       method: "GET",
@@ -46,15 +46,15 @@ export const checkAuthorization = ()=> async dispatch => {
     console.log(response)
     dispatch(authSlice.actions.setReady(true))
     dispatch(response.success ? authSlice.actions.setUser(response.user) : authSlice.actions.setUser(null))
-  }catch (error) {
+  } catch (error) {
     console.error(error)
     dispatch(authSlice.actions.setReady(true))
     dispatch(authSlice.actions.setUser(null))
   }
 }
 
-export const signout = ()=> async dispatch => {
-  try{
+export const signout = () => async dispatch => {
+  try {
     const res = await fetch(`${API_HOST}/web_api/auth/admin_logout`, {
       method: "POST",
       credentials: "include",
@@ -68,7 +68,7 @@ export const signout = ()=> async dispatch => {
     if (response.success) {
       dispatch(authSlice.actions.setUser(null))
     }
-  }catch (e) {
+  } catch (e) {
     console.log(e)
   }
 }

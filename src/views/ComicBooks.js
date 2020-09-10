@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import Template from "../components/Template";
 import EventListView from "../components/EventListView";
 import comic from "../assets/comic1.png";
@@ -22,7 +22,7 @@ const events = [
         image: comic2,
     },
     {
-        id: 2,
+        id: 3,
         title: 'Leather Jeans',
         price: 350,
         description: 'Beautiful leather jeans for women to wear in summer or winter whatever',

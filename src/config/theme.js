@@ -9,6 +9,9 @@ export const lightTheme = createMuiTheme({
     },
     secondary: {
       main: colors.indigo
+    },
+    red: {
+      main: colors.red
     }
   },
   typography: {
