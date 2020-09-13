@@ -1,8 +1,7 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { Menu, MenuItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { SettingsOutlined, ExitToAppOutlined } from '@material-ui/icons';
-import {connect} from "react-redux";
-import {signout} from "../store/auth";
+import { signout } from "../store/auth";
 import store from "../store";
 
 export default class TopMenu extends React.Component {

@@ -1,0 +1,160 @@
+.site-logo{
+    width: 380px;
+    height: auto;
+    margin-top: 50px;
+}
+
+.mini-logo{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    margin: 50px 0px 26px 0px;
+}
+
+@media only screen and (max-width: 1279px) {
+    .footer-center{
+        text-align: center !important;
+    }
+    .footer-justify{
+        justify-content: center;
+    }
+  }
+
+@media only screen and (max-width: 576px) {
+    .site-logo{
+        max-width: 100%;
+    }
+  }
+
+
+
+.img-about{
+    max-width: 100%;
+    height: auto;
+}
+
+.img-grubster{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-bottom: 11px;
+}
+
+.grubster-subtitle{
+    font-style: italic;
+    margin:0;
+}
+
+.grubster-weapon{
+    margin:0;
+}
+
+.pseudo_border {
+    position:relative;
+    display:inline-block;
+}
+
+.pseudo_border:after {
+    content:'';
+    position:absolute;
+    left:0;right:0;
+    top:100%;
+    margin: 10px auto;
+    width:70px;
+    height:4px;
+    background:#448aff;
+}
+
+.pseudo_border1 {
+    position:relative;
+    display:inline-block;
+}
+
+.pseudo_border1:after {
+    content:'';
+    position:absolute;
+    left:0;right:0;
+    top:100%;
+    margin: 10px 0px;
+    width:70px;
+    height:4px;
+    background:#448aff;
+}
+@media only screen and (max-width: 960px) {
+    .about-text{
+        text-align: center !important;
+    }
+    .pseudo_border1 {
+        position:relative;
+        display:inline-block;
+    }
+    
+    .pseudo_border1:after {
+        content:'';
+        position:absolute;
+        left:0;right:0;
+        top:100%;
+        margin: 10px auto;
+        width:70px;
+        height:4px;
+        background:#448aff;
+    }
+}
+.footer{
+    background:#448aff;
+}
+
+.pseudo_border2 {
+    position:relative;
+    display:inline-block;
+    color:white;
+}
+
+.pseudo_border2:after {
+    content:'';
+    position:absolute;
+    left:0;right:0;
+    top:100%;
+    margin: 10px 0px;
+    width:70px;
+    height:4px;
+    background:#fff;
+}
+
+.footer-col1{
+    padding: 0px 30px;
+}
+
+textarea.form-class,
+input.form-class{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    font-size: 13px;
+}
+
+textarea.form-class:focus,
+input.form-class:focus{
+    outline: none;
+    border: none;
+}
+
+textarea.form-message{
+    width: 100%;
+    height: 120px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input.form-button-class{
+    padding: 15px 24px;
+    border-radius: 25px;
+    border: 2px solid white;
+    font-size: 13px;
+    background: none;
+    color:white;
+    letter-spacing: 2px;
+}
+input.form-button-class:focus{
+    outline: none;
+}

@@ -27,6 +27,9 @@ const authSlice = createSlice({
     }),
     addToCart: (state, action) => {
       state.cart.push(action.payload)
+    },
+    deleteFromCart: (state, action) => {
+      state.cart.filter((item) => item !== action.payload.id)
     }
   }
 });

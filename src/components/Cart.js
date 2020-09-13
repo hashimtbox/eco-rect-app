@@ -4,8 +4,7 @@ import authSlice from "../store/auth";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, Typography, Box } from '@material-ui/core';
 function Cart() {
-    // const dispatch = useDispatch();
-    // const cart = useSelector(state => state.auth)
+    const dispatch = useDispatch();
 
     const cart = useSelector((state) => state.auth.cart)
     console.log(cart);
@@ -14,7 +13,7 @@ function Cart() {
         <div>
             <Box m={2}>
                 <Typography style={{ textAlign: "center", marginBottom: 20 }} variant={"h6"}>Cart</Typography>
-                <Box m={2} width={350} maxHeight={390} display="block">
+                <Box m={2} width={350} maxHeight={190} display="block">
                     {
                         cart.map(item => {
                             return (
@@ -25,7 +24,8 @@ function Cart() {
                                             <Typography style={{ margin: 0 }} variant={"h6"}>{item.title}</Typography>
                                             <p style={{ margin: 0, marginBottom: 8 }}>Price: $ {item.price} </p>
                                         </div>
-                                        <DeleteIcon style={{ marginLeft: "auto", color: "red" }} />
+
+                                        <DeleteIcon style={{ marginLeft: "auto", color: "red" }} onClick={() => dispatch(authSlice.actions.deleteFromCart(item.id))} />
                                     </div>
                                     <hr style={{ borderColor: "#eee" }} />
                                 </div >

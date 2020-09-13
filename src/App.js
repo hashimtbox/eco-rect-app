@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Dashboard from "./views/Dashboard";
 import { toast } from "react-toastify";
 import { MuiThemeProvider } from "@material-ui/core";

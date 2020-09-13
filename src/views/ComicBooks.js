@@ -33,9 +33,11 @@ const events = [
 const ComicBooks = () => {
     return (
         <Template>
-            <Typography variant="h5">ComicBooks</Typography>
-            <div style={{ height: 20 }} />
-            <EventListView events={events} />
+            <div style={{ padding: 24 }}>
+                <Typography variant="h5">ComicBooks</Typography>
+                <div style={{ height: 20 }} />
+                <EventListView events={events} />
+            </div>
         </Template>
     )
 }

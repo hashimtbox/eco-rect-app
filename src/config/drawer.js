@@ -1,6 +1,6 @@
 import {
   DashboardOutlined,
-  EventOutlined,
+
   SettingsOutlined,
   PhoneIphoneOutlined,
   EmojiPeopleOutlined,
@@ -28,7 +28,7 @@ const drawerConfig = {
       title: event,
       icon: ShopOutlined,
       route: '/products',
-      subItems : [
+      subItems: [
         {
           title: subItemTest1,
           icon: PhoneIphoneOutlined,

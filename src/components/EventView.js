@@ -1,8 +1,5 @@
 import React from "react";
-import CardHeader from "@material-ui/core/CardHeader";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import { MoreVertOutlined } from "@material-ui/icons";
+import Skeleton from '@material-ui/lab/Skeleton';
 import {
   Button,
   Card,
@@ -11,41 +8,48 @@ import {
   CardMedia,
   Typography
 } from "@material-ui/core";
-import { formatDate, getDayFromDate } from "../utils/helper";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import authSlice from "../store/auth";
 
 const EventView = ({ event }) => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const Loading = true;
   return (
     <Card>
       <CardMedia
-        style={{ height: 150, minWidth: 200 }}
+        style={Loading ? { height: 150, minWidth: 200, background: "#e9e9e9" } : { height: 150, minWidth: 200 }}
         image={event.image}
         title={event.title}
       />
+
       <CardContent>
-        <div style={{ display: "flex", height: 60 }}>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", height: 60, flexGrow: 1 }}>
+          <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              {event.title}
+              {Loading ? <Skeleton width="100%" /> : event.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {event.description.slice(0, 100).toLowerCase()}
+              {Loading ? <Skeleton width="90%" /> : event.description.slice(0, 100).toLowerCase()}
             </Typography>
-              <div style={{marginTop: 10, marginBottom: 20}}>
-                  <Typography variant='body2'>Price: ${event.price}.00</Typography>
-              </div>
+
+            <div style={{ marginTop: 10 }}>
+              <Typography variant='body2'>
+                {Loading ? <Skeleton width="40%" /> : `Price: ${event.price}.00`}
+              </Typography>
+            </div>
           </div>
         </div>
       </CardContent>
       <CardActions>
         <div style={{ flexGrow: 1 }} />
-        <Button size="small" color="secondary" onClick={()=> dispatch(authSlice.actions.addToCart(event))}>
-          Add to Cart
+        {Loading ?
+          <Skeleton width="30%" style={{ height: 30 }} /> :
+          <Button size="small" color="secondary" onClick={() => dispatch(authSlice.actions.addToCart(event))}>
+            Add to Cart
         </Button>
+        }
       </CardActions>
-    </Card>
+    </Card >
   );
 };
 

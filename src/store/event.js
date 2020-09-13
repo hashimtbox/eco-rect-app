@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import authSlice from "./auth";
-import {API_HOST} from "../config/api";
+import { API_HOST } from "../config/api";
 
 const initialState = {
   events: [],

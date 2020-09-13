@@ -18,3 +18,14 @@ export const lightTheme = createMuiTheme({
     fontSize: 13
   }
 });
+
+lightTheme.typography.h3 = {
+
+
+  [lightTheme.breakpoints.up('xs')]: {
+    fontSize: "26px",
+  },
+  [lightTheme.breakpoints.up('md')]: {
+    fontSize: "40px",
+  }
+};
