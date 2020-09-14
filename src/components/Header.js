@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
-import Cart from './Cart'
+import Cart from './Cart';
+import { useHistory } from "react-router";
+import "../assets/styles/style.css";
 import {
+    Link,
     AppBar,
     CssBaseline,
     Toolbar,
@@ -19,6 +22,9 @@ import { colors } from "../utils/colors";
 
 import Popover from '@material-ui/core/Popover';
 import MenuIcon from '@material-ui/icons/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -56,7 +62,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = ({ selected, children, ...props }) => {
     const classes = useStyles();
-    const ref = useRef()
+    const ref = useRef();
     const { cart } = useSelector(state => state.auth)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handlePopoverClick = (event) => {
@@ -74,6 +80,25 @@ const Header = ({ selected, children, ...props }) => {
         console.log(mobileOpen);
     }
 
+    const [anchorEll, setAnchorEll] = React.useState(null);
+
+    const handleClickListItem = (event) => {
+        setAnchorEll(event.currentTarget);
+    };
+
+
+    const handleMenuClose = () => {
+        setAnchorEll(null);
+    };
+    const options = [
+        'Apparel',
+        'Comics',
+        'Tshirts',
+        'Grubster Logos',
+    ];
+
+    const [open, setOpen] = React.useState(false);
+    const history = useHistory();
     return (
         <div>
             <CssBaseline />
@@ -99,12 +124,37 @@ const Header = ({ selected, children, ...props }) => {
                         Amazon
             </Typography>
                     <span style={{ flexGrow: 1 }} />
-                    {/* <Typography variant='h6'>
-            <Link className={classes.navLink}>Men</Link>
-            <Link className={classes.navLink}>Women</Link>
-            <Link className={classes.navLink}>About us</Link>
-            <Link className={classes.navLink}>Contact us</Link>
-          </Typography> */}
+                    <div className="displayLinks">
+                        <Typography variant='h6' >
+                            <Link className={classes.navLink}>Home</Link>
+                            <Link className={classes.navLink}>Characters</Link>
+                            <Link className={classes.navLink}
+                                onClick={handleClickListItem}
+                            >Products
+        </Link>
+                            <Menu
+                                id="lock-menu"
+                                anchorEl={anchorEll}
+                                keepMounted
+                                open={Boolean(anchorEll)}
+                                onClose={handleMenuClose}
+                                style={{ width: 400 }}
+                            >
+                                {options.map((option, index) => (
+                                    <MenuItem
+                                        key={option}
+                                        onClick={() =>
+                                            option ? setOpen(!open) : history.push(option.route)}
+                                    >
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                            <Link className={classes.navLink}>Trending Products</Link>
+                            <Link className={classes.navLink}>About</Link>
+                            <Link className={classes.navLink}>Contact</Link>
+                        </Typography>
+                    </div>
                     {/*<IconButton style={{marginRight: 10, marginLeft: 15}} onClick={event => ref.current.open(event)}>*/}
                     <IconButton style={{ marginRight: 10, marginLeft: 15 }} onClick={handlePopoverClick}>
 

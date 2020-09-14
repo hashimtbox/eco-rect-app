@@ -18,12 +18,19 @@ function Banner() {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <Typography variant={"h3"} style={{ fontWeight: 300 }} color={"textSecondary"}>
-                        Amazon Comic Book Store
+                    <Typography variant={"h3"} style={{ fontWeight: 300, textAlign: "center" }} color={"textSecondary"}>
+                        GRUBSTERS COMICS WE ARE #GRUBSTERS
                         </Typography>
                     <Typography variant={"h6"} style={{ fontWeight: 400 }} color={"textSecondary"}>
-                        Shop from millions of comic books
+                        Creative. Fun. Healthy.
                         </Typography>
+                    <Typography variant={"h6"} style={{ fontWeight: 400, textAlign: "center" }} color={"textSecondary"}>
+                        Eating Healthy and beyond. Helping kids live healthy lives
+                        </Typography>
+
+
+
+
                     <img
                         className="site-logo"
                         src={eventsSvg}

@@ -158,3 +158,24 @@ input.form-button-class{
 input.form-button-class:focus{
     outline: none;
 }
+
+
+@media only screen and (max-width: 992px) {
+    .displayLinks{
+        display: none;
+    }
+  }
+
+.about-textdisplay{
+    width: 500px;
+    margin: 0 auto;
+}
+
+
+div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded{
+    margin-top:50px;
+}
+
+ul.MuiList-root.MuiMenu-list.MuiList-padding{
+    width: 260px;
+}
