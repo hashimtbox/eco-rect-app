@@ -7,7 +7,7 @@ const EventListView = ({ events }) => {
     <Grid container spacing={3}>
       {events.map(event => (
         <Grid item xl={4} lg={4} md={4} sm={6} xs={12}>
-          < EventView event={event} />
+          <EventView event={event} />
         </Grid>
       ))
       }

@@ -4,8 +4,8 @@ import about from "../assets/about.PNG";
 import "../assets/styles/style.css";
 function AboutGrubster() {
     return (
-        <div>
-            <Grid container spacing={4} style={{ marginTop: 50 }}>
+        <>
+            <Grid container spacing={4} style={{ marginTop: 50 }} id="aboutsection">
                 <Grid item md={6} sm={12} style={{ textAlign: "center" }}>
                     <img className="img-about" src={about} alt="about" />
                 </Grid>
@@ -19,7 +19,7 @@ function AboutGrubster() {
                 </Typography>
                 </Grid>
             </Grid>
-        </div>
+        </>
     )
 }
 

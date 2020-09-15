@@ -179,3 +179,15 @@ div.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-ro
 ul.MuiList-root.MuiMenu-list.MuiList-padding{
     width: 260px;
 }
+
+a.makeStyles-navLink-18.active {
+    color: #448aff;
+}
+
+.alice-carousel__stage-item{
+    width:20px;
+} 
+
+.alice-carousel__stage-item img{
+    width:200px;
+} 

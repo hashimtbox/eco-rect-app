@@ -1,9 +1,9 @@
+import { Link, animateScroll as scroll } from "react-scroll";
 import React, { useRef } from "react";
 import Cart from './Cart';
 import { useHistory } from "react-router";
 import "../assets/styles/style.css";
 import {
-    Link,
     AppBar,
     CssBaseline,
     Toolbar,
@@ -126,12 +126,38 @@ const Header = ({ selected, children, ...props }) => {
                     <span style={{ flexGrow: 1 }} />
                     <div className="displayLinks">
                         <Typography variant='h6' >
-                            <Link className={classes.navLink}>Home</Link>
-                            <Link className={classes.navLink}>Characters</Link>
+                            <Link to="homesection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                Home
+                            </Link>
+                            <Link to="characterssection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                Characters
+                            </Link>
+                            <Link to="aboutsection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                About
+                            </Link>
+                            <Link to="comixsection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                Comic
+                            </Link>
                             <Link className={classes.navLink}
                                 onClick={handleClickListItem}
                             >Products
-        </Link>
+                            </Link>
                             <Menu
                                 id="lock-menu"
                                 anchorEl={anchorEll}
@@ -150,9 +176,21 @@ const Header = ({ selected, children, ...props }) => {
                                     </MenuItem>
                                 ))}
                             </Menu>
-                            <Link className={classes.navLink}>Trending Products</Link>
-                            <Link className={classes.navLink}>About</Link>
-                            <Link className={classes.navLink}>Contact</Link>
+                            <Link to="trendingsection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                Trending Products
+                            </Link>
+
+                            <Link to="contactsection" activeClass="active"
+                                spy={true}
+                                smooth={true}
+                                offset={-70}
+                                duration={500} className={classes.navLink}>
+                                Contact
+                            </Link>
                         </Typography>
                     </div>
                     {/*<IconButton style={{marginRight: 10, marginLeft: 15}} onClick={event => ref.current.open(event)}>*/}
@@ -189,7 +227,7 @@ const Header = ({ selected, children, ...props }) => {
                     </Popover>
                 </Toolbar>
             </AppBar>
-        </div>
+        </div >
     )
 }
 

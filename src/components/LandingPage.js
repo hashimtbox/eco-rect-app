@@ -5,9 +5,9 @@ import Banner from "./Banner";
 import MeetGrubster from "./MeetGrubster";
 import AboutGrubster from "./AboutGrubster";
 import ComicSlider from "./ComicSlider";
-import TrendingProducts from './TrendingProducts'
+import TrendingProducts from './TrendingProducts';
 import MiniLogo from "./MiniLogo";
-
+import Footer from "./Footer";
 const LandingPage = () => {
   return (
     <>
@@ -19,6 +19,7 @@ const LandingPage = () => {
         <TrendingProducts />
         <MiniLogo />
       </Grid>
+      {/* <Footer /> */}
     </>
   );
 };
