@@ -6,6 +6,7 @@ import { colors } from "../utils/colors";
 import Header from "./Header"
 import Footer from "./Footer";
 import LeftSidebar from "./LeftSidebar";
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",

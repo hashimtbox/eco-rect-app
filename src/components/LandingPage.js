@@ -5,10 +5,13 @@ import Banner from "./Banner";
 import MeetGrubster from "./MeetGrubster";
 import AboutGrubster from "./AboutGrubster";
 import ComicSlider from "./ComicSlider";
-import TrendingProducts from './TrendingProducts'
+import TrendingProducts from './TrendingProducts';
 import MiniLogo from "./MiniLogo";
+
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProductCategories, fetchProducts} from "../store/product";
+
+import Footer from "./Footer";
 
 const LandingPage = () => {
   const dispatch = useDispatch()
@@ -28,6 +31,7 @@ const LandingPage = () => {
         <TrendingProducts products={products} />
         <MiniLogo />
       </Grid>
+      {/* <Footer /> */}
     </>
   );
 };

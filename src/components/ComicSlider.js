@@ -1,5 +1,10 @@
 import React from 'react'
 import { Grid, Typography } from "@material-ui/core";
+import "../assets/styles/style.css";
+import AliceSlider from "./AliceSlider";
+
+import MaterialSlider from "./MaterialSlider";
+
 function ComicSlider() {
     return (
         <>
@@ -10,6 +15,7 @@ function ComicSlider() {
                 md={12}
                 sm={12}
                 xs={12}
+                id="comixsection"
             >
                 <div
                     style={{
@@ -24,7 +30,22 @@ function ComicSlider() {
                         Comic Book Highlights
                 </Typography>
                 </div>
+
+
+
+
+                {/* <AliceSlider /> */}
+
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}>
+                    <MaterialSlider />
+                </div>
             </Grid>
+
+
         </>
     )
 }
