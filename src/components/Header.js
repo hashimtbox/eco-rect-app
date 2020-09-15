@@ -64,6 +64,7 @@ const Header = ({ selected, children, ...props }) => {
     const classes = useStyles();
     const ref = useRef();
     const { cart } = useSelector(state => state.auth)
+    const { categories } = useSelector(state => state.products)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handlePopoverClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -140,13 +141,14 @@ const Header = ({ selected, children, ...props }) => {
                                 onClose={handleMenuClose}
                                 style={{ width: 400 }}
                             >
-                                {options.map((option, index) => (
+                                {categories && categories.length && categories.map((option, index) => (
                                     <MenuItem
-                                        key={option}
-                                        onClick={() =>
-                                            option ? setOpen(!open) : history.push(option.route)}
+                                        key={option.id}
+                                        onClick={() => history.push({
+                                            pathname: `/products/${option.name}`,
+                                        })}
                                     >
-                                        {option}
+                                        {option.name}
                                     </MenuItem>
                                 ))}
                             </Menu>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Grid } from "@material-ui/core";
 import "../assets/styles/style.css";
 import Banner from "./Banner";
@@ -7,8 +7,17 @@ import AboutGrubster from "./AboutGrubster";
 import ComicSlider from "./ComicSlider";
 import TrendingProducts from './TrendingProducts'
 import MiniLogo from "./MiniLogo";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProductCategories, fetchProducts} from "../store/product";
 
 const LandingPage = () => {
+  const dispatch = useDispatch()
+  const { products } = useSelector(state => state.products)
+  useEffect(()=> {
+    dispatch(fetchProducts())
+    dispatch(fetchProductCategories())
+  }, [])
+
   return (
     <>
       <Grid container style={{ height: "100%" }} style={{ padding: 24 }}>
@@ -16,7 +25,7 @@ const LandingPage = () => {
         <MeetGrubster />
         <AboutGrubster />
         <ComicSlider />
-        <TrendingProducts />
+        <TrendingProducts products={products} />
         <MiniLogo />
       </Grid>
     </>

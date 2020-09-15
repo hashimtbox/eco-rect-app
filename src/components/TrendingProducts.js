@@ -31,7 +31,7 @@ const events = [
 
 ]
 
-function TrendingProducts() {
+function TrendingProducts({products}) {
     return (
         <>
             <Grid
@@ -53,7 +53,7 @@ function TrendingProducts() {
                 >
                     <Typography className="pseudo_border" variant="h4">Trending Products</Typography>
                 </div>
-                <EventListView events={events} />
+                <EventListView products={products} />
             </Grid>
         </>
     )

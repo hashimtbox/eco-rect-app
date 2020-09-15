@@ -11,6 +11,7 @@ import CreateEventForm from "./components/CreateEventForm";
 import SecureRoute from "./components/SecureRoute";
 import Electronics from "./views/Electronics";
 import ComicBooks from "./views/ComicBooks";
+import Products from "./components/Products";
 toast.configure();
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <SecureRoute exact path="/" component={Dashboard} />
           <SecureRoute path="/electronics" exact component={Electronics} />
           <SecureRoute path="/comicbooks" exact component={ComicBooks} />
+          <SecureRoute path="/products/:category" exact component={Products} />
 
         </Switch>
       </Router>

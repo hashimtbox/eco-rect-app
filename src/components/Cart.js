@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import authSlice from "../store/auth";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Button, Typography, Box } from '@material-ui/core';
+import macbook from "../assets/macbook.jpg";
 function Cart() {
     const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ function Cart() {
                             return (
                                 <div key={item.id}>
                                     <div style={{ display: "flex" }}>
-                                        <img src={item.image} alt={item.title} height="80px" width="80px" />
+                                        <img src={item.image || macbook} alt={macbook} height="80px" width="80px" />
                                         <div style={{ marginLeft: 10, }}>
                                             <Typography style={{ margin: 0 }} variant={"h6"}>{item.title}</Typography>
                                             <p style={{ margin: 0, marginBottom: 8 }}>Price: $ {item.price} </p>
