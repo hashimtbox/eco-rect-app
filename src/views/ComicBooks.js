@@ -6,7 +6,7 @@ import comic from "../assets/comic1.png";
 import comic2 from "../assets/comic2.jpg";
 import jeans from "../assets/jeans.jpg";
 
-const events = [
+const products = [
     {
         id: 1,
         title: 'Macbook Pro',
@@ -36,7 +36,7 @@ const ComicBooks = () => {
             <div style={{ padding: 24 }}>
                 <Typography variant="h5">ComicBooks</Typography>
                 <div style={{ height: 20 }} />
-                <EventListView events={events} />
+                <EventListView products={products} />
             </div>
         </Template>
     )

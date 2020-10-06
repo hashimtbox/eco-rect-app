@@ -91,13 +91,6 @@ const Header = ({ selected, children, ...props }) => {
     const handleMenuClose = () => {
         setAnchorEll(null);
     };
-    const options = [
-        'Apparel',
-        'Comics',
-        'Tshirts',
-        'Grubster Logos',
-    ];
-
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
     return (
@@ -122,7 +115,7 @@ const Header = ({ selected, children, ...props }) => {
                     </Box>
                     <AllInclusiveOutlined fontSize={"large"} />
                     <Typography style={{ marginLeft: 20 }} variant={"h6"}>
-                        Amazon
+                        Grubsters
             </Typography>
                     <span style={{ flexGrow: 1 }} />
                     <div className="displayLinks">
@@ -197,11 +190,9 @@ const Header = ({ selected, children, ...props }) => {
                     </div>
                     {/*<IconButton style={{marginRight: 10, marginLeft: 15}} onClick={event => ref.current.open(event)}>*/}
                     <IconButton style={{ marginRight: 10, marginLeft: 15 }} onClick={handlePopoverClick}>
-
                         <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" >
                             <ShoppingCart display="block"></ShoppingCart>
                         </Badge>
-                        {/*<Avatar className={classes.avatar} />*/}
                     </IconButton>
                     <Popover
                         id={id}

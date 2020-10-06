@@ -12,6 +12,8 @@ import SecureRoute from "./components/SecureRoute";
 import Electronics from "./views/Electronics";
 import ComicBooks from "./views/ComicBooks";
 import Products from "./components/Products";
+import ProductDetailPage from "./components/ProductDetailPage";
+import CartDetail from "./components/CartDetail";
 toast.configure();
 
 const App = () => {
@@ -20,13 +22,14 @@ const App = () => {
     <MuiThemeProvider theme={lightTheme}>
       <Router>
         <Switch>
-          <Route exact path="/login" component={LandingPage} />
-          <SecureRoute exact path="/create" component={CreateEventForm} />
+          <Route exact path="/test" component={LandingPage} />
           <SecureRoute exact path="/" component={Dashboard} />
-          <SecureRoute path="/electronics" exact component={Electronics} />
-          <SecureRoute path="/comicbooks" exact component={ComicBooks} />
           <SecureRoute path="/products/:category" exact component={Products} />
-
+          <Route exact path="/products/detail/:productId" component={ProductDetailPage} />
+          <Route exact path="/cart" component={CartDetail} />
+          {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
+          {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
+          {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}
         </Switch>
       </Router>
     </MuiThemeProvider>

@@ -30,7 +30,7 @@ const productSlice = createSlice({
 export const fetchProducts = () => async dispatch => {
     try {
         dispatch(productSlice.actions.setProgress(true));
-        const res = await fetch(`${API_HOST}/api/product`, {
+        const res = await fetch(`${API_HOST}/api/product/featured`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -39,7 +39,7 @@ export const fetchProducts = () => async dispatch => {
         });
         const response = await res.json();
         console.log(response);
-        dispatch(productSlice.actions.setProducts(response.products));
+        dispatch(productSlice.actions.setProducts(response.featuredProducts));
     } catch (e) {
         console.error(e);
         dispatch(productSlice.actions.setProgress(false));

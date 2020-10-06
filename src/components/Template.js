@@ -46,7 +46,6 @@ const Template = ({ selected, children, ...props }) => {
   return (
     <div className={classes.root} {...props}>
       <Header />
-      {/* <LeftSidebar /> */}
       <main>
         <div className={classes.toolbar} />
         {children}

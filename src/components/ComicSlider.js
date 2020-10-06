@@ -34,7 +34,7 @@ function ComicSlider() {
 
 
 
-                {/* <AliceSlider /> */}
+                 {/*<AliceSlider />*/}
 
                 <div style={{
                     display: "flex",

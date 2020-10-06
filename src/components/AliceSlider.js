@@ -52,7 +52,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         <AliceCarousel
           items={this.state.galleryItems}
           responsive={this.responsive}

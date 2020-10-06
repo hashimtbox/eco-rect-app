@@ -28,10 +28,6 @@ function Banner() {
                     <Typography variant={"h6"} style={{ fontWeight: 400, textAlign: "center" }} color={"textSecondary"}>
                         Eating Healthy and beyond. Helping kids live healthy lives
                         </Typography>
-
-
-
-
                     <img
                         className="site-logo"
                         src={eventsSvg}

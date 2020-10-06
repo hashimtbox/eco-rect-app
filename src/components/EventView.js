@@ -11,6 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import authSlice from "../store/auth";
 import jeans from "../assets/jeans.jpg";
+import {Link} from "react-router-dom";
 
 const EventView = ({ product }) => {
   const dispatch = useDispatch()
@@ -27,7 +28,7 @@ const EventView = ({ product }) => {
         <div style={{ display: "flex", height: 60, flexGrow: 1 }}>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              {Loading ? <Skeleton width="100%" /> : product.title}
+                {Loading ? <Skeleton width="100%" /> : <Link to={`/products/detail/${product.id}`}>{product.title}</Link>}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {Loading ? <Skeleton width="90%" /> : product.description.slice(0, 100).toLowerCase()}

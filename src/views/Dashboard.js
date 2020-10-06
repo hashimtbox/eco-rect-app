@@ -5,7 +5,7 @@ import LandingPage from "../components/LandingPage";
 
 const Dashboard = () => {
   return (
-    <Template selected={dashboard}>
+    <Template >
       <LandingPage />
     </Template>
   );

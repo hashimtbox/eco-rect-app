@@ -31,7 +31,6 @@ const LandingPage = () => {
         <TrendingProducts products={products} />
         <MiniLogo />
       </Grid>
-      {/* <Footer /> */}
     </>
   );
 };
