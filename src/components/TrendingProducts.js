@@ -1,37 +1,37 @@
 import React from 'react'
 import { Grid, Typography } from "@material-ui/core";
 import EventListView from "./EventListView";
-import macbook from "../assets/macbook.jpg";
-import jacket from "../assets/jacket.jpg";
-import jeans from "../assets/jeans.jpg";
+import macbook from "../assets/macbook.png";
+import jacket from "../assets/jacket.png";
+import jeans from "../assets/jeans.png";
 
 
 const events = [
     {
         id: 1,
         title: 'Macbook Pro',
-        price: 1000,
+        price: 18.99,
         description: '14 inch macbook pro for latest and greatest use by smart people of America',
         image: macbook,
     },
     {
         id: 2,
         title: 'Mens Jacket',
-        price: 150,
+        price: 150.45,
         description: 'Awesome leather jacket for men to wear in summer or winter whatever',
         image: jacket,
     },
     {
-        id: 2,
+        id: 3,
         title: 'Leather Jeans',
-        price: 350,
+        price: 350.99,
         description: 'Beautiful leather jeans for women to wear in summer or winter whatever',
         image: jeans
     },
 
 ]
 
-function TrendingProducts({products}) {
+function TrendingProducts({ products }) {
     return (
         <>
             <Grid
@@ -54,7 +54,7 @@ function TrendingProducts({products}) {
                 >
                     <Typography className="pseudo_border" variant="h4">Trending Products</Typography>
                 </div>
-                <EventListView products={products} />
+                <EventListView products={events} />
             </Grid>
         </>
     )
