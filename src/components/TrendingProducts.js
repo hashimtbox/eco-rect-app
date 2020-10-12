@@ -10,21 +10,21 @@ const events = [
     {
         id: 1,
         title: 'Macbook Pro',
-        price: 18.99,
+        price: 18,
         description: '14 inch macbook pro for latest and greatest use by smart people of America',
         image: macbook,
     },
     {
         id: 2,
         title: 'Mens Jacket',
-        price: 150.45,
+        price: 150,
         description: 'Awesome leather jacket for men to wear in summer or winter whatever',
         image: jacket,
     },
     {
         id: 3,
         title: 'Leather Jeans',
-        price: 350.99,
+        price: 350,
         description: 'Beautiful leather jeans for women to wear in summer or winter whatever',
         image: jeans
     },

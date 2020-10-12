@@ -22,15 +22,69 @@ const authSlice = createSlice({
     setProgress: (state, action) => {
       state.inProgress = action.payload;
     },
-    setReady: ((state, action) => {
+    setReady: (state, action) => {
       state.isReady = action.payload;
-    }),
-    addToCart: (state, action) => {
-      state.cart.push(action.payload)
     },
-    deleteFromCart: (state, action) => {
-      state.cart.filter((item) => item !== action.payload.id)
-    }
+    incrementItemQuantity: (state, action) => {
+      const updatedCart = [...state.cart];
+      const updatedItemIndex = updatedCart.findIndex(
+        item => item.id === action.payload
+      );
+
+      const incrementedItem = {
+        ...updatedCart[updatedItemIndex]
+      };
+
+      incrementedItem.quantity++;
+      incrementedItem.total = incrementedItem.price * incrementedItem.quantity;
+      updatedCart[updatedItemIndex] = incrementedItem;
+
+      return { ...state, cart: updatedCart };
+    },
+    decrementItemQuantity: (state, action) => {
+      const updatedCart = [...state.cart];
+      const updatedItemIndex = updatedCart.findIndex(
+        item => item.id === action.payload
+      );
+
+      const decrementedItem = {
+        ...updatedCart[updatedItemIndex]
+      };
+
+      decrementedItem.quantity--;
+      decrementedItem.total = decrementedItem.price * decrementedItem.quantity;
+
+      updatedCart[updatedItemIndex] = decrementedItem;
+
+      return { ...state, cart: updatedCart };
+    },
+    addToCart: (state, action) => {
+      const updatedCart = [...state.cart];
+      const updatedItemIndex = updatedCart.findIndex(item => item.id === action.payload.id);
+
+      if (updatedItemIndex < 0) {
+        updatedCart.push({ ...action.payload, quantity: 1, total: action.payload.price });
+      } else {
+        const updatedItem = {
+          ...updatedCart[updatedItemIndex]
+        };
+
+        updatedItem.quantity++;
+        // updatedItem.price = updatedItem.price * updatedItem.quantity;
+        updatedItem.total = updatedItem.price * updatedItem.quantity;
+        updatedCart[updatedItemIndex] = updatedItem;
+      }
+
+      return { ...state, cart: updatedCart };
+    },
+    removeFromCart: (state, action) => {
+      const updatedCart = [...state.cart];
+      const updatedItemIndex = updatedCart.findIndex(
+        item => item.id === action.payload
+      );
+      updatedCart.splice(updatedItemIndex, 1);
+      return { ...state, cart: updatedCart };
+    },
   }
 });
 

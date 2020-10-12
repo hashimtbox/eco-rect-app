@@ -1,37 +1,10 @@
-import React, { createRef, useRef } from "react";
-import Cart from './Cart'
-import {
-    AppBar,
-    Avatar,
-    CssBaseline,
-    Drawer,
-    IconButton,
-    List,
-    ListItem,
-    Toolbar,
-    Typography,
-    Link,
-    Badge,
-    Box,
-    useTheme,
-    Collapse
-} from "@material-ui/core";
-import { display } from '@material-ui/system';
-import { Add, AllInclusiveOutlined, ShoppingCart, SettingsOutlined, EventOutlined } from "@material-ui/icons";
+import React, { useRef } from "react";
+import { useTheme } from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import TopMenu from "./TopMenu";
 import drawerConfig from "../config/drawer";
 import { colors } from "../utils/colors";
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import StarBorder from "@material-ui/core/SvgIcon/SvgIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Popover from '@material-ui/core/Popover';
-import MenuIcon from '@material-ui/icons/Menu';
-import Header from "./Header"
 import Footer from "./Footer";
 const useStyles = makeStyles(theme => ({
     root: {

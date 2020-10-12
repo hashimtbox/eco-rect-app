@@ -3,16 +3,7 @@ import React, { useRef } from "react";
 import Cart from './Cart';
 import { useHistory } from "react-router";
 import "../assets/styles/style.css";
-import {
-    AppBar,
-    CssBaseline,
-    Toolbar,
-    Typography,
-    Badge,
-    Box,
-    IconButton
-} from "@material-ui/core";
-
+import { AppBar, CssBaseline, Toolbar, Typography, Badge, Box, IconButton } from "@material-ui/core";
 import { AllInclusiveOutlined, ShoppingCart } from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { useSelector } from "react-redux";
@@ -97,26 +88,13 @@ const Header = ({ selected, children, ...props }) => {
         <div>
             <CssBaseline />
             <TopMenu ref={ref} />
-            <AppBar
-                className={classes.appBar}
-                variant="outlined"
-                position={"fixed"}
-            >
+            <AppBar className={classes.appBar} variant="outlined" position={"fixed"}>
                 <Toolbar style={{ backgroundColor: 'white' }}>
                     <Box display={{ xs: "block", lg: "none" }}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            edge="start"
-                            onClick={handleDrawerToggle}
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        <IconButton color="inherit" aria-label="Open drawer" edge="start" onClick={handleDrawerToggle}><MenuIcon /></IconButton>
                     </Box>
-                    <AllInclusiveOutlined fontSize={"large"} />
-                    <Typography style={{ marginLeft: 20 }} variant={"h6"}>
-                        Grubsters
-            </Typography>
+                    {/* <AllInclusiveOutlined fontSize={"large"} /> */}
+                    <Typography variant={"h6"}>GrubstersComics</Typography>
                     <span style={{ flexGrow: 1 }} />
                     <div className="displayLinks">
                         <Typography variant='h6' >
@@ -188,34 +166,14 @@ const Header = ({ selected, children, ...props }) => {
                             </Link>
                         </Typography>
                     </div>
-                    {/*<IconButton style={{marginRight: 10, marginLeft: 15}} onClick={event => ref.current.open(event)}>*/}
                     <IconButton style={{ marginRight: 10, marginLeft: 15 }} onClick={handlePopoverClick}>
-                        <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" >
-                            <ShoppingCart display="block"></ShoppingCart>
-                        </Badge>
+                        <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" ><ShoppingCart display="block"></ShoppingCart></Badge>
                     </IconButton>
-                    <Popover
-                        id={id}
-                        open={openPopover}
-                        anchorEl={anchorEl}
-                        onClose={handlePopoverClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
+                    <Popover id={id} open={openPopover} anchorEl={anchorEl} onClose={handlePopoverClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} transformOrigin={{ vertical: 'top', horizontal: 'center' }}>
                         {cart.length === 0 ?
-                            <Box m={2} width={350} height={80} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Typography variant={"h6"}>Your Cart is Empty</Typography>
-                            </Box>
+                            <Box m={2} width={318} height={80} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}><Typography variant={"h6"}>Your Cart is Empty</Typography></Box>
                             :
-
                             <Cart />
-
                         }
                     </Popover>
                 </Toolbar>

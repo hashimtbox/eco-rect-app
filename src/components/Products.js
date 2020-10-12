@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import {useParams} from "react-router";
-import {useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
 import Template from "../components/Template";
 import EventListView from "../components/EventListView";
@@ -11,7 +11,10 @@ import Header from "./Header";
 import Footer from "./Footer";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import drawerConfig from "../config/drawer";
-import {colors} from "../utils/colors";
+import { colors } from "../utils/colors";
+import SidebarFilters from "./SidebarFilters";
+import { Grid } from "@material-ui/core";
+import ProductBreadcrumbs from './ProductBreadcrumbs';
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
@@ -48,48 +51,86 @@ const useStyles = makeStyles(theme => ({
 
 const products = [
     {
-        id: 1,
+        id: 6,
         title: 'Macbook Pro',
         price: 1000,
         description: '14 inch macbook pro for latest and greatest use by smart people of America',
         image: comic,
     },
     {
-        id: 2,
+        id: 7,
         title: 'Logo Bandana',
         price: 150,
         description: 'Awesome leather jacket for men to wear in summer or winter whatever',
         image: comic2,
     },
     {
-        id: 3,
-        title: 'Leather Jeans',
+        id: 8,
+        title: 'Logo Bandana',
         price: 350,
-        description: 'Beautiful leather jeans for women to wear in summer or winter whatever',
-        image: jeans
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 9,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 10,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 11,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
     },
 ]
 const Products = () => {
-    const {category} = useParams()
-    const classes = useStyles();
+    // const { category } = useParams()
+    // const classes = useStyles();
 
-    //const {productsByCategory} = useSelector(state => state.products)
+    // //const {productsByCategory} = useSelector(state => state.products)
 
-    useEffect(()=> {
-    // dispatch(fetchProductsByCategory())
-    }, [])
+    // useEffect(() => {
+    //     // dispatch(fetchProductsByCategory())
+    // }, [])
 
     return (
 
-        <div className={classes.root} >
-            <Header />
-            <div style={{ padding: 24 }}>
-                <Typography variant="h5">{category}</Typography>
-                <div style={{ height: 20 }} />
-                <EventListView products={products} />
-            </div>
-        </div >
+        // <div className={classes.root} >
+        //     <Header />
+        //     <div style={{ padding: 24 }}>
+        //         <Typography variant="h5">{category}</Typography>
+        //         <div style={{ height: 20 }} />
+        //         <EventListView products={products} />
+        //     </div>
+        // </div >
         // <h1>Products Page for {category}</h1>
+
+        <Template>
+            <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
+                <ProductBreadcrumbs />
+
+                <Grid container spacing={4}>
+                    <Grid item xl={3} lg={3} md={12} sm={12} xs={12} >
+                        <SidebarFilters />
+                    </Grid>
+                    <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
+                        <EventListView products={products} />
+                    </Grid>
+
+                </Grid>
+            </Grid >
+            <div style={{ height: 80 }}></div>
+        </Template >
     )
 }
 

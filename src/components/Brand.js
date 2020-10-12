@@ -5,11 +5,7 @@ import PropTypes from "prop-types";
 
 const Brand = ({ size = "small", title = "Chalo Chalen" }) => (
   <div style={{ display: "flex", alignItems: "center" }}>
-    <AllInclusiveOutlined
-      color="primary"
-      fontSize={size}
-      style={{ marginRight: 6 }}
-    />
+    <AllInclusiveOutlined color="primary" fontSize={size} style={{ marginRight: 6 }} />
     <Typography variant={"caption"} fontSize={size} color="primary">
       {title}
     </Typography>

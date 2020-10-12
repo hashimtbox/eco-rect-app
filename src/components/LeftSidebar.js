@@ -1,13 +1,5 @@
 import React from "react";
-import {
-    Drawer,
-    List,
-    ListItem,
-    Typography,
-    Box,
-    useTheme,
-    Collapse
-} from "@material-ui/core";
+import { Drawer, List, ListItem, Typography, Box, useTheme, Collapse } from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { useHistory } from "react-router";
 import drawerConfig from "../config/drawer";
@@ -53,10 +45,6 @@ const LeftSidebar = ({ selected, children, ...props }) => {
     const history = useHistory();
     const theme = useTheme()
     const [mobileOpen, setMobileOpen] = React.useState(true);
-    // function handleDrawerToggle() {
-    //     setMobileOpen(!mobileOpen);
-    //     console.log(mobileOpen);
-    // }
     return (
         <div>
             <Box display={{ xs: mobileOpen ? "none" : "block", lg: "block" }} >

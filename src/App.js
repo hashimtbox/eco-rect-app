@@ -24,9 +24,10 @@ const App = () => {
         <Switch>
           <Route exact path="/test" component={LandingPage} />
           <SecureRoute exact path="/" component={Dashboard} />
-          <SecureRoute path="/products/:category" exact component={Products} />
+          {/* <SecureRoute path="/products/:category" exact component={Products} /> */}
           <Route exact path="/products/detail/:productId" component={ProductDetailPage} />
           <Route exact path="/cart" component={CartDetail} />
+          <Route exact path="/products" component={Products} />
           {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
           {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
           {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}
