@@ -15,6 +15,8 @@ import { colors } from "../utils/colors";
 import SidebarFilters from "./SidebarFilters";
 import { Grid } from "@material-ui/core";
 import ProductBreadcrumbs from './ProductBreadcrumbs';
+import ProductPagination from './ProductPagination';
+
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
@@ -92,6 +94,48 @@ const products = [
         description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
         image: comic
     },
+    {
+        id: 12,
+        title: 'Macbook Pro',
+        price: 1000,
+        description: '14 inch macbook pro for latest and greatest use by smart people of America',
+        image: comic,
+    },
+    {
+        id: 13,
+        title: 'Logo Bandana',
+        price: 150,
+        description: 'Awesome leather jacket for men to wear in summer or winter whatever',
+        image: comic2,
+    },
+    {
+        id: 14,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 15,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 16,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
+    {
+        id: 17,
+        title: 'Logo Bandana',
+        price: 350,
+        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+        image: comic
+    },
 ]
 const Products = () => {
     // const { category } = useParams()
@@ -118,15 +162,14 @@ const Products = () => {
         <Template>
             <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
                 <ProductBreadcrumbs />
-
                 <Grid container spacing={4}>
                     <Grid item xl={3} lg={3} md={12} sm={12} xs={12} >
                         <SidebarFilters />
                     </Grid>
                     <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
                         <EventListView products={products} />
+                        <ProductPagination />
                     </Grid>
-
                 </Grid>
             </Grid >
             <div style={{ height: 80 }}></div>
