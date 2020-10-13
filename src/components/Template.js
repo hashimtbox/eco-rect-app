@@ -42,13 +42,14 @@ const useStyles = makeStyles(theme => ({
 
 const Template = ({ selected, children, ...props }) => {
   const classes = useStyles();
+  const routepath = window.location.pathname;
   return (
     <div className={classes.root} {...props}>
       <Header />
       <main style={{ width: "100%" }}>
         <div className={classes.toolbar} />
         {children}
-        <Footer />
+        {routepath == "/" ? <Footer /> : <FooterMerchandise />}
       </main>
     </div >
   );

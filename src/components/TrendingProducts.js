@@ -54,7 +54,7 @@ function TrendingProducts({ products }) {
                 >
                     <Typography className="pseudo_border" variant="h4">Trending Products</Typography>
                 </div>
-                <EventListView products={products} />
+                <EventListView products={events} />
             </Grid>
         </>
     )
