@@ -384,6 +384,7 @@ div.sticky {
 }
 .nav-categories-ul > li{
 	font-size: 14px;
+	padding-bottom: 10px;
 	
 }
 
@@ -411,6 +412,8 @@ div.sticky {
 	color: black;
 	transition: 0.3s;
 	border-bottom: 2px solid white;	
+	font-weight: 500;
+	
 }
 
 .nav-categories-ul > li > a:hover{
@@ -481,3 +484,58 @@ span.sprd-color-square{
 	text-align:center;
 	padding: 5px 20px;
 	}
+
+.filter-name{
+	font-size: 18px;
+	float: left; 
+	font-weight: 500;
+}
+
+
+.pagination {
+	display: inline-block;
+	list-style-type: none;
+  }
+  
+  .pagination li {
+	color: black;
+	float: left;
+	padding: 8px;
+	text-decoration: none;
+  }
+  
+  .pagination li button.page-link {
+	color: black; 
+	border:none;
+	background: transparent;
+	padding: 8px 12px;
+  }
+
+  .pagination li.active button.page-link {
+	background-color: #448AFF;
+	color: white; 
+	border:none;
+  }
+  .pagination li button.page-link:hover{
+	  background-color: #448AFF;
+	  color: white; 
+	  border:none;
+	  cursor: pointer;
+	  
+  }
+  .pagination li button.page-link:focus {
+	border:none;
+	cursor: pointer;
+	outline: none;
+  }
+
+  .pagination li.page-item.disabled button.page-link{
+	background-color: #d9d9d9;
+  }
+
+  .product-pagination{
+	  display: flex;
+	  justify-content: center;
+	  margin: 0 auto;
+	  margin-top: 30px;
+  }

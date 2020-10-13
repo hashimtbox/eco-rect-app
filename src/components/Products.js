@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Component, useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
@@ -16,7 +16,7 @@ import SidebarFilters from "./SidebarFilters";
 import { Grid } from "@material-ui/core";
 import ProductBreadcrumbs from './ProductBreadcrumbs';
 import ProductPagination from './ProductPagination';
-
+import { paginationPipe } from "./PaginationFilter";
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
@@ -137,7 +137,8 @@ const products = [
         image: comic
     },
 ]
-const Products = () => {
+
+class Products extends Component {
     // const { category } = useParams()
     // const classes = useStyles();
 
@@ -147,34 +148,108 @@ const Products = () => {
     //     // dispatch(fetchProductsByCategory())
     // }, [])
 
-    return (
+    // paginationPipe = (state, args) => {
+    //     if (!args || !args.perPage || !args.currentPage) {
+    //         return state;
+    //     }
+    //     const location = (args.perPage * (args.currentPage - 1)) || 0;
 
-        // <div className={classes.root} >
-        //     <Header />
-        //     <div style={{ padding: 24 }}>
-        //         <Typography variant="h5">{category}</Typography>
-        //         <div style={{ height: 20 }} />
-        //         <EventListView products={products} />
-        //     </div>
-        // </div >
-        // <h1>Products Page for {category}</h1>
+    //     return state.slice(location, location + args.perPage);
+    // };
 
-        <Template>
-            <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
-                <ProductBreadcrumbs />
-                <Grid container spacing={4}>
-                    <Grid item xl={3} lg={3} md={12} sm={12} xs={12} >
-                        <SidebarFilters />
+    state = {
+        perPage: 1,
+        currentPage: 1,
+        pagesToShow: 9,
+    };
+
+    // changeLayout = (n) => {
+    //     this.setState({ gridValue: n });
+
+    //     let realGridValue;
+
+    //     if (n === 4) {
+    //         realGridValue = 3
+    //     } else {
+    //         realGridValue = 4;
+    //     }
+
+    //     this.setState({
+    //         colValue: `col-lg-${realGridValue}`
+    //     });
+    // };
+
+
+    onPrev = () => {
+        const updatedState = { ...this.state };
+        updatedState.currentPage = this.state.currentPage - 1;
+        this.setState(updatedState);
+    };
+
+
+    onNext = () => {
+        this.setState({
+            ...this.state,
+            currentPage: this.state.currentPage + 1
+        });
+    };
+
+    goPage = (n) => {
+        this.setState({
+            ...this.state,
+            currentPage: n
+        });
+    };
+
+
+    render() {
+
+        return (
+
+            // <div className={classes.root} >
+            //     <Header />
+            //     <div style={{ padding: 24 }}>
+            //         <Typography variant="h5">{category}</Typography>
+            //         <div style={{ height: 20 }} />
+            //         <EventListView products={products} />
+            //     </div>
+            // </div >
+            // <h1>Products Page for {category}</h1>
+
+            <Template>
+                <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
+                    <ProductBreadcrumbs />
+                    <Grid container spacing={4}>
+                        <Grid item xl={3} lg={3} md={12} sm={12} xs={12} >
+                            <SidebarFilters />
+                        </Grid>
+                        <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
+
+                            {paginationPipe(products, this.state).map(product => {
+                                return (
+                                    < EventListView products={product} />
+                                )
+                            })}
+                            {/* <EventListView products={products} /> */}
+                            <div className="product-pagination">
+                                <ProductPagination
+                                    totalItemsCount={products.length}
+                                    currentPage={this.state.currentPage}
+                                    perPage={this.state.perPage}
+                                    pagesToShow={this.state.pagesToShow}
+                                    onGoPage={this.goPage}
+                                    onPrevPage={this.onPrev}
+                                    onNextPage={this.onNext}
+                                />
+                            </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
-                        <EventListView products={products} />
-                        <ProductPagination />
-                    </Grid>
-                </Grid>
-            </Grid >
-            <div style={{ height: 80 }}></div>
-        </Template >
-    )
+
+                </Grid >
+                <div style={{ height: 80 }}></div>
+            </Template >
+        )
+    }
 }
 
 export default Products

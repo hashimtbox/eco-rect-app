@@ -4,6 +4,7 @@ import drawerConfig from "../config/drawer";
 import { colors } from "../utils/colors";
 import Header from "./Header"
 import Footer from "./Footer";
+import FooterMerchandise from "./FooterMerchandise";
 
 const useStyles = makeStyles(theme => ({
   root: {

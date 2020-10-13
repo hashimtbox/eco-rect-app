@@ -27,7 +27,7 @@ const events = [
         price: 350,
         description: 'Beautiful leather jeans for women to wear in summer or winter whatever',
         image: jeans
-    },
+    }
 
 ]
 
@@ -54,7 +54,7 @@ function TrendingProducts({ products }) {
                 >
                     <Typography className="pseudo_border" variant="h4">Trending Products</Typography>
                 </div>
-                <EventListView products={events} />
+                <EventListView products={products} />
             </Grid>
         </>
     )

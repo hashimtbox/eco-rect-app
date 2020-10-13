@@ -21,18 +21,17 @@ function SidebarFilters() {
             <h1 style={{ marginTop: 0, marginBottom: 0 }} className="category-border">Category Name</h1>
             <div className="dropdown-categories category-border">
                 <div className="clearfix-categories">
-                    <span style={{ fontSize: 15, float: "left" }}>Categories</span>
+                    <span className="filter-name">Categories</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavCategories ? <ExpandLessIcon onClick={updateOpenNavCategories} /> : <ExpandMoreIcon onClick={updateOpenNavCategories} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavCategories ? 'display-nav-block' : 'display-nav-none'}>
                     <CategoriesFilters />
                 </nav>
-            </div >
-
+            </div>
 
             <div className="dropdown-categories category-border">
                 <div className="clearfix-categories">
-                    <span style={{ fontSize: 15, float: "left" }}>Colors</span>
+                    <span className="filter-name">Colors</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavColors ? <ExpandLessIcon onClick={updateOpenNavColors} /> : <ExpandMoreIcon onClick={updateOpenNavColors} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavColors ? 'display-nav-block' : 'display-nav-none'}>
@@ -42,7 +41,7 @@ function SidebarFilters() {
 
             <div className="dropdown-categories category-border">
                 <div className="clearfix-categories">
-                    <span style={{ fontSize: 15, float: "left" }}>Sizes</span>
+                    <span className="filter-name">Sizes</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavSizes ? <ExpandLessIcon onClick={updateOpenNavSizes} /> : <ExpandMoreIcon onClick={updateOpenNavSizes} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavSizes ? 'display-nav-block' : 'display-nav-none'}>
