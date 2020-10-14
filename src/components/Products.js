@@ -58,83 +58,83 @@ const products = [
         description: '14 inch macbook pro for latest and greatest use by smart people of America',
         image: comic,
     },
-    {
-        id: 7,
-        title: 'Logo Bandana',
-        price: 150,
-        description: 'Awesome leather jacket for men to wear in summer or winter whatever',
-        image: comic2,
-    },
-    {
-        id: 8,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 9,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 10,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 11,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 12,
-        title: 'Macbook Pro',
-        price: 1000,
-        description: '14 inch macbook pro for latest and greatest use by smart people of America',
-        image: comic,
-    },
-    {
-        id: 13,
-        title: 'Logo Bandana',
-        price: 150,
-        description: 'Awesome leather jacket for men to wear in summer or winter whatever',
-        image: comic2,
-    },
-    {
-        id: 14,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 15,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 16,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
-    {
-        id: 17,
-        title: 'Logo Bandana',
-        price: 350,
-        description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
-        image: comic
-    },
+    // {
+    //     id: 7,
+    //     title: 'Logo Bandana',
+    //     price: 150,
+    //     description: 'Awesome leather jacket for men to wear in summer or winter whatever',
+    //     image: comic2,
+    // },
+    // {
+    //     id: 8,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 9,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 10,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 11,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 12,
+    //     title: 'Macbook Pro',
+    //     price: 1000,
+    //     description: '14 inch macbook pro for latest and greatest use by smart people of America',
+    //     image: comic,
+    // },
+    // {
+    //     id: 13,
+    //     title: 'Logo Bandana',
+    //     price: 150,
+    //     description: 'Awesome leather jacket for men to wear in summer or winter whatever',
+    //     image: comic2,
+    // },
+    // {
+    //     id: 14,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 15,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 16,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
+    // {
+    //     id: 17,
+    //     title: 'Logo Bandana',
+    //     price: 350,
+    //     description: 'Beautiful Logo Bandana for women to wear in summer or winter whatever',
+    //     image: comic
+    // },
 ]
 
 const Products = () => {
@@ -179,16 +179,19 @@ const Products = () => {
                             <EventListView products={products.slice((page - 1) * itemsPerPage, page * itemsPerPage)} />
                         }
                         <div className="product-pagination">
-                            <Pagination
-                                count={noOfPages}
-                                page={page}
-                                onChange={handleChange}
-                                defaultPage={1}
-                                color="primary"
-                                size="large"
-                                showFirstButton
-                                showLastButton
-                            />
+                            {
+                                Boolean(products && products.length) &&
+                                (<Pagination
+                                    count={noOfPages}
+                                    page={page}
+                                    onChange={handleChange}
+                                    defaultPage={1}
+                                    size="medium"
+                                    showFirstButton
+                                    showLastButton
+                                    color="secondary"
+                                />)
+                            }
                         </div>
                     </Grid>
                 </Grid>

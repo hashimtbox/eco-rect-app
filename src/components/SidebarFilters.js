@@ -18,8 +18,7 @@ function SidebarFilters() {
 
     return (
         <div>
-            <h1 style={{ marginTop: 0, marginBottom: 0 }} className="category-border">Category Name</h1>
-            <div className="dropdown-categories category-border">
+            <div className="dropdown-categories">
                 <div className="clearfix-categories">
                     <span className="filter-name">Categories</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavCategories ? <ExpandLessIcon onClick={updateOpenNavCategories} /> : <ExpandMoreIcon onClick={updateOpenNavCategories} />}</span>
@@ -29,7 +28,7 @@ function SidebarFilters() {
                 </nav>
             </div>
 
-            <div className="dropdown-categories category-border">
+            <div className="dropdown-categories">
                 <div className="clearfix-categories">
                     <span className="filter-name">Colors</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavColors ? <ExpandLessIcon onClick={updateOpenNavColors} /> : <ExpandMoreIcon onClick={updateOpenNavColors} />}</span>
@@ -39,7 +38,7 @@ function SidebarFilters() {
                 </nav>
             </div >
 
-            <div className="dropdown-categories category-border">
+            <div className="dropdown-categories">
                 <div className="clearfix-categories">
                     <span className="filter-name">Sizes</span>
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavSizes ? <ExpandLessIcon onClick={updateOpenNavSizes} /> : <ExpandMoreIcon onClick={updateOpenNavSizes} />}</span>

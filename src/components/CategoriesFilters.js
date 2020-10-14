@@ -23,6 +23,7 @@ const categories = [
         subcategories: ["Shirts", "Tshirts", "Pants", "Wears"]
     },
 
+
 ]
 function CategoriesFilters() {
 
