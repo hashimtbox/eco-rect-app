@@ -1,4 +1,5 @@
 import { Link, animateScroll as scroll } from "react-scroll";
+// import { Link } from "react";
 import React, { useRef } from "react";
 import Cart from './Cart';
 import { useHistory } from "react-router";
@@ -127,10 +128,12 @@ const Header = ({ selected, children, ...props }) => {
                                 Comic
                             </Link>
                             <Link className={classes.navLink}
-                                onClick={handleClickListItem}
+                                onClick={() => history.push({
+                                    pathname: `/products`,
+                                })}
                             >Products
                             </Link>
-                            <Menu
+                            {/* <Menu
                                 id="lock-menu"
                                 anchorEl={anchorEll}
                                 keepMounted
@@ -148,7 +151,7 @@ const Header = ({ selected, children, ...props }) => {
                                         {option.name}
                                     </MenuItem>
                                 ))}
-                            </Menu>
+                            </Menu> */}
                             <Link to="trendingsection" activeClass="active"
                                 spy={true}
                                 smooth={true}

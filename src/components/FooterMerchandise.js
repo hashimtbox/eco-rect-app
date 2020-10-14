@@ -34,7 +34,7 @@ function FooterMerchandise() {
         <>
             <Grid container className="footer" id="contactsection">
                 <Grid container style={{ marginTop: 50, paddingLeft: 50, paddingRight: 50 }}>
-                    <Grid item xl={3} lg={3} md={6} sm={12} className="footer-column">
+                    <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
                         <Typography variant="h6" className="footer-column-heading">Products</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             {categories.map(category => (
@@ -44,7 +44,7 @@ function FooterMerchandise() {
                             ))}
                         </div>
                     </Grid>
-                    <Grid item xl={3} lg={3} md={6} sm={12} className="footer-column">
+                    <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
                         <Typography variant="h6" className="footer-column-heading">Shop</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             <Link className="footer-column-link" to={`#`}>
@@ -67,7 +67,7 @@ function FooterMerchandise() {
                             </Link>
                         </div>
                     </Grid>
-                    <Grid item xl={3} lg={3} md={6} sm={12} className="footer-column">
+                    <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
                         <Typography variant="h6" className="footer-column-heading" >Service</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
 
@@ -88,7 +88,7 @@ function FooterMerchandise() {
                             </Link> */}
                         </div>
                     </Grid>
-                    <Grid item xl={3} lg={3} md={6} sm={12} className="footer-column">
+                    <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
                         <Typography variant="h6" className="footer-column-heading">Contact</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             <Link className="footer-column-link" to={`#`}>
