@@ -10,13 +10,13 @@ const buttonSizes = [
     { id: 5, size: "XXL" },
     { id: 6, size: "XXXL" },
 ]
-function SizesFilters() {
+function SizesFilters( {buttonSizes}) {
     return (
         <>
             <ul className="nav-categories-ul">
                 {buttonSizes.map(buttonitem => {
                     return (
-                        <Button key={buttonitem.id} variant='outlined' className="button-size-filter">{buttonitem.size}</Button>
+                        <Button key={buttonitem.id} variant='outlined' className="button-size-filter">{buttonitem.name}</Button>
                     )
                 })}
             </ul>

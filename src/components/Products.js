@@ -86,7 +86,7 @@ const Products = () => {
         <ProductBreadcrumbs />
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
-            <SidebarFilters />
+            <SidebarFilters filterData = { filteredProductsData } />
           </Grid>
           <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
             {filteredProductsData &&
