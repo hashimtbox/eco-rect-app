@@ -1,22 +1,20 @@
-import { Link, animateScroll as scroll } from "react-scroll";
-// import { Link } from "react";
 import React, { useRef } from "react";
 import Cart from './Cart';
 import { useHistory } from "react-router";
-import "../assets/styles/style.css";
 import { AppBar, CssBaseline, Toolbar, Typography, Badge, Box, IconButton } from "@material-ui/core";
-import { AllInclusiveOutlined, ShoppingCart } from "@material-ui/icons";
+import { ShoppingCart } from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { useSelector } from "react-redux";
 import TopMenu from "./TopMenu";
 import drawerConfig from "../config/drawer";
 import { colors } from "../utils/colors";
-
 import Popover from '@material-ui/core/Popover';
 import MenuIcon from '@material-ui/icons/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-
+import { HashLink as Link } from 'react-router-hash-link';
+import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import '../assets/styles/style.css';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -48,7 +46,8 @@ const useStyles = makeStyles(theme => ({
         color: colors.dark,
         marginLeft: 10,
         marginRight: 10,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        textDecoration: "none"
     }
 }));
 
@@ -66,65 +65,106 @@ const Header = ({ selected, children, ...props }) => {
     };
     const openPopover = Boolean(anchorEl);
     const id = openPopover ? 'simple-popover' : undefined;
-    const [mobileOpen, setMobileOpen] = React.useState(true);
-
-    function handleDrawerToggle() {
-        setMobileOpen(!mobileOpen);
-        console.log(mobileOpen);
-    }
-
     const [anchorEll, setAnchorEll] = React.useState(null);
-
     const handleClickListItem = (event) => {
         setAnchorEll(event.currentTarget);
     };
-
-
     const handleMenuClose = () => {
         setAnchorEll(null);
     };
     const [open, setOpen] = React.useState(false);
     const history = useHistory();
+
+    const [state, setState] = React.useState({ left: false });
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+        setState({ ...state, [anchor]: open });
+    };
+    const list = (anchor) => (
+        <div
+            role="presentation"
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+            className="drawer-small-screen"
+        >
+            <Typography variant='h6' >
+                <List>
+                    <Link smooth to="/#homesection" className={classes.navLink}>
+                        Home
+                    </Link>
+                </List>
+                <List>
+                    <Link smooth to="/#characterssection" className={classes.navLink}>
+                        Characters
+                    </Link>
+                </List>
+                <List>
+                    <Link smooth to="/#aboutsection" className={classes.navLink}>
+                        About
+                    </Link>
+                </List>
+                <List>
+                    <Link smooth to="/#comixsection" className={classes.navLink}>
+                        Comic
+                    </Link>
+                </List>
+                <List>
+                    <Link className={classes.navLink}
+                        onClick={() => history.push({
+                            pathname: `/products`,
+                        })}
+                    >Products
+                    </Link>
+                </List>
+                <List>
+                    <Link smooth to="/#trendingsection" className={classes.navLink}>
+                        Trending Products
+                    </Link>
+                </List>
+                <List>
+                    <Link smooth to="/#contactsection" className={classes.navLink}>
+                        Contact
+                    </Link>
+                </List>
+            </Typography>
+        </div>
+    );
+
     return (
         <div>
             <CssBaseline />
             <TopMenu ref={ref} />
             <AppBar className={classes.appBar} variant="outlined" position={"fixed"}>
                 <Toolbar style={{ backgroundColor: 'white' }}>
-                    <Box display={{ xs: "block", lg: "none" }}>
-                        <IconButton color="inherit" aria-label="Open drawer" edge="start" onClick={handleDrawerToggle}><MenuIcon /></IconButton>
-                    </Box>
-                    {/* <AllInclusiveOutlined fontSize={"large"} /> */}
+                    {['left',].map((anchor) => (
+                        <React.Fragment key={anchor}>
+                            <Box display={{ xs: "block", lg: "none" }}>
+                                <IconButton onClick={toggleDrawer(anchor, true)} color="inherit" aria-label="Open drawer" edge="start">
+                                    <MenuIcon />
+                                </IconButton>
+                                <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                                    {list(anchor)}
+                                </Drawer>
+                            </Box>
+                        </React.Fragment>
+                    ))}
+
                     <Typography variant={"h6"}>GrubstersComics</Typography>
                     <span style={{ flexGrow: 1 }} />
                     <div className="displayLinks">
                         <Typography variant='h6' >
-                            <Link to="homesection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#homesection" className={classes.navLink}>
                                 Home
                             </Link>
-                            <Link to="characterssection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#characterssection" className={classes.navLink}>
                                 Characters
                             </Link>
-                            <Link to="aboutsection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#aboutsection" className={classes.navLink}>
                                 About
                             </Link>
-                            <Link to="comixsection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#comixsection" className={classes.navLink}>
                                 Comic
                             </Link>
                             <Link className={classes.navLink}
@@ -133,38 +173,10 @@ const Header = ({ selected, children, ...props }) => {
                                 })}
                             >Products
                             </Link>
-                            {/* <Menu
-                                id="lock-menu"
-                                anchorEl={anchorEll}
-                                keepMounted
-                                open={Boolean(anchorEll)}
-                                onClose={handleMenuClose}
-                                style={{ width: 400 }}
-                            >
-                                {categories && categories.length && categories.map((option, index) => (
-                                    <MenuItem
-                                        key={option.id}
-                                        onClick={() => history.push({
-                                            pathname: `/products/${option.name}`,
-                                        })}
-                                    >
-                                        {option.name}
-                                    </MenuItem>
-                                ))}
-                            </Menu> */}
-                            <Link to="trendingsection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#trendingsection" className={classes.navLink}>
                                 Trending Products
                             </Link>
-
-                            <Link to="contactsection" activeClass="active"
-                                spy={true}
-                                smooth={true}
-                                offset={-70}
-                                duration={500} className={classes.navLink}>
+                            <Link smooth to="/#contactsection" className={classes.navLink}>
                                 Contact
                             </Link>
                         </Typography>
