@@ -64,7 +64,7 @@ const Products = () => {
 
   const itemsPerPage = 10;
   const [page, setPage] = React.useState(1);
-  const [noOfPages] = React.useState(Math.ceil(products.length / itemsPerPage));
+  const [noOfPages] = React.useState(Math.ceil(filteredProductsData.prducts.length / itemsPerPage));
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -105,7 +105,7 @@ const Products = () => {
                 page={page}
                 onChange={handleChange}
                 defaultPage={1}
-                color="primary"
+                color="secondary"
                 size="large"
                 showFirstButton
                 showLastButton
