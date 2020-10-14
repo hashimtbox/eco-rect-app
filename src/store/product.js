@@ -4,6 +4,7 @@ import { API_HOST } from "../config/api";
 const initialState = {
     products: [],
     categories: [],
+    filteredProductsData : [],
     inProgress: false,
     error: null
 };
@@ -14,6 +15,9 @@ const productSlice = createSlice({
     reducers: {
         setProducts: (state, action) => {
             state.products = action.payload;
+        },
+        setFilteredProductsData : (state , action)=> {
+            state.filteredProductsData = action.payload;
         },
         setError: (state, action) => {
             state.error = action.payload;
@@ -26,6 +30,28 @@ const productSlice = createSlice({
         },
     }
 });
+
+export const fetchProductsByFilter = () => async dispatch => {
+    try {
+        dispatch(productSlice.actions.setProgress(true));
+        const res = await fetch(`${API_HOST}/api/product/by_filter`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                'api_key': "eco-app-2SY:nPkgTTiETr-master-key",
+            }
+        });
+        const response = await res.json();
+        console.log(response);
+        dispatch(productSlice.actions.setFilteredProductsData(response.data));
+    } catch (e) {
+        console.error(e);
+        dispatch(productSlice.actions.setProgress(false));
+        dispatch(productSlice.actions.setError("Something gone wrong."));
+    } finally {
+        dispatch(productSlice.actions.setProgress(false));
+    }
+};
 
 export const fetchProducts = () => async dispatch => {
     try {
