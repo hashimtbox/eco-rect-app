@@ -162,7 +162,7 @@ input.form-button-class:focus {
 	outline: none;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1130px) {
 	.displayLinks {
 		display: none;
 	}
@@ -383,7 +383,7 @@ div.sticky {
 	margin: 0;
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 	overflow-x: auto;
-	max-height: 300px;
+	max-height: 600px;
 }
 .nav-categories-ul > li{
 	font-size: 14px;
@@ -397,6 +397,14 @@ div.sticky {
 
 .display-nav-none{
 	display: none;
+}
+
+.display-nav-none-list{
+	display:none;
+}
+
+.display-nav-block-list{
+	display:block;
 }
 
 @media only screen and (max-width: 1279px) {
@@ -593,3 +601,17 @@ span.sprd-color-square{
 	font-weight: 500 !important;
 	border-radius: 0px !important;
 }
+
+.drawer-small-screen{
+	width: 250px !important;
+	padding: 16px !important;
+}
+
+.makeStyles-navLink-49:hover{
+	color: #448aff;
+}
+
+ul.nav-categories-ul > li:first-child > span.first-one{
+	display: none !important;
+}
+
