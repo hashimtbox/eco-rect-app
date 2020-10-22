@@ -20,7 +20,7 @@ const EventView = ({ product }) => {
       <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${product.id}`}>
         <CardMedia
           style={{ height: 150, minWidth: 200 }}
-          image={product.image || jeans}
+          image={product.main_image || jeans}
           title={product.title}
         />
       </Link>

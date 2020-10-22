@@ -1,47 +1,56 @@
-import React from 'react'
+import React from "react";
+import { Typography } from "@material-ui/core";
 import "../assets/styles/style.css";
+import { fetchProductsByFilter } from "../store/product";
+import {useDispatch, useSelector} from "react-redux";
+import productSlice from "../store/product";
 
-const categories = [
-    {
-        id: 1,
-        name: "All",
-        subcategories: []
-    },
-    {
-        id: 2,
-        name: 'Men',
-        subcategories: ["Shirts", "Tshirts", "Pants"]
-    },
-    {
-        id: 3,
-        name: "Women",
-        subcategories: ["Shirts", "Tshirts", "Pants", "Wears"]
-    },
-    {
-        id: 4,
-        name: 'Kids',
-        subcategories: ["Shirts", "Tshirts", "Pants", "Wears"]
-    },
-
-
-]
-function CategoriesFilters() {
-
+function CategoriesFilters({ categories }) {
+  const dispatch = useDispatch();
+  // const { filters } = useSelector(state => state.products);
     return (
-        <>
-            <ul className="nav-categories-ul">
-                {categories.map(category => (
-                    <li><a href="#">{category.name}</a>
-                        <ul class="nav-subcategories-ul">
-                            {category.subcategories.map(subcategory => (
-                                <li><a href="#">{subcategory}</a></li>
-                            ))}
-                        </ul>
-                    </li>
-                ))}
-            </ul>
+    <>
+      <ul className="nav-categories-ul">
+        <li>
+          <Typography onClick={() => {
+              dispatch(productSlice.actions.resetFilterState());
+              dispatch(fetchProductsByFilter())
+          }}>
+            All Products
+          </Typography>
+        </li>
+        {categories &&
+          categories.length &&
+          categories.map(category => (
+            <li>
+              <Typography
+                onClick={() => {
+                  dispatch(productSlice.actions.setCategoryFilter(category));
+                  dispatch(fetchProductsByFilter());
 
-        </>
-    )
+                }}
+              >
+                {category.name}
+              </Typography>
+              <ul class="nav-subcategories-ul">
+                {category.sub_categories.map(subcategory => (
+                  <li>
+                    <Typography
+                      onClick={() => {
+                        dispatch(productSlice.actions.setSubCategoryFilter(subcategory));
+                        dispatch(fetchProductsByFilter());
+
+                      }}
+                    >
+                      {subcategory.name}
+                    </Typography>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+      </ul>
+    </>
+  );
 }
-export default CategoriesFilters
+export default CategoriesFilters;

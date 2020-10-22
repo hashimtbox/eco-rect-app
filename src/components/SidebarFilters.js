@@ -6,7 +6,7 @@ import ColorsFilters from './ColorsFilters';
 import SizesFilters from './SizesFilters';
 import "../assets/styles/style.css";
 
-function SidebarFilters() {
+function SidebarFilters( {filterData}) {
     const [openNavCategories, setOpenNavCategories] = useState(true);
     const updateOpenNavCategories = () => setOpenNavCategories(openNavCategories => !openNavCategories);
 
@@ -24,7 +24,7 @@ function SidebarFilters() {
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavCategories ? <ExpandLessIcon onClick={updateOpenNavCategories} /> : <ExpandMoreIcon onClick={updateOpenNavCategories} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavCategories ? 'display-nav-block' : 'display-nav-none'}>
-                    <CategoriesFilters />
+                    <CategoriesFilters categories={filterData.categories}/>
                 </nav>
             </div>
 
@@ -34,7 +34,7 @@ function SidebarFilters() {
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavColors ? <ExpandLessIcon onClick={updateOpenNavColors} /> : <ExpandMoreIcon onClick={updateOpenNavColors} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavColors ? 'display-nav-block' : 'display-nav-none'}>
-                    <ColorsFilters />
+                    <ColorsFilters Colors = {filterData.colors} />
                 </nav>
             </div >
 
@@ -44,7 +44,7 @@ function SidebarFilters() {
                     <span style={{ float: "right", cursor: "pointer" }}>{openNavSizes ? <ExpandLessIcon onClick={updateOpenNavSizes} /> : <ExpandMoreIcon onClick={updateOpenNavSizes} />}</span>
                 </div>
                 <nav style={{ marginTop: 13, transition: "0.3s" }} className={openNavSizes ? 'display-nav-block' : 'display-nav-none'}>
-                    <SizesFilters />
+                    <SizesFilters buttonSizes = {filterData.sizes} />
                 </nav>
             </div>
         </div >
