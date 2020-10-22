@@ -57,33 +57,30 @@ const Products = () => {
   // const { category } = useParams()
   // const classes = useStyles();
   const dispatch = useDispatch();
-  const { filteredProductsData } = useSelector(state => state.products);
+  const { filteredProductsData  } = useSelector(state => state.products);
   useEffect(() => {
     dispatch(fetchProductsByFilter());
   }, []);
 
+  const getNoOfPages = () => {
+    try {
+      return Math.ceil(filteredProductsData.prducts.length / itemsPerPage)
+    }catch (e) {
+      return 0
+    }
+  }
   const itemsPerPage = 10;
   const [page, setPage] = React.useState(1);
-  const [noOfPages] = React.useState(Math.ceil(filteredProductsData.prducts.length / itemsPerPage));
+  const [noOfPages] = React.useState(getNoOfPages());
 
   const handleChange = (event, value) => {
     setPage(value);
   };
 
   return (
-    // <div className={classes.root} >
-    //     <Header />
-    //     <div style={{ padding: 24 }}>
-    //         <Typography variant="h5">{category}</Typography>
-    //         <div style={{ height: 20 }} />
-    //         <EventListView products={products} />
-    //     </div>
-    // </div >
-    // <h1>Products Page for {category}</h1>
-
     <Template>
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
-        <ProductBreadcrumbs />
+        <ProductBreadcrumbs filterData={filteredProductsData.filterDetails} />
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
             <SidebarFilters filterData = { filteredProductsData } />
