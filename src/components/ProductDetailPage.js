@@ -4,15 +4,17 @@ import { Grid, Typography, Divider, Button, Radio } from "@material-ui/core";
 import MaterialSlider from "./MaterialSlider";
 import SizeChart from '../assets/size_chart.png'
 import { useParams } from "react-router";
+import authSlice from "../store/auth";
+import {fetchProductById, fetchProductsByFilter} from "../store/product";
+import {useDispatch, useSelector} from "react-redux";
 
 const ProductDetailPage = () => {
     const { productId } = useParams()
-    console.log('productId', productId)
-    const [product, setProduct] = useState(undefined)
-
+    const dispatch = useDispatch();
+    const { productDetail  } = useSelector(state => state.products);
     useEffect(() => {
         // todo call API
-        // fetch(..).then(res => setProduct(res.product))
+        dispatch(fetchProductById(productId));
     }, [productId])
 
     return (
@@ -23,25 +25,20 @@ const ProductDetailPage = () => {
                         <MaterialSlider />
                     </Grid>
                     <Grid item xl={5} lg={5} md={12} sm={12} xs={12} style={{ backgroundColor: "white", marginTop: 20 }}>
-                        <Typography variant="h4">Enter the Dragon Fruit</Typography>
+                        <Typography variant="h4">{productDetail?.title}</Typography>
                         <Typography variant="body2">Men's Premium Long Sleeve Shirt</Typography>
                         <Divider style={{ marginTop: 15, marginBottom: 15 }} />
                         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-                            <Typography variant="h4">$23.99</Typography>
+                            <Typography variant="h4">${productDetail?.price}</Typography>
                             <Typography variant="body2">Plus Shipping</Typography>
                         </div>
-                        <Button fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }}>Add to Cart</Button>
+                        <Button fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
                         <div style={{ marginTop: 20 }}>
                             <Radio style={{ color: 'green', '&$checked': { color: 'green' } }} />
                             <Radio style={{ color: 'red', '&$checked': { color: 'red' } }} />
                             <Radio style={{ color: 'blue', '&$checked': { color: 'blue' } }} />
                             <Radio style={{ color: 'black', '&$checked': { color: 'black' } }} />
-                            <Radio style={{ color: 'orange', '&$checked': { color: 'orange' } }} />
-                            <Radio style={{ color: 'green', '&$checked': { color: 'green' } }} />
-                            <Radio style={{ color: 'red', '&$checked': { color: 'red' } }} />
-                            <Radio style={{ color: 'blue', '&$checked': { color: 'blue' } }} />
-                            <Radio style={{ color: 'black', '&$checked': { color: 'black' } }} />
-                            <Radio style={{ color: 'orange', '&$checked': { color: 'orange' } }} />
+
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <Button variant='outlined' style={{ marginRight: 5 }}>XL</Button>
@@ -68,23 +65,14 @@ const ProductDetailPage = () => {
                             <Typography variant='h4'>Product Description</Typography>
                             <Typography variant='h6'>Description</Typography>
                             <Typography variant='body2'>
-                                This premium long sleeve t-shirt is as close to perfect as can be. It's optimized for all types of print and will quickly become your favorite layer. Soft, comfortable and durable, this is a definite must-own and a recommended product
-                        <ul>
-                                    <li>Brand: Spreadshirt</li>
-                                    <li>100% cotton (heather gray is 95%/5% viscose. charcoal gray is 80% cotton/20% polyester. heather burgundy is 60% cotton/40% polyester) | Fabric Weight: 4.42 oz (heavyweight)</li>
-                                    <li>Wide range of sizes from S-3XL</li>
-                                    <li>Fairly produced, certified and triple audited.</li>
-                                    <li>Double stitched, reinforced seams at shoulder, sleeve, collar and waist</li>
-                                    <li>Optimized for beautiful brilliance across all printing methods</li>
-                                    <li>Imported; processed and printed in the U.S.A.</li>
-                                </ul>
+                                {productDetail?.description}
                             </Typography>
                         </div>
                     </Grid>
                     <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
                         <div>
                             <Typography variant='h6'>Size Chart</Typography>
-                            <img src={SizeChart} style={{ width: "100%", height: "auto" }} />
+                            <img src={productDetail?.sizeChart} style={{ width: "100%", height: "auto" }} />
                         </div>
                     </Grid>
                 </Grid>

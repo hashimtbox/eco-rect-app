@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const initialState = {
   products: [],
+  productDetail : null,
   categories: [],
   filteredProductsData: [],
   filters: {
@@ -25,6 +26,9 @@ const productSlice = createSlice({
     },
     setFilteredProductsData: (state, action) => {
       state.filteredProductsData = action.payload;
+    },
+    setProductDetailData: (state, action) => {
+      state.productDetail = action.payload;
     },
     setError: (state, action) => {
       state.error = action.payload;
@@ -61,14 +65,38 @@ const productSlice = createSlice({
     }
   }
 });
+export const fetchProductById = (product_id) => async (dispatch, getState) => {
+  try {
+    dispatch(productSlice.actions.setProgress(true));
+
+    // const { product_id } = getState().products;
+    const res = await fetch(
+        `${API_HOST}/api/product/${product_id}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          }
+        }
+    );
+    const response = await res.json();
+    console.log("response of product detail", response);
+    dispatch(productSlice.actions.setProductDetailData(response.product));
+  } catch (e) {
+    console.error(e);
+    dispatch(productSlice.actions.setProgress(false));
+    dispatch(productSlice.actions.setError("Something gone wrong."));
+  } finally {
+    dispatch(productSlice.actions.setProgress(false));
+  }
+};
 
 export const fetchProductsByFilter = () => async (dispatch, getState) => {
   try {
     dispatch(productSlice.actions.setProgress(true));
 
     const { filters } = getState().products;
-    console.log("hashim", filters);
-
     const res = await fetch(
       `${API_HOST}/api/product/by_filter?category=${filters.category?.id}&subCategory=${filters.subCategory?.id}&color=${filters.color ?   filters.color : "undefined" }&size=${filters.size?.id}`,
       {

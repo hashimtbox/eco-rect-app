@@ -54,8 +54,6 @@ const useStyles = makeStyles(theme => ({
 const products = [
 ]
 const Products = () => {
-  // const { category } = useParams()
-  // const classes = useStyles();
   const dispatch = useDispatch();
   const { filteredProductsData  } = useSelector(state => state.products);
   useEffect(() => {
