@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             width: "100%"
         },
-    }
+    },
 
 }));
 
@@ -39,18 +39,13 @@ const theme = createMuiTheme({
 });
 
 const countryNames = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC"
+    { id: 1, value: "United States" },
+    { id: 2, value: "United Kingdom" },
+    { id: 3, value: "Portugal" },
+    { id: 4, value: "France" },
+    { id: 5, value: "Italy" },
+    { id: 6, value: "Paris" },
+    { id: 7, value: "Malaysia" },
 ];
 
 function Checkout() {
@@ -77,7 +72,7 @@ function Checkout() {
                     <Grid className="grid-order-small" item xl={6} lg={6} md={6} sm={12} xs={12}>
                         <form noValidate>
                             <ThemeProvider theme={theme}>
-                                <Typography className="checkout-heading" variant="h6">Shipping Details</Typography>
+                                <Typography className="checkout-heading" variant="h6" style={{ color: "#448aff" }}>Shipping Details</Typography>
                                 <div>
                                     <TextField
                                         className={`${classes.margin} ${classes.width100}`}
@@ -87,7 +82,7 @@ function Checkout() {
                                         size="small"
                                     />
                                 </div>
-                                <Typography className="checkout-heading" variant="h6">Send my Order to</Typography>
+                                <Typography className="checkout-heading" variant="h6" style={{ color: "#448aff" }}>Send my Order to</Typography>
 
                                 <div>
                                     <TextField
@@ -107,12 +102,16 @@ function Checkout() {
                                 </div>
                                 <div>
                                     <TextField
-                                        className={`${classes.margin} ${classes.width100}`}
+                                        className={`${classes.margin} ${classes.width100} ${classes.height60}`}
                                         label="Street Address*"
                                         variant="outlined"
-                                        id="mui-theme-provider-outlined-input"
+                                        id="street-address"
                                         size="small"
+
                                     />
+
+
+
                                 </div>
                                 <div>
                                     <TextField
@@ -129,7 +128,8 @@ function Checkout() {
                                             <MenuItem key={option.id} value={option.value}>
                                                 {option.value}
                                             </MenuItem>
-                                        ))}</TextField>
+                                        ))}
+                                    </TextField>
                                 </div>
                                 <div>
                                     <TextField
@@ -167,13 +167,16 @@ function Checkout() {
                         </form>
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
-                        <Typography className="checkout-border-order" style={{ marginTop: 10 }} variant="h6">Your Order</Typography>
+                        <Typography style={{
+                            marginTop: 10, color: "#448aff", paddingLeft: 0,
+                            paddingBottom: 10
+                        }} variant="h6">Your Order</Typography>
 
-                        <div className="checkout-items">
+                        <div className="checkout-items checkout-items-border">
                             {cart.map(item => {
                                 return (
                                     <div key={item.id}>
-                                        <div style={{ display: "flex", paddingTop: 20, paddingBottom: 20 }}>
+                                        <div style={{ display: "flex", paddingLeft: 20, paddingTop: 20, paddingBottom: 20 }}>
 
                                             <img src={item.image || macbook} alt={macbook} height="100" width="100" />
 
@@ -223,16 +226,16 @@ function Checkout() {
 
 
                         <div className="checkout-border">
-                            <Typography className="clearfix-categories checkout-total-price" variant={"h6"}>
-                                <span className="checkout-total-price-left">Subtotal</span>
+                            <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
+                                <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Subtotal</span>
                                 <span className="checkout-total-price-right">10 $</span>
                             </Typography>
-                            <Typography className="clearfix-categories checkout-total-price" variant={"h6"}>
-                                <span className="checkout-total-price-left">Shipping</span>
+                            <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
+                                <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Shipping</span>
                                 <span className="checkout-total-price-right">10 $</span>
                             </Typography>
-                            <Typography className="clearfix-categories checkout-total-price" variant={"h6"}>
-                                <span className="checkout-total-price-left">Total</span>
+                            <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
+                                <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Total</span>
                                 <span className="checkout-total-price-right">20 $</span>
                             </Typography>
 
@@ -241,7 +244,7 @@ function Checkout() {
                 </Grid>
             </Grid>
             <div style={{ height: 80 }}></div>
-        </Template>
+        </Template >
 
     );
 }

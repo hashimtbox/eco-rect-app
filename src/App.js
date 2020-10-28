@@ -16,7 +16,7 @@ import ProductDetailPage from "./components/ProductDetailPage";
 import CartDetail from "./components/CartDetail";
 import Checkout from "./components/Checkout";
 
-
+import OrderConfirmed from "./components/OrderConfirmed";
 toast.configure();
 
 const App = () => {
@@ -32,6 +32,7 @@ const App = () => {
           <Route exact path="/cart" component={CartDetail} />
           <Route exact path="/products" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/orderconfirmed" component={OrderConfirmed} />
           {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
           {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
           {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}
