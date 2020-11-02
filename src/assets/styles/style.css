@@ -383,7 +383,7 @@ div.sticky {
 	margin: 0;
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 	overflow-x: auto;
-	max-height: 600px;
+	max-height: 400px;
 }
 .nav-categories-ul > li{
 	font-size: 14px;
@@ -753,7 +753,6 @@ ul.nav-categories-ul > li:first-child > span.first-one{
 
 
 ul.nav-categories-ul, ul.nav-subcategories-ul{
-	display: inline-block;
 	cursor: pointer;
 }
 
