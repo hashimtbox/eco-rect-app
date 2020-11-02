@@ -74,7 +74,7 @@ const Products = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
-  console.log('fpd', filteredProductsData);
+
   return (
     <Template>
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>

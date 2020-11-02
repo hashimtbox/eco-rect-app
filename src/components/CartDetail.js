@@ -14,6 +14,8 @@ import { useHistory } from "react-router";
 const CartDetail = () => {
   const history = useHistory();
   const cart = useSelector(state => state.auth.cart);
+  const { filteredProductsData } = useSelector(state => state.products);
+
   const dispatch = useDispatch();
   const totalPrice = cart.reduce(function (prev, cur) {
     return prev + cur.total;

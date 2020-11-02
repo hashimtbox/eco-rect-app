@@ -83,9 +83,13 @@ function Item(props) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: "row"
+            flexDirection: "row",
+            height: "65%",
+            width: "70%",
+            margin: "auto"
+
         }}>
-            <img style={{ width: "70%", height: '65%' }} src={props.item} />
+            <img style={{}} src={props.item} />
         </div>
     )
 }

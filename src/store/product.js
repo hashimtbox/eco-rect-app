@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const initialState = {
   products: [],
-  productDetail : null,
+  productDetail: null,
   categories: [],
   filteredProductsData: [],
   filters: {
@@ -57,7 +57,7 @@ const productSlice = createSlice({
       state.filters.color = null;
       state.filters.size = null;
     },
-    resetFilterState : (state , action) => {
+    resetFilterState: (state, action) => {
       state.filters.subCategory = null;
       state.filters.category = null;
       state.filters.color = null;
@@ -71,14 +71,14 @@ export const fetchProductById = (product_id) => async (dispatch, getState) => {
 
     // const { product_id } = getState().products;
     const res = await fetch(
-        `${API_HOST}/api/product/${product_id}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
-          }
+      `${API_HOST}/api/product/${product_id}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          api_key: "eco-app-2SY:nPkgTTiETr-master-key"
         }
+      }
     );
     const response = await res.json();
     console.log("response of product detail", response);
@@ -98,7 +98,7 @@ export const fetchProductsByFilter = () => async (dispatch, getState) => {
 
     const { filters } = getState().products;
     const res = await fetch(
-      `${API_HOST}/api/product/by_filter?category=${filters.category?.id}&subCategory=${filters.subCategory?.id}&color=${filters.color ?   filters.color : "undefined" }&size=${filters.size?.id}`,
+      `${API_HOST}/api/product/by_filter?category=${filters.category?.id}&subCategory=${filters.subCategory?.id}&color=${filters.color ? filters.color : "undefined"}&size=${filters.size?.id}`,
       {
         method: "GET",
         headers: {

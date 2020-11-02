@@ -8,6 +8,7 @@ import authSlice from "../store/auth";
 import { fetchProductById, fetchProductsByFilter } from "../store/product";
 import { useDispatch, useSelector } from "react-redux";
 import ColorsFiltersProductDetail from './ColorsFiltersProductDetail';
+import SizesFiltersProductDetail from './SizesFiltersProductDetail';
 
 const ProductDetailPage = () => {
     const { productId } = useParams()
@@ -19,8 +20,9 @@ const ProductDetailPage = () => {
         dispatch(fetchProductById(productId));
     }, [productId])
 
-    const [cartDisabled, setcartDisabled] = useState(true);
 
+
+    console.log('prodrio', productDetail);
     return (
         <Template>
             <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
@@ -43,16 +45,11 @@ const ProductDetailPage = () => {
                             <ColorsFiltersProductDetail Colors={productDetail?.colors} />
                         </div>
                         <div style={{ marginTop: 20 }}>
-                            <Button variant='outlined' style={{ marginRight: 5 }}>XL</Button>
-                            <Button variant='outlined' style={{ marginRight: 5 }}>L</Button>
-                            <Button variant='outlined' disabled style={{ marginRight: 5 }}>SM</Button>
-                            <Button variant='outlined' style={{ marginRight: 5 }}>MD</Button>
-                            <Button variant='outlined' disabled style={{ marginRight: 5 }}>XXL</Button>
-                            <Button variant='outlined' style={{ marginRight: 5 }}>XXXL</Button>
+                            <SizesFiltersProductDetail buttonSizes={productDetail?.sizes} />
                         </div>
 
 
-                        <Button disabled={cartDisabled} fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
+                        <Button fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
 
                         <div>
                             <Typography variant='body2' style={{ marginTop: 30 }}>
