@@ -20,25 +20,39 @@ function ProductBreadcrumbs({ filterData }) {
           Products
         </Link>
         <Typography color="textPrimary">
-          {(filterData && filterData.category) || "All"}
+          {(filterData && filterData?.category) ? filterData.category : "All"}
         </Typography>
       </Breadcrumbs>
       <h1 style={{ marginTop: 15, marginBottom: 15 }}>
-        {(filterData && filterData.category) || "All Products"}
+        {(filterData && filterData?.category) ? ` ${filterData.category} - ${filterData.subCategory}` : "All Products"}
       </h1>
-      <h3>Filters : </h3>
-      <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
-        {filters.category?.name}
-      </Button>
-      <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
-        {filters.subCategory?.name}
-      </Button>
-      <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
-        {filters.color}
-      </Button>
-      <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
-        {filters.size?.name}
-      </Button>
+      { filters.category?.name &&
+        filters.subCategory?.name &&
+        filters.color?.name &&
+        filters.size?.name &&
+        <h3>Filters : </h3>
+      }
+
+      {filters.category?.name &&
+        <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
+          {filters.category?.name}
+        </Button>
+      }
+      {filters.subCategory?.name &&
+        <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
+          {filters.subCategory?.name}
+        </Button>
+      }
+      {filters?.color &&
+        <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
+          {filters?.color}
+        </Button>
+      }
+      {filters.size?.name &&
+        <Button variant="outlined" style={{ marginRight: 5, marginBottom: 5 }}>
+          {filters.size?.name}
+        </Button>
+      }
     </div>
   );
 }
