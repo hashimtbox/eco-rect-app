@@ -33,15 +33,6 @@ const responsive = {
 
 function MaterialSlider({ mainimage, variantimages }) {
 
-    const variantimagesArr = variantimages?.map(item => item.image);
-
-    if (variantimagesArr) {
-        const imagesArr = [mainimage, ...variantimagesArr];
-        if (imagesArr) {
-            console.log(imagesArr);
-        }
-    }
-
     // var items = [
     //     {
     //         src: slide1
@@ -66,11 +57,21 @@ function MaterialSlider({ mainimage, variantimages }) {
     //     },
     // ]
 
+
+    const variantimagesArr = variantimages?.map(item => item.image);
+
+    let imagesArr = [];
+    if (variantimagesArr) {
+        imagesArr = [mainimage, ...variantimagesArr];
+    }
+
+    // console.log('final image array', imagesArr);
+
     return (
         <Carousel autoPlay={false}>
-            {
-                // <Item item={variantimagesArr} />
-                variantimagesArr?.map((item, i) => <Item key={i} item={item} />)
+            {   imagesArr &&
+                imagesArr.length &&
+                imagesArr.map((item, i) => <Item key={i} item={item} />)
             }
         </Carousel>
     )

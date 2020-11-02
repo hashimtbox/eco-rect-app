@@ -21,8 +21,6 @@ const ProductDetailPage = () => {
     }, [productId])
 
 
-
-    console.log('prodrio', productDetail);
     return (
         <Template>
             <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>

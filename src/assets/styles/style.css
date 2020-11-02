@@ -752,5 +752,22 @@ ul.nav-categories-ul > li:first-child > span.first-one{
 
 
 
+ul.nav-categories-ul, ul.nav-subcategories-ul{
+	display: inline-block;
+	cursor: pointer;
+}
+
+.p-boldo{
+	font-weight: 500 !important;
+}
+
+/* ul.nav-categories-ul ul.nav-subcategories-ul{
+	display: none;
+} */
+
+ul.nav-categories-ul ul.visible {
+    display: block;
+}
+
 
 

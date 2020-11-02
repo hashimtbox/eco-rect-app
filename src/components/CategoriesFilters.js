@@ -2,28 +2,29 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import "../assets/styles/style.css";
 import { fetchProductsByFilter } from "../store/product";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productSlice from "../store/product";
 
 function CategoriesFilters({ categories }) {
   const dispatch = useDispatch();
   // const { filters } = useSelector(state => state.products);
-    return (
+  return (
     <>
       <ul className="nav-categories-ul">
         <li>
-          <Typography onClick={() => {
-              dispatch(productSlice.actions.resetFilterState());
-              dispatch(fetchProductsByFilter())
+          <Typography className="p-boldo" onClick={() => {
+            dispatch(productSlice.actions.resetFilterState());
+            dispatch(fetchProductsByFilter())
           }}>
             All Products
           </Typography>
         </li>
+
         {categories &&
           categories.length &&
           categories.map(category => (
-            <li>
-              <Typography
+            <li class="nav-category-parent">
+              <Typography className="p-boldo"
                 onClick={() => {
                   dispatch(productSlice.actions.setCategoryFilter(category));
                   dispatch(fetchProductsByFilter());

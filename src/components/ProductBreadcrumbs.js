@@ -26,10 +26,10 @@ function ProductBreadcrumbs({ filterData }) {
       <h1 style={{ marginTop: 15, marginBottom: 15 }}>
         {(filterData && filterData?.category) ? ` ${filterData.category} - ${filterData.subCategory}` : "All Products"}
       </h1>
-      { filters.category?.name &&
-        filters.subCategory?.name &&
-        filters.color?.name &&
-        filters.size?.name &&
+      { (filters.category?.name ||
+        filters.subCategory?.name ||
+        filters.color?.name ||
+        filters.size?.name) &&
         <h3>Filters : </h3>
       }
 
