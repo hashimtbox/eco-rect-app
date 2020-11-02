@@ -5,12 +5,12 @@ import "../assets/styles/style.css";
 function AboutGrubster() {
     return (
         <>
-            <Grid container spacing={4} style={{ marginTop: 50 }} id="aboutsection">
+            <Grid container spacing={4} style={{ marginTop: 50 }} id="about">
                 <Grid item md={6} sm={12} style={{ textAlign: "center" }}>
                     <img className="img-about" src={about} alt="about" />
                 </Grid>
                 <Grid className="about-text" item md={6} sm={12}>
-                    <Typography className="pseudo_border1" variant="h4" style={{ marginBottom: 30 }}>About the Grubsters</Typography>
+                    <Typography className="pseudo_border1" variant="h4" style={{ marginTop: 50, marginBottom: 30 }}>About the Grubsters</Typography>
                     <Typography variant="body1" color="textSecondary" component="p" style={{ marginBottom: 20 }}>
                         The Grubsters are super hero foods who are defenders of the human body's immune system. The vegetable and fruit characters become involved in a battle againt the toxic diseased villains. The Grubsters represent the six produce family according to their colors.
                 </Typography>

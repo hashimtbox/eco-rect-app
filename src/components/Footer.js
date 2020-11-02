@@ -8,7 +8,7 @@ import EmailIcon from '@material-ui/icons/Email';
 function Footer() {
     return (
         <>
-            <Grid container className="footer" id="contactsection">
+            <Grid container className="footer" id="contact">
                 <Grid container style={{ marginTop: 50, marginBottom: 50 }}>
                     <Grid item lg={8} sm={12} className="footer-col1">
                         <Typography className="pseudo_border2" variant="h4" style={{ marginBottom: 30 }}>Get in Touch</Typography>

@@ -64,9 +64,9 @@ function MeetGrubster() {
                     alignItems: "center",
                     margin: "0 auto"
                 }}
-                id="characterssection"
+                id="characters"
             >
-                <Typography className="pseudo_border" variant="h4" style={{ marginTop: 30, marginBottom: 30 }}>Meet The Grubster</Typography>
+                <Typography className="pseudo_border" variant="h4" style={{ marginTop: 70, marginBottom: 30 }}>Meet The Grubster</Typography>
                 <Typography variant="body1" color="textSecondary" component="p" style={{ maxWidth: 840, textAlign: "center", marginBottom: 30 }}>
                     Welcome to Grubsters comic network, our characters embrace and represent the fun side of healthy foods, we're focused on helping kids live healthy lives. That's why we're continually creating content to educated kids about healthy eating.
                 </Typography>

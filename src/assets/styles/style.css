@@ -286,7 +286,7 @@ a.makeStyles-navLink-18.active {
 
 .sprd-basket-item__info__col:first-child {
 	flex: 1 0 auto;
-	max-width: 100%;
+	max-width: 60%;
 }
 
 .sprd-basket-item__info__col:nth-child(2) {

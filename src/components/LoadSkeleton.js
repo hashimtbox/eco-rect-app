@@ -16,7 +16,7 @@ const LoadSkeleton = () => {
   return (
 
     <Grid container spacing={4}>
-      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trendingsection">
+      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trending">
         <Card>
           <CardMedia
             style={{ height: 150, minWidth: 200, background: "#e9e9e9" }}
@@ -48,7 +48,7 @@ const LoadSkeleton = () => {
           </CardActions>
         </Card >
       </Grid>
-      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trendingsection">
+      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trending">
         <Card>
           <CardMedia
             style={{ height: 150, minWidth: 200, background: "#e9e9e9" }}
@@ -80,7 +80,7 @@ const LoadSkeleton = () => {
           </CardActions>
         </Card >
       </Grid>
-      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trendingsection">
+      <Grid item xl={4} lg={4} md={4} sm={6} xs={12} id="trending">
         <Card>
           <CardMedia
             style={{ height: 150, minWidth: 200, background: "#e9e9e9" }}

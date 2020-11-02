@@ -55,7 +55,7 @@ const products = [
 ]
 const Products = () => {
   const dispatch = useDispatch();
-  const { filteredProductsData  } = useSelector(state => state.products);
+  const { filteredProductsData } = useSelector(state => state.products);
   useEffect(() => {
     dispatch(fetchProductsByFilter());
   }, []);
@@ -63,7 +63,7 @@ const Products = () => {
   const getNoOfPages = () => {
     try {
       return Math.ceil(filteredProductsData.prducts.length / itemsPerPage)
-    }catch (e) {
+    } catch (e) {
       return 0
     }
   }
@@ -74,14 +74,14 @@ const Products = () => {
   const handleChange = (event, value) => {
     setPage(value);
   };
-
+  console.log('fpd', filteredProductsData);
   return (
     <Template>
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
         <ProductBreadcrumbs filterData={filteredProductsData.filterDetails} />
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
-            <SidebarFilters filterData = { filteredProductsData } />
+            <SidebarFilters filterData={filteredProductsData} />
           </Grid>
           <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
             {filteredProductsData &&

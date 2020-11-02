@@ -31,46 +31,37 @@ const responsive = {
     }
 };
 
-function MaterialSlider({ mainimage, variantimages }) {
-
-    const variantimagesArr = variantimages?.map(item => item.image);
-
-    if (variantimagesArr) {
-        const imagesArr = [mainimage, ...variantimagesArr];
-        if (imagesArr) {
-            console.log(imagesArr);
-        }
-    }
-
-    // var items = [
-    //     {
-    //         src: slide1
-    //     },
-    //     {
-    //         src: slide2
-    //     },
-    //     {
-    //         src: slide3
-    //     },
-    //     {
-    //         src: slide4
-    //     },
-    //     {
-    //         src: slide5
-    //     },
-    //     {
-    //         src: slide6
-    //     },
-    //     {
-    //         src: slide7
-    //     },
-    // ]
+function MaterialSlider(props) {
+    var items = [
+        {
+            src: slide1
+        },
+        {
+            src: slide2
+        },
+        {
+            src: slide3
+        },
+        {
+            src: slide4
+        },
+        {
+            src: slide5
+        },
+        {
+            src: slide6
+        },
+        {
+            src: slide7
+        },
+    ]
 
     return (
         <Carousel>
             {
-                // <Item item={variantimagesArr} />
-                variantimagesArr?.map((item, i) => <Item key={i} item={item} />)
+                // <Item item={items} />
+
+                items.map((item, i) => <Item key={i} item={item} />)
             }
         </Carousel>
     )
@@ -85,7 +76,7 @@ function Item(props) {
             alignItems: "center",
             flexDirection: "row"
         }}>
-            <img style={{ width: "70%", height: '65%' }} src={props.item} />
+            <img style={{ width: "70%", height: '65%' }} src={props.item.src} />
         </div>
     )
 }

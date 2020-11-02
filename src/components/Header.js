@@ -91,22 +91,22 @@ const Header = ({ selected, children, ...props }) => {
         >
             <Typography variant='h6' >
                 <List>
-                    <Link smooth to="/#homesection" className={classes.navLink}>
+                    <Link smooth to="/" className={classes.navLink}>
                         Home
                     </Link>
                 </List>
                 <List>
-                    <Link smooth to="/#characterssection" className={classes.navLink}>
+                    <Link smooth to="/#characters" className={classes.navLink}>
                         Characters
                     </Link>
                 </List>
                 <List>
-                    <Link smooth to="/#aboutsection" className={classes.navLink}>
+                    <Link smooth to="/#about" className={classes.navLink}>
                         About
                     </Link>
                 </List>
                 <List>
-                    <Link smooth to="/#comixsection" className={classes.navLink}>
+                    <Link smooth to="/#comix" className={classes.navLink}>
                         Comic
                     </Link>
                 </List>
@@ -119,12 +119,12 @@ const Header = ({ selected, children, ...props }) => {
                     </Link>
                 </List>
                 <List>
-                    <Link smooth to="/#trendingsection" className={classes.navLink}>
+                    <Link smooth to="/#trending" className={classes.navLink}>
                         Trending Products
                     </Link>
                 </List>
                 <List>
-                    <Link smooth to="/#contactsection" className={classes.navLink}>
+                    <Link smooth to="/#contact" className={classes.navLink}>
                         Contact
                     </Link>
                 </List>
@@ -151,20 +151,22 @@ const Header = ({ selected, children, ...props }) => {
                         </React.Fragment>
                     ))}
 
-                    <Typography variant={"h6"}>GrubstersComics</Typography>
+                    <Link style={{ color: "black", textDecoration: "none" }} smooth to="/">
+                        <Typography variant={"h6"}>GrubstersComics</Typography>
+                    </Link>
                     <span style={{ flexGrow: 1 }} />
                     <div className="displayLinks">
                         <Typography variant='h6' >
-                            <Link smooth to="/#homesection" className={classes.navLink}>
+                            <Link smooth to="/" className={classes.navLink}>
                                 Home
                             </Link>
-                            <Link smooth to="/#characterssection" className={classes.navLink}>
+                            <Link smooth to="/#characters" className={classes.navLink}>
                                 Characters
                             </Link>
-                            <Link smooth to="/#aboutsection" className={classes.navLink}>
+                            <Link smooth to="/#about" className={classes.navLink}>
                                 About
                             </Link>
-                            <Link smooth to="/#comixsection" className={classes.navLink}>
+                            <Link smooth to="/#comix" className={classes.navLink}>
                                 Comic
                             </Link>
                             <Link className={classes.navLink}
@@ -173,10 +175,10 @@ const Header = ({ selected, children, ...props }) => {
                                 })}
                             >Products
                             </Link>
-                            <Link smooth to="/#trendingsection" className={classes.navLink}>
+                            <Link smooth to="/#trending" className={classes.navLink}>
                                 Trending Products
                             </Link>
-                            <Link smooth to="/#contactsection" className={classes.navLink}>
+                            <Link smooth to="/#contact" className={classes.navLink}>
                                 Contact
                             </Link>
                         </Typography>

@@ -41,11 +41,11 @@ function TrendingProducts({ products }) {
                 md={12}
                 sm={12}
                 xs={12}
-                id="trendingsection"
+                id="trending"
             >
                 <div
                     style={{
-                        marginTop: 50,
+                        marginTop: 70,
                         marginBottom: 50,
                         display: "flex",
                         flexDirection: "row",

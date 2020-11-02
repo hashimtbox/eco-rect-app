@@ -5,7 +5,7 @@ import "../assets/styles/style.css";
 function Banner() {
     return (
         <>
-            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} id="homesection">
+            <Grid item xl={12} lg={12} md={12} sm={12} xs={12} id="home">
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                     <Typography variant={"h3"} style={{ fontWeight: 300, textAlign: "center" }} color={"textSecondary"}>
                         GRUBSTERS COMICS WE ARE #GRUBSTERS

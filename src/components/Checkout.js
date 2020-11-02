@@ -228,15 +228,15 @@ function Checkout() {
                         <div className="checkout-border">
                             <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
                                 <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Subtotal</span>
-                                <span className="checkout-total-price-right">10 $</span>
+                                <span className="checkout-total-price-right">$ {totalPrice} </span>
                             </Typography>
                             <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
                                 <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Shipping</span>
-                                <span className="checkout-total-price-right">10 $</span>
+                                <span className="checkout-total-price-right">$ {shippingCost} </span>
                             </Typography>
                             <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
                                 <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Total</span>
-                                <span className="checkout-total-price-right">20 $</span>
+                                <span className="checkout-total-price-right">$ {totalPrice + shippingCost}</span>
                             </Typography>
 
                         </div>
