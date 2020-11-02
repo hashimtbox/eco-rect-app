@@ -67,7 +67,7 @@ function MaterialSlider({ mainimage, variantimages }) {
     // ]
 
     return (
-        <Carousel>
+        <Carousel autoPlay={false}>
             {
                 // <Item item={variantimagesArr} />
                 variantimagesArr?.map((item, i) => <Item key={i} item={item} />)
@@ -84,12 +84,15 @@ function Item(props) {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "row",
-            height: "65%",
+            height: "70%",
             width: "70%",
             margin: "auto"
 
         }}>
-            <img style={{}} src={props.item} />
+            <img style={{
+                height: "90%",
+                width: "90%"
+            }} src={props.item} />
         </div>
     )
 }

@@ -178,7 +178,7 @@ function Checkout() {
                                     <div key={item.id}>
                                         <div style={{ display: "flex", paddingLeft: 20, paddingTop: 20, paddingBottom: 20 }}>
 
-                                            <img src={item.image || macbook} alt={macbook} height="100" width="100" />
+                                            <img src={item.main_image || macbook} alt={macbook} height="100" width="100" />
 
                                             <div className="sprd-basket-item__info" style={{ marginLeft: 20 }}>
                                                 <div className="sprd-basket-item__info__col">

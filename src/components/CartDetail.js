@@ -34,9 +34,9 @@ const CartDetail = () => {
                   return (
                     <div key={item.id}>
                       <div style={{ display: "flex", paddingTop: 20, paddingBottom: 20 }}>
-                        <div className="img-border-cart">
+                        <div>
                           <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${item.id}`}>
-                            <img src={item.image || macbook} alt={macbook} height="150" width="150" />
+                            <img src={item.main_image || macbook} alt={macbook} height="150" width="150" />
                           </Link>
                         </div>
                         <div className="sprd-basket-item__info" style={{ marginLeft: 20 }}>

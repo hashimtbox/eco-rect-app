@@ -17,7 +17,7 @@ export default function ColorsFilters({ Colors }) {
   const handleChange = event => {
     setSelectedValue(event.target.value);
     dispatch(productSlice.actions.setColorFilter(event.target.value));
-    //dispatch(fetchProductsByFilter());
+    dispatch(fetchProductsByFilter());
   };
   return (
     <>

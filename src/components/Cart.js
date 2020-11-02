@@ -19,7 +19,7 @@ function Cart() {
             return (
               <div key={item.id}>
                 <div style={{ display: "flex", margin: 13, marginRight: 0 }}>
-                  <img src={item.image || macbook} alt={macbook} height="80px" width="80px" />
+                  <img src={item.main_image || macbook} alt={macbook} height="80px" width="80px" />
                   <div className="sprd-basket-item__info" style={{ marginLeft: 10 }}>
                     <div className="sprd-basket-item__info__col">
                       <Typography style={{ margin: 0 }} variant={"h6"}>{item.title}</Typography>

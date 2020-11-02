@@ -26,6 +26,7 @@ const authSlice = createSlice({
       state.isReady = action.payload;
     },
     incrementItemQuantity: (state, action) => {
+      console.log('cartttttt', JSON.stringify(state.cart, undefined, 2));
       const updatedCart = [...state.cart];
       const updatedItemIndex = updatedCart.findIndex(
         item => item.id === action.payload
