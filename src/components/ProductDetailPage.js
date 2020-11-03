@@ -5,7 +5,7 @@ import MaterialSlider from "./MaterialSlider";
 import SizeChart from '../assets/size_chart.png'
 import { useParams } from "react-router";
 import authSlice from "../store/auth";
-import { fetchProductById, fetchProductsByFilter } from "../store/product";
+import productSlice, { fetchProductById, fetchProductsByFilter } from "../store/product";
 import { useDispatch, useSelector } from "react-redux";
 import ColorsFiltersProductDetail from './ColorsFiltersProductDetail';
 import SizesFiltersProductDetail from './SizesFiltersProductDetail';
@@ -17,6 +17,7 @@ const ProductDetailPage = () => {
 
     useEffect(() => {
         // todo call API
+        dispatch(productSlice.actions.resetSelectedProductData())
         dispatch(fetchProductById(productId));
     }, [productId])
 
@@ -46,8 +47,13 @@ const ProductDetailPage = () => {
                             <SizesFiltersProductDetail buttonSizes={productDetail?.sizes} />
                         </div>
 
-
-                        <Button disabled={!allowToAddToCart} fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
+                        <Button disabled={!allowToAddToCart} fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => {
+                            let Product = {};
+                            Product = JSON.parse(JSON.stringify(productDetail)) ;
+                             Product.selectedColor = selectedProductColor ;
+                             Product.selectedSize = selectedProductSize.name ;
+                            dispatch(authSlice.actions.addToCart(Product))
+                        }} >Add to Cart</Button>
 
                         <div>
                             <Typography variant='body2' style={{ marginTop: 30 }}>

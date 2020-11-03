@@ -60,12 +60,14 @@ const authSlice = createSlice({
       return { ...state, cart: updatedCart };
     },
     addToCart: (state, action) => {
-      console.log('addto', state);
       const updatedCart = [...state.cart];
       const updatedItemIndex = updatedCart.findIndex(item => item.id === action.payload.id);
 
       if (updatedItemIndex < 0) {
-        updatedCart.push({ ...action.payload, quantity: 1, total: action.payload.price });
+
+        updatedCart.push({ ...action.payload,
+          quantity: 1,
+          total: action.payload.price });
       } else {
         const updatedItem = {
           ...updatedCart[updatedItemIndex]

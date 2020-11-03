@@ -165,10 +165,10 @@ function Checkout() {
                                                         {item.title}
                                                     </Typography>
                                                     <Typography style={{ fontSize: 16, margin: 0 }} variant={"h6"}>
-                                                        Size:   <span style={{ fontWeight: 400 }}>S</span>
+                                                        Size:   <span style={{ fontWeight: 400 }}>{item.selectedSize}</span>
                                                     </Typography>
                                                     <Typography style={{ fontSize: 16, margin: 0 }} variant={"h6"}>
-                                                        Color:  <span style={{ fontWeight: 400 }}>black</span>
+                                                        Color:  <span style={{ fontWeight: 400 }}>{item.selectedColor}</span>
                                                     </Typography>
                                                     <Typography style={{ fontSize: 16, margin: 0 }} variant={"h6"}>
                                                         Quantity:  <span style={{ fontWeight: 400 }}>{item.quantity}{" "}</span>
