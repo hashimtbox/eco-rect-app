@@ -424,12 +424,9 @@ div.sticky {
 	transition: 0.3s;
 	border-bottom: 2px solid white;	
 	font-weight: 500;
-	
+	cursor: pointer;
 }
 
-.nav-categories-ul > li > a:hover{
-	border-bottom: 2px solid black;	
-}
 
 .nav-categories-ul > li > ul{
 	list-style-type: none;
@@ -447,12 +444,9 @@ div.sticky {
 .nav-categories-ul > li > ul > li > a{
 	text-decoration: none;
 	color: black;	
-	border-bottom: 2px solid white;	
+	cursor: pointer;
 }
 
-.nav-categories-ul > li > ul > li > a:hover{
-	border-bottom: 2px solid black;	
-}
 
 ul.sprd-filterpane__colorlist {
     display: flex;
@@ -752,9 +746,9 @@ ul.nav-categories-ul > li:first-child > span.first-one{
 
 
 
-ul.nav-categories-ul, ul.nav-subcategories-ul{
+/* ul.nav-categories-ul, ul.nav-subcategories-ul{
 	cursor: pointer;
-}
+} */
 
 .p-boldo{
 	font-weight: 500 !important;
@@ -769,4 +763,48 @@ ul.nav-categories-ul ul.visible {
 }
 
 
+
+
+.collapse a {
+	text-decoration:none;
+	display: block;
+	font-size: 1rem;
+	font-weight: 500;
+	padding: 0.9rem 1.8rem;
+	color: #000;
+	position: relative;
+  }
+  
+  
+  .collapse a:before {
+	content: "";
+	border-top: 5px solid black;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	position: absolute;
+	top: 25px;
+	right: 30px;
+  }
+  
+  .inner-content {
+	padding-left: 1.8rem;
+  }
+  
+  .content {
+	max-height: 0em;
+	transition: 0.3s linear 0s;
+	overflow: hidden;
+  }
+  
+  
+  .collapse:target .content {
+	max-height: 15em;
+  }
+  
+  .collapse:target a:before {
+	transform: rotate(-90deg);
+  }
+  
+  
+  
 

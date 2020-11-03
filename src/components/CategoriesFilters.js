@@ -11,41 +11,28 @@ function CategoriesFilters({ categories }) {
   return (
     <>
       <ul className="nav-categories-ul">
-        <li>
-          <Typography className="p-boldo" onClick={() => {
-            dispatch(productSlice.actions.resetFilterState());
-            dispatch(fetchProductsByFilter())
-          }}>
-            All Products
-          </Typography>
-        </li>
+
+        <li><a onClick={() => {
+          dispatch(productSlice.actions.resetFilterState());
+          dispatch(fetchProductsByFilter())
+        }}>All Products</a></li>
 
         {categories &&
           categories.length &&
           categories.map(category => (
             <li class="nav-category-parent">
-              <Typography className="p-boldo"
-                onClick={() => {
-                  dispatch(productSlice.actions.setCategoryFilter(category));
-                  dispatch(fetchProductsByFilter());
+              <a onClick={() => {
+                dispatch(productSlice.actions.setCategoryFilter(category));
+                dispatch(fetchProductsByFilter());
 
-                }}
-              >
-                {category.name}
-              </Typography>
+              }}> {category.name}</a>
               <ul class="nav-subcategories-ul">
                 {category.sub_categories.map(subcategory => (
-                  <li>
-                    <Typography
-                      onClick={() => {
-                        dispatch(productSlice.actions.setSubCategoryFilter(subcategory));
-                        dispatch(fetchProductsByFilter());
+                  <li><a onClick={() => {
+                    dispatch(productSlice.actions.setSubCategoryFilter(subcategory));
+                    dispatch(fetchProductsByFilter());
 
-                      }}
-                    >
-                      {subcategory.name}
-                    </Typography>
-                  </li>
+                  }}>{subcategory.name}</a></li>
                 ))}
               </ul>
             </li>
