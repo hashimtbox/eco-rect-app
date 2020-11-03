@@ -46,9 +46,9 @@ const EventView = ({ product }) => {
       <CardActions>
         <div style={{ flexGrow: 1 }} />
 
-        <Button size="small" color="secondary" onClick={() => dispatch(authSlice.actions.addToCart(product))}>
-          Add to Cart
-        </Button>
+        {/*<Button size="small" color="secondary" onClick={() => dispatch(authSlice.actions.addToCart(product))}>*/}
+        {/*  Add to Cart*/}
+        {/*</Button>*/}
 
       </CardActions>
     </Card >

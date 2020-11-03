@@ -13,6 +13,9 @@ const initialState = {
     size: null,
     color: null
   },
+  selectedProductColor : null,
+  selectedProductSize : null,
+  allowToAddToCart: false,
   inProgress: false,
   error: null
 };
@@ -23,6 +26,15 @@ const productSlice = createSlice({
   reducers: {
     setProducts: (state, action) => {
       state.products = action.payload;
+    },
+    setSelectedProductColor: (state, action) => {
+      state.selectedProductColor = action.payload;
+    },
+    setAllowToAddToCart: (state, action) => {
+      state.allowToAddToCart = action.payload;
+    },
+    setSelectedProductSize: (state, action) => {
+      state.selectedProductSize = action.payload;
     },
     setFilteredProductsData: (state, action) => {
       state.filteredProductsData = action.payload;

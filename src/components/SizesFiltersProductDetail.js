@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
 import "../assets/styles/style.css";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
 
 const buttonSizes = [
@@ -14,7 +14,7 @@ const buttonSizes = [
 ];
 function SizesFiltersProductDetail({ buttonSizes }) {
   const dispatch = useDispatch();
-
+  const { selectedProductColor , selectedProductSize } = useSelector(state => state.products);
   return (
     <>
       <ul className="nav-categories-ul">
@@ -23,8 +23,10 @@ function SizesFiltersProductDetail({ buttonSizes }) {
             return (
               <Button
                 onClick={() => {
-                  dispatch(productSlice.actions.setSizeFilter(buttonitem));
-                  dispatch(fetchProductsByFilter());
+                    if(selectedProductColor !== null) {
+                        dispatch(productSlice.actions.setAllowToAddToCart(true));
+                    }
+                  dispatch(productSlice.actions.setSelectedProductSize(buttonitem?.Size));
                 }}
                 key={buttonitem.id}
                 variant="outlined"
@@ -35,6 +37,9 @@ function SizesFiltersProductDetail({ buttonSizes }) {
             );
           })}
       </ul>
+      <Typography style={{marginBottom : 10 , marginTop : 10 }}>Selected Color : {selectedProductColor}  </Typography>
+      <Typography style={{marginBottom : 10 , marginTop : 10 }}>Selected Size : {selectedProductSize?.name}  </Typography>
+
     </>
   );
 }

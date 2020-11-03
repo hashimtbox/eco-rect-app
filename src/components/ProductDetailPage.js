@@ -13,7 +13,7 @@ import SizesFiltersProductDetail from './SizesFiltersProductDetail';
 const ProductDetailPage = () => {
     const { productId } = useParams()
     const dispatch = useDispatch();
-    const { productDetail } = useSelector(state => state.products);
+    const { productDetail , selectedProductSize , selectedProductColor , allowToAddToCart } = useSelector(state => state.products);
 
     useEffect(() => {
         // todo call API
@@ -47,7 +47,7 @@ const ProductDetailPage = () => {
                         </div>
 
 
-                        <Button fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
+                        <Button disabled={!allowToAddToCart} fullWidth variant="contained" size="large" color="secondary" style={{ marginTop: 20 }} onClick={() => dispatch(authSlice.actions.addToCart(productDetail))} >Add to Cart</Button>
 
                         <div>
                             <Typography variant='body2' style={{ marginTop: 30 }}>

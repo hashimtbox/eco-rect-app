@@ -78,7 +78,7 @@ const Products = () => {
   return (
     <Template>
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
-        <ProductBreadcrumbs filterData={filteredProductsData.filterDetails} />
+        <ProductBreadcrumbs filterData={filteredProductsData?.filterDetails} />
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
             <SidebarFilters filterData={filteredProductsData} />

@@ -1,7 +1,8 @@
 import React from "react";
 import Radio from "@material-ui/core/Radio";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
+import authSlice from "../store/auth";
 const Colors = [
   { id: 1, color: "green", Val: "green" },
   { id: 2, color: "red", Val: "red" },
@@ -14,10 +15,14 @@ const Colors = [
 export default function ColorsFiltersProductDetail({ Colors }) {
   const dispatch = useDispatch();
   const [selectedValue, setSelectedValue] = React.useState(null);
+  const { productDetail , selectedProductColor , selectedProductSize } = useSelector(state => state.products);
+
   const handleChange = event => {
     setSelectedValue(event.target.value);
-    dispatch(productSlice.actions.setColorFilter(event.target.value));
-    //dispatch(fetchProductsByFilter());
+    if(selectedProductSize !== null) {
+      dispatch(productSlice.actions.setAllowToAddToCart(true));
+    }
+    dispatch(productSlice.actions.setSelectedProductColor(event.target.value));
   };
 
   return (
