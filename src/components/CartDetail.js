@@ -121,7 +121,7 @@ const CartDetail = () => {
         </Grid >
         <div style={{ height: 80 }}></div>
       </Template >
-    ) : <NoItem />
+    ) : <NoItem text="Shopping Cart" />
 };
 
 export default CartDetail;
