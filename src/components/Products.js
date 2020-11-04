@@ -17,6 +17,7 @@ import { Grid } from "@material-ui/core";
 import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Pagination from "@material-ui/lab/Pagination";
 import { fetchProductsByFilter } from "../store/product";
+import NoItem from "./NoItem";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -83,29 +84,35 @@ const Products = () => {
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
             <SidebarFilters filterData={filteredProductsData} />
           </Grid>
+
           <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
-            {filteredProductsData &&
+            {
+              filteredProductsData &&
               filteredProductsData.prducts &&
-              filteredProductsData.prducts.length && (
+              filteredProductsData.prducts.length ?  (
+                  <>
                 <EventListView
                   products={filteredProductsData.prducts.slice(
                     (page - 1) * itemsPerPage,
                     page * itemsPerPage
                   )}
                 />
-              )}
-            <div className="product-pagination">
-              <Pagination
-                count={noOfPages}
-                page={page}
-                onChange={handleChange}
-                defaultPage={1}
-                color="secondary"
-                size="large"
-                showFirstButton
-                showLastButton
-              />
-            </div>
+                    <div className="product-pagination">
+                      <Pagination
+                          count={noOfPages}
+                          page={page}
+                          onChange={handleChange}
+                          defaultPage={1}
+                          color="secondary"
+                          size="large"
+                          showFirstButton
+                          showLastButton
+                      />
+                    </div>
+                </>
+
+              ) : <Typography>No Product Found</Typography>
+            }
           </Grid>
         </Grid>
       </Grid>

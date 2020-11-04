@@ -39,6 +39,12 @@ const productSlice = createSlice({
     setAllowToAddToCart: (state, action) => {
       state.allowToAddToCart = action.payload;
     },
+    resetSelectedProductData: (state, action) => {
+      state.allowToAddToCart = false;
+      state.selectedProductColor = null ;
+      state.selectedProductSize = null ;
+    },
+
     setSelectedProductSize: (state, action) => {
       state.selectedProductSize = action.payload;
     },

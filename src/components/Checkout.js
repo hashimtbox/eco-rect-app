@@ -85,7 +85,6 @@ function Checkout() {
                                                         </Typography>
 
                                                     </div>
-
                                                 </div>
                                             </div>
                                             <div className="border-bottom-item-cart"></div>

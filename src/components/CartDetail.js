@@ -15,6 +15,9 @@ import { useHistory } from "react-router";
 const CartDetail = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const cart = useSelector(state => state.auth.cart);
+
   const { filteredProductsData } = useSelector(state => state.products);
   const cart = useSelector(state => state.auth.cart);
   const orderDetail = useSelector(state => state.products.orderDetail);
@@ -38,6 +41,7 @@ const CartDetail = () => {
               <Typography style={{ fontWeight: 500, textAlign: "left", marginBottom: 20, marginTop: 20 }} variant="h4">Shopping cart</Typography>
               <div>
                 {cart.map(item => {
+                  console.log("cart" + item.id);
                   return (
                     <div key={item.id}>
                       <div style={{ display: "flex", paddingTop: 20, paddingBottom: 20 }}>
@@ -52,10 +56,10 @@ const CartDetail = () => {
                               <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${item.id}`}>{item.title}</Link>
                             </Typography>
                             <Typography style={{ fontSize: 16, margin: 0 }} variant={"h6"}>
-                              Size:   <span style={{ fontWeight: 400 }}>S</span>
+                              Size:   <span style={{ fontWeight: 400 }}>{item.selectedSize}</span>
                             </Typography>
                             <Typography style={{ fontSize: 16, margin: 0 }} variant={"h6"}>
-                              Color:  <span style={{ fontWeight: 400 }}>black</span>
+                              Color:  <span style={{ fontWeight: 400 }}>{item.selectedColor}</span>
                             </Typography>
                           </div>
                           <div className="sprd-basket-item__info__col">
