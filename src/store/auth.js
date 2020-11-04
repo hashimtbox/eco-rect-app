@@ -61,13 +61,17 @@ const authSlice = createSlice({
     },
     addToCart: (state, action) => {
       const updatedCart = [...state.cart];
-      const updatedItemIndex = updatedCart.findIndex(item => item.id === action.payload.id);
+      const updatedItemIndex = updatedCart.findIndex((item) => item.id === action.payload.id &&
+        (item.selectedColor === action.payload.selectedColor &&
+          item.selectedSize === action.payload.selectedSize));
 
       if (updatedItemIndex < 0) {
 
-        updatedCart.push({ ...action.payload,
+        updatedCart.push({
+          ...action.payload,
           quantity: 1,
-          total: action.payload.price });
+          total: action.payload.price
+        });
       } else {
         const updatedItem = {
           ...updatedCart[updatedItemIndex]
