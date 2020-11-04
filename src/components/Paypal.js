@@ -1,7 +1,17 @@
 import React, { useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default function Paypal() {
+
     const paypal = useRef();
+    const history = useHistory();
+
+    const [paid, setPaid] = React.useState(false);
+    const cart = useSelector(state => state.auth.cart);
+    const orderDetail = useSelector(state => state.products.orderDetail);
 
     useEffect(() => {
         window.paypal
@@ -14,7 +24,7 @@ export default function Paypal() {
                                 description: "Cool looking table",
                                 amount: {
                                     currency_code: "USD",
-                                    value: 650.0,
+                                    value: `${orderDetail?.subtotal}`,
                                 },
                             },
                         ],
@@ -22,14 +32,23 @@ export default function Paypal() {
                 },
                 onApprove: async (data, actions) => {
                     const order = await actions.order.capture();
-                    console.log(order);
+                    setPaid(true);
+
                 },
                 onError: (err) => {
                     console.log(err);
                 },
+
             })
             .render(paypal.current);
     }, []);
+
+
+
+    if (paid) {
+        return <Redirect to={"/orderConfirmed"} />
+    }
+
 
     return (
         <div>

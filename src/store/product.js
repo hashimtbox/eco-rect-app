@@ -13,11 +13,17 @@ const initialState = {
     size: null,
     color: null
   },
-  selectedProductColor : null,
-  selectedProductSize : null,
+  selectedProductColor: null,
+  selectedProductSize: null,
   allowToAddToCart: false,
   inProgress: false,
-  error: null
+  error: null,
+  orderDetail: {
+    subtotal: null,
+    shippingPrice: 0
+  },
+  checkout: null
+
 };
 
 const productSlice = createSlice({
@@ -74,6 +80,13 @@ const productSlice = createSlice({
       state.filters.category = null;
       state.filters.color = null;
       state.filters.size = null;
+    },
+    setCheckout: (state, action) => {
+      console.log('ddasasass', action.payload);
+      state.checkout = action.payload;
+    },
+    setorderDetail: (state, action) => {
+      state.orderDetail.subtotal = action.payload;
     }
   }
 });

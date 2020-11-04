@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typography, Grid } from "@material-ui/core";
 import macbook from "../assets/macbook.jpg";
 import authSlice from "../store/auth";
+import productSlice from "../store/product";
 import Template from "./Template";
 import DeleteIcon from "@material-ui/icons/Delete";
 import '../assets/styles/style.css';
@@ -13,14 +14,20 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 const CartDetail = () => {
   const history = useHistory();
-  const cart = useSelector(state => state.auth.cart);
-  const { filteredProductsData } = useSelector(state => state.products);
-
   const dispatch = useDispatch();
+  const { filteredProductsData } = useSelector(state => state.products);
+  const cart = useSelector(state => state.auth.cart);
+  const orderDetail = useSelector(state => state.products.orderDetail);
+
+
   const totalPrice = cart.reduce(function (prev, cur) {
     return prev + cur.total;
   }, 0);
-  const shippingCost = 25;
+
+  dispatch(productSlice.actions.setorderDetail(totalPrice));
+  console.log('mil rahi hai', orderDetail);
+
+
 
   return cart && cart.length ?
     (
@@ -83,12 +90,12 @@ const CartDetail = () => {
             <Grid item xl={5} lg={5} md={12} sm={12} xs={12} >
               <div className="checkout-border-cart">
                 <div style={{ display: "flex", marginBottom: 10 }}>
-                  <Typography style={{ color: "black", fontSize: 16, margin: 0 }} variant={"h6"}>Subtotal:</Typography>
+                  <Typography style={{ color: "black", fontSize: 16, margin: 0 }} variant={"h6"}>Total:</Typography>
                   <Typography style={{ color: "black", marginLeft: "auto", fontWeight: 400, fontSize: 15 }} variant={"h6"}> $ {totalPrice} </Typography>
                 </div>
                 <div style={{ display: "flex", marginBottom: 10 }}>
                   <Typography style={{ color: "black", fontSize: 16, margin: 0 }} variant={"h6"}>Shipping Costs:</Typography>
-                  <Typography style={{ color: "black", marginLeft: "auto", fontWeight: 400, fontSize: 15 }} variant={"h6"}> $ {shippingCost} </Typography>
+                  <Typography style={{ color: "black", marginLeft: "auto", fontWeight: 400, fontSize: 15 }} variant={"h6"}> $ {orderDetail?.shippingPrice} </Typography>
                 </div>
                 <div style={{ display: "flex", marginBottom: 10 }}>
                   <div>
@@ -101,14 +108,14 @@ const CartDetail = () => {
                   <div style={{ display: "flex" }}>
                     <div>
                       <Typography style={{ fontWeight: 500, fontSize: 25, margin: 0 }} variant={"h5"}>
-                        Total:
+                        SubTotal:
                       </Typography>
                       <Typography style={{ fontWeight: 400, fontSize: 13, margin: 0, marginTop: -3 }} variant={"h6"}>
                         incl. delivery
                       </Typography>
                     </div>
                     <Typography style={{ marginLeft: "auto", fontWeight: 400, fontSize: 25 }} variant={"h5"}>
-                      $ {totalPrice + shippingCost}
+                      $ {orderDetail?.subtotal}
                     </Typography>
 
                   </div>

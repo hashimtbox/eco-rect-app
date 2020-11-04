@@ -4,6 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
 function OrderConfirmed() {
+    const checkout = useSelector(state => state.products.checkout);
 
     return (
         <Template>
@@ -18,7 +19,7 @@ function OrderConfirmed() {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Order Confirmation Email sent to
@@ -26,11 +27,11 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            xxx.123@gmail.com
+                            {checkout[0].userdata.email}
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Customer Name
@@ -38,11 +39,11 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            John Doe
+                            {`${checkout[0].userdata.firstName} {${checkout[0].userdata.lastName}`}
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Order Number
@@ -54,7 +55,7 @@ function OrderConfirmed() {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Order Date
@@ -66,7 +67,7 @@ function OrderConfirmed() {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Billing Address
@@ -74,11 +75,11 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            House XXX - ABCD, Street # 211 Palm Road, Newyork, USA
+                            {checkout[0].userdata.streetAddress}
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{marginBottom:20}} >
+                <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Summary
@@ -86,33 +87,7 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         {/* No 1*/}
-                        <Grid container style={{marginBottom:20}} >
-                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-top">
-                                <Typography className="order-confirm-top-heading" variant="h6">
-                                    Subtotal
-                                </Typography>
-                            </Grid>
-                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
-                                <Typography className="order-confirm-bottom-para" variant="h6">
-                                    100$
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        {/* No 2*/}
-                        <Grid container style={{marginBottom:20}} >
-                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-top">
-                                <Typography className="order-confirm-top-heading" variant="h6">
-                                    Shipping Cost
-                                </Typography>
-                            </Grid>
-                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
-                                <Typography className="order-confirm-bottom-para" variant="h6">
-                                    25 $
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        {/* No 3*/}
-                        <Grid container style={{marginBottom:20}} >
+                        <Grid container style={{ marginBottom: 20 }} >
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-top">
                                 <Typography className="order-confirm-top-heading" variant="h6">
                                     Total
@@ -120,7 +95,33 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    125 $
+                                    0
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        {/* No 2*/}
+                        <Grid container style={{ marginBottom: 20 }} >
+                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-top">
+                                <Typography className="order-confirm-top-heading" variant="h6">
+                                    Shipping Cost
+                                </Typography>
+                            </Grid>
+                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
+                                <Typography className="order-confirm-bottom-para" variant="h6">
+                                    {checkout[0].orderdata.shippingPrice}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        {/* No 3*/}
+                        <Grid container style={{ marginBottom: 20 }} >
+                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-top">
+                                <Typography className="order-confirm-top-heading" variant="h6">
+                                    SubTotal
+                                </Typography>
+                            </Grid>
+                            <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
+                                <Typography className="order-confirm-bottom-para" variant="h6">
+                                    {checkout[0].orderdata.subtotal}
                                 </Typography>
                             </Grid>
                         </Grid>

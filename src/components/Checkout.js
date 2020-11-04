@@ -10,6 +10,7 @@ import { countryNames } from "../utils/countries"
 import MenuItem from '@material-ui/core/MenuItem';
 import Paypal from "../components/Paypal";
 import NoItem from "../components/NoItem";
+import CheckoutForm from "../components/CheckoutForm";
 const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(1),
@@ -35,17 +36,12 @@ const theme = createMuiTheme({
 });
 function Checkout() {
     const classes = useStyles();
-    const cart = useSelector(state => state.auth.cart);
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.auth.cart);
     const totalPrice = cart.reduce(function (prev, cur) {
         return prev + cur.total;
     }, 0);
-    const shippingCost = 25;
-
-    const [country, setCountry] = React.useState('United States');
-    const handlecountryChange = event => {
-        setCountry(event.target.value);
-    };
+    const orderDetail = useSelector(state => state.products.orderDetail);
 
 
     return cart && cart.length ?
@@ -55,103 +51,7 @@ function Checkout() {
                     <Typography style={{ marginBottom: 20, fontWeight: 500 }} variant="h4">Checkout</Typography>
                     <Grid container spacing={4}>
                         <Grid className="grid-order-small" item xl={6} lg={6} md={6} sm={12} xs={12}>
-                            <form noValidate>
-                                <ThemeProvider theme={theme}>
-                                    <Typography className="checkout-heading" variant="h6" style={{ color: "#448aff" }}>Shipping Details</Typography>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100}`}
-                                            label="Your e-mail address*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                    </div>
-                                    <Typography className="checkout-heading" variant="h6" style={{ color: "#448aff" }}>Send my Order to</Typography>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width50}`}
-                                            label="First Name*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width50}`}
-                                            label="Last Name*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100} ${classes.height60}`}
-                                            label="Street Address*"
-                                            variant="outlined"
-                                            id="street-address"
-                                            size="small"
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100}`}
-                                            id="outlined-select-country"
-                                            select
-                                            label="Country"
-                                            value={country}
-                                            onChange={handlecountryChange}
-                                            variant="outlined"
-                                            size="small"
-
-                                        >
-                                            {
-                                                countryNames?.map((option) => (
-                                                    <MenuItem key={option.id} value={option.value}> {option.value}</MenuItem>
-                                                ))
-                                            }
-
-
-                                        </TextField>
-
-
-
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100}`}
-                                            label="City/Town*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100}`}
-                                            label="Zip Code*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                    </div>
-                                    <div>
-                                        <TextField
-                                            className={`${classes.margin} ${classes.width100}`}
-                                            label="Phone number*"
-                                            variant="outlined"
-                                            id="mui-theme-provider-outlined-input"
-                                            size="small"
-                                        />
-                                    </div>
-                                    {/* <Button style={{ background: "#448aff" }} className={`${classes.margin} ${classes.width100}`} variant="contained" color="secondary">
-                                    Checkout
-               </Button> */}
-
-
-                                    <Paypal />
-                                </ThemeProvider>
-                            </form>
+                            <CheckoutForm />
                         </Grid>
                         <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
                             <Typography style={{
@@ -195,16 +95,16 @@ function Checkout() {
                             </div>
                             <div className="checkout-border">
                                 <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
-                                    <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Subtotal</span>
+                                    <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Total</span>
                                     <span className="checkout-total-price-right">$ {totalPrice} </span>
                                 </Typography>
                                 <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
                                     <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Shipping</span>
-                                    <span className="checkout-total-price-right">$ {shippingCost} </span>
+                                    <span className="checkout-total-price-right">$ {orderDetail?.shippingPrice} </span>
                                 </Typography>
                                 <Typography className="clearfix-categories checkout-total-price" variant={"h5"}>
-                                    <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>Total</span>
-                                    <span className="checkout-total-price-right">$ {totalPrice + shippingCost}</span>
+                                    <span className="checkout-total-price-left" style={{ color: "#448aff", fontSize: 18 }}>SubTotal</span>
+                                    <span className="checkout-total-price-right">$ {orderDetail?.subtotal}</span>
                                 </Typography>
                             </div>
                         </Grid>
