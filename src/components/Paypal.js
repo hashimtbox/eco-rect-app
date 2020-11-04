@@ -10,6 +10,7 @@ export default function Paypal() {
     const history = useHistory();
 
     const [paid, setPaid] = React.useState(false);
+    const [Paymenterror, setPaymentError] = React.useState(false);
     const cart = useSelector(state => state.auth.cart);
     const orderDetail = useSelector(state => state.products.orderDetail);
 
@@ -21,7 +22,7 @@ export default function Paypal() {
                         intent: "CAPTURE",
                         purchase_units: [
                             {
-                                description: "Cool looking table",
+                                description: "Paypal Payment",
                                 amount: {
                                     currency_code: "USD",
                                     value: `${orderDetail?.subtotal}`,
@@ -33,10 +34,12 @@ export default function Paypal() {
                 onApprove: async (data, actions) => {
                     const order = await actions.order.capture();
                     setPaid(true);
+                    console.log("Paypal Order Detail", order);
 
                 },
                 onError: (err) => {
-                    console.log(err);
+                    console.log("Paypal Error", err);
+                    setPaymentError(true);
                 },
 
             })
@@ -46,7 +49,10 @@ export default function Paypal() {
 
 
     if (paid) {
-        return <Redirect to={"/orderConfirmed"} />
+        return <Redirect to={"/orderconfirmed"} />
+    }
+    if (Paymenterror) {
+        return <Redirect to={"/paymenterror"} />
     }
 
 

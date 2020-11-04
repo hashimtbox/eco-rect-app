@@ -5,6 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 function OrderConfirmed() {
     const checkout = useSelector(state => state.products.checkout);
+    let monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    let todayDate = new Date();
+    let dd = String(todayDate.getDate()).padStart(2, '0');
+    let mm = monthNames[todayDate.getMonth()];
+    let yyyy = todayDate.getFullYear();
+    todayDate = mm + ' ' + dd + ', ' + yyyy;
+
+
+    const cart = useSelector(state => state.auth.cart);
+    const totalPrice = cart.reduce(function (prev, cur) {
+        return prev + cur.total;
+    }, 0);
+
+    console.log('whu issue', checkout);
+
 
     return (
         <Template>
@@ -39,11 +56,11 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            {`${checkout[0].userdata.firstName} {${checkout[0].userdata.lastName}`}
+                            {`${checkout[0].userdata.firstName} ${checkout[0].userdata.lastName}`}
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container style={{ marginBottom: 20 }} >
+                {/* <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
                             Order Number
@@ -54,7 +71,7 @@ function OrderConfirmed() {
                             GC-1339
                         </Typography>
                     </Grid>
-                </Grid>
+                </Grid> */}
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
                         <Typography className="order-confirm-top-heading" variant="h6">
@@ -63,7 +80,7 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            21 October, 2020
+                            {todayDate}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -95,7 +112,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    0
+                                    {totalPrice}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -108,7 +125,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata.shippingPrice}
+                                    {checkout[0].orderdata?.shippingPrice}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -121,7 +138,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata.subtotal}
+                                    {checkout[0].orderdata?.subtotal}
                                 </Typography>
                             </Grid>
                         </Grid>

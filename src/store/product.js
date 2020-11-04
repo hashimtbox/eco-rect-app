@@ -41,8 +41,8 @@ const productSlice = createSlice({
     },
     resetSelectedProductData: (state, action) => {
       state.allowToAddToCart = false;
-      state.selectedProductColor = null ;
-      state.selectedProductSize = null ;
+      state.selectedProductColor = null;
+      state.selectedProductSize = null;
     },
 
     setSelectedProductSize: (state, action) => {
@@ -88,7 +88,6 @@ const productSlice = createSlice({
       state.filters.size = null;
     },
     setCheckout: (state, action) => {
-      console.log('ddasasass', action.payload);
       state.checkout = action.payload;
     },
     setorderDetail: (state, action) => {

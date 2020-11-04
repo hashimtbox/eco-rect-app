@@ -19,7 +19,7 @@ const CartDetail = () => {
   const cart = useSelector(state => state.auth.cart);
 
   const { filteredProductsData } = useSelector(state => state.products);
-  const cart = useSelector(state => state.auth.cart);
+
   const orderDetail = useSelector(state => state.products.orderDetail);
 
 
@@ -28,7 +28,7 @@ const CartDetail = () => {
   }, 0);
 
   dispatch(productSlice.actions.setorderDetail(totalPrice));
-  console.log('mil rahi hai', orderDetail);
+
 
 
 
