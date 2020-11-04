@@ -112,7 +112,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {totalPrice}
+                                    {totalPrice} $
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -125,7 +125,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata?.shippingPrice}
+                                    {checkout[0].orderdata?.shippingPrice} $
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -138,7 +138,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata?.subtotal}
+                                    {checkout[0].orderdata?.subtotal} $
                                 </Typography>
                             </Grid>
                         </Grid>
