@@ -17,11 +17,11 @@ const EventView = ({ product }) => {
   const dispatch = useDispatch()
   return (
     <Card>
-      <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${product.id}`}>
+      <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${product?.id}`}>
         <CardMedia
           style={{ height: 150, minWidth: 200 }}
-          image={product.main_image || jeans}
-          title={product.title}
+          image={product?.main_image || jeans}
+          title={product?.title}
         />
       </Link>
 
@@ -29,15 +29,15 @@ const EventView = ({ product }) => {
         <div style={{ display: "flex", height: 60, flexGrow: 1 }}>
           <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
             <Typography gutterBottom variant="h5" component="h2">
-              <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${product.id}`}>{product.title}</Link>
+              <Link style={{ textDecoration: "none", color: "black" }} to={`/products/detail/${product?.id}`}>{product?.title}</Link>
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {product.description.slice(0, 100).toLowerCase()}
+              {product?.description.slice(0, 100).toLowerCase()}
             </Typography>
 
             <div style={{ marginTop: 33 }}>
               <Typography variant='h5' style={{ fontSize: 13.5, fontWeight: 500 }}>
-                {`Price: ${product.price}.00`}
+                {`Price: ${product?.price}.00`}
               </Typography>
             </div>
           </div>
