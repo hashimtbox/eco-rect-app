@@ -7,6 +7,7 @@ import "../assets/styles/style.css";
 import {useDispatch, useSelector} from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
 import { Button } from "@material-ui/core";
+import DeleteIcon from "@material-ui/icons/Delete";
 function ProductBreadcrumbs({ filterData }) {
   const { category } = useParams();
     const dispatch = useDispatch();
@@ -61,9 +62,10 @@ function ProductBreadcrumbs({ filterData }) {
         <Button
             onClick={() => {
             dispatch(productSlice.actions.resetFilterState());
-             }}
-            style={{marginBottom: 5 }} >
-            X
+            dispatch(fetchProductsByFilter())
+            }}
+            className="cart-deleto-btn" style={{ marginBottom : 5 ,  marginLeft: "auto", color: "blue" }}>
+            <DeleteIcon />
         </Button>
         }
 
