@@ -4,12 +4,13 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import "../assets/styles/style.css";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
 import { Button } from "@material-ui/core";
 function ProductBreadcrumbs({ filterData }) {
   const { category } = useParams();
-  const { filters } = useSelector(state => state.products);
+    const dispatch = useDispatch();
+    const { filters } = useSelector(state => state.products);
   return (
     <div>
       <Breadcrumbs aria-label="breadcrumb">
@@ -53,6 +54,19 @@ function ProductBreadcrumbs({ filterData }) {
           {filters.size?.name}
         </Button>
       }
+        { (filters.category?.name ||
+            filters.subCategory?.name ||
+            filters.color?.name ||
+            filters.size?.name) &&
+        <Button
+            onClick={() => {
+            dispatch(productSlice.actions.resetFilterState());
+             }}
+            style={{marginBottom: 5 }} >
+            X
+        </Button>
+        }
+
     </div>
   );
 }
