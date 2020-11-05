@@ -28,8 +28,8 @@ function OrderConfirmed() {
             <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
                 <Grid container>
                     <Grid item xl={12} lg={12} md={12} sm={12} xs={12} className="order-confirm-top-description">
-                        <Typography style={{ marginBottom: 20, fontWeight: 500 }} variant="h4">
-                            Thanks for Your Order Placement
+                        <Typography style={{ color: "#448AFF", marginBottom: 20, fontWeight: 500 }} variant="h4">
+                            🎉 Thanks for Your Order Placement 🎉
                         </Typography>
                         <Typography className="order-confirm-bottom-description" variant="h6">
                             Your Order has been confirmed. We are processing your Order. Here are the Order Details
@@ -38,7 +38,7 @@ function OrderConfirmed() {
                 </Grid>
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
-                        <Typography className="order-confirm-top-heading" variant="h6">
+                        <Typography style={{ color: "#448AFF" }} className="order-confirm-top-heading" variant="h6">
                             Order Confirmation Email sent to
                         </Typography>
                     </Grid>
@@ -50,7 +50,7 @@ function OrderConfirmed() {
                 </Grid>
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
-                        <Typography className="order-confirm-top-heading" variant="h6">
+                        <Typography style={{ color: "#448AFF" }} className="order-confirm-top-heading" variant="h6">
                             Customer Name
                         </Typography>
                     </Grid>
@@ -74,7 +74,7 @@ function OrderConfirmed() {
                 </Grid> */}
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
-                        <Typography className="order-confirm-top-heading" variant="h6">
+                        <Typography style={{ color: "#448AFF" }} className="order-confirm-top-heading" variant="h6">
                             Order Date
                         </Typography>
                     </Grid>
@@ -86,7 +86,7 @@ function OrderConfirmed() {
                 </Grid>
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
-                        <Typography className="order-confirm-top-heading" variant="h6">
+                        <Typography style={{ color: "#448AFF" }} className="order-confirm-top-heading" variant="h6">
                             Billing Address
                         </Typography>
                     </Grid>
@@ -98,7 +98,7 @@ function OrderConfirmed() {
                 </Grid>
                 <Grid container style={{ marginBottom: 20 }} >
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-top">
-                        <Typography className="order-confirm-top-heading" variant="h6">
+                        <Typography style={{ color: "#448AFF" }} className="order-confirm-top-heading" variant="h6">
                             Summary
                         </Typography>
                     </Grid>

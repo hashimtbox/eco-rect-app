@@ -28,9 +28,12 @@ const authSlice = createSlice({
     incrementItemQuantity: (state, action) => {
       console.log('cartttttt', JSON.stringify(state.cart, undefined, 2));
       const updatedCart = [...state.cart];
-      const updatedItemIndex = updatedCart.findIndex(
-        item => item.id === action.payload
-      );
+
+
+      const updatedItemIndex = updatedCart.findIndex((item) => item.id === action.payload.id &&
+        (item.selectedColor === action.payload.selectedColor &&
+          item.selectedSize === action.payload.selectedSize));
+
 
       const incrementedItem = {
         ...updatedCart[updatedItemIndex]
@@ -44,9 +47,10 @@ const authSlice = createSlice({
     },
     decrementItemQuantity: (state, action) => {
       const updatedCart = [...state.cart];
-      const updatedItemIndex = updatedCart.findIndex(
-        item => item.id === action.payload
-      );
+
+      const updatedItemIndex = updatedCart.findIndex((item) => item.id === action.payload.id &&
+        (item.selectedColor === action.payload.selectedColor &&
+          item.selectedSize === action.payload.selectedSize));
 
       const decrementedItem = {
         ...updatedCart[updatedItemIndex]
@@ -87,9 +91,9 @@ const authSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const updatedCart = [...state.cart];
-      const updatedItemIndex = updatedCart.findIndex(
-        item => item.id === action.payload
-      );
+      const updatedItemIndex = updatedCart.findIndex((item) => item.id === action.payload.id &&
+        (item.selectedColor === action.payload.selectedColor &&
+          item.selectedSize === action.payload.selectedSize));
       updatedCart.splice(updatedItemIndex, 1);
       return { ...state, cart: updatedCart };
     },

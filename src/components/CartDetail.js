@@ -73,14 +73,21 @@ const CartDetail = () => {
                             <div className="sprd-quantity-control sprd-bg-m3 sprd-lbc-s2">
                               {(item.quantity > 1) ?
                                 <button className="sprd-quantity-control__button" type="button" onClick={() =>
-                                  dispatch(authSlice.actions.decrementItemQuantity(item.id))}><RemoveIcon /></button>
+                                  dispatch(authSlice.actions.decrementItemQuantity(item))}><RemoveIcon /></button>
                                 :
                                 <button className="sprd-quantity-control__button" type="button" onClick={() =>
-                                  dispatch(authSlice.actions.removeFromCart(item.id))
+                                  dispatch(authSlice.actions.removeFromCart(item))
                                 } style={{ fontSize: 0 }}><DeleteIcon style={{ color: "blue" }} /></button>
                               }
                               <span className="sprd-quantity-control__input">{item.quantity}</span>
-                              <button className="sprd-quantity-control__button" type="button" onClick={() => dispatch(authSlice.actions.incrementItemQuantity(item.id))}><AddIcon /></button>
+                              <button className="sprd-quantity-control__button" type="button" onClick={() => {
+
+                                dispatch(authSlice.actions.incrementItemQuantity(item))
+
+
+
+                              }
+                              }><AddIcon /></button>
                             </div>
                           </div>
                         </div>

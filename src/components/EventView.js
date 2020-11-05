@@ -35,9 +35,9 @@ const EventView = ({ product }) => {
               {product?.description.slice(0, 100).toLowerCase()}
             </Typography>
 
-            <div style={{ marginTop: 33 }}>
+            <div style={{ marginTop: 8 }}>
               <Typography variant='h5' style={{ fontSize: 13.5, fontWeight: 500 }}>
-                {`Price: ${product?.price}.00`}
+                {`Price : $ ${product?.price}.00`}
               </Typography>
             </div>
           </div>
