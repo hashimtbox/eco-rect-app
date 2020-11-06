@@ -810,7 +810,7 @@ ul.nav-categories-ul ul.visible {
     padding: 10.5px;
     padding-right: 0px;
     border-radius: 4px;
-    display: inline-block;
+
     margin-bottom: 10px;
     outline: none;
     border: 1px solid #999;
@@ -820,6 +820,22 @@ ul.nav-categories-ul ul.visible {
 	width: 100%;
 }
 
+
+.form-clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+
+.form-50-left{
+	width: calc(50% - 8px);
+	float:left;
+}
+
+.form-50-right{
+	width: calc(50% - 8px);
+	float:right;
+}
 
 div.form-validation-input{
 	color: red;

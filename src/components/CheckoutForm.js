@@ -91,47 +91,55 @@ function CheckoutForm() {
 
                         <Typography className="checkout-heading" variant="h6" style={{ color: "#448aff" }}>Send my Order to</Typography>
 
-                        <Field className="form-input" placeholder="First Name*" name="firstName" />
-                        {errors.firstName && touched.firstName ? (
-                            <div className="form-validation-input">{errors.firstName}</div>
-                        ) : null}
+                        <div className="form-clearfix">
+                            <div className="form-50-left">
+                                <Field className="form-input" placeholder="First Name*" name="firstName" />
+                                {errors.firstName && touched.firstName ? (
+                                    <div className="form-validation-input">{errors.firstName}</div>
+                                ) : null}
+                            </div>
 
-                        <Field className="form-input" placeholder="Last Name*" name="lastName" />
-                        {errors.lastName && touched.lastName ? (
-                            <div className="form-validation-input">{errors.lastName}</div>
-                        ) : null}
+                            <div className="form-50-right">
+                                <Field className="form-input" placeholder="Last Name*" name="lastName" />
+                                {errors.lastName && touched.lastName ? (
+                                    <div className="form-validation-input">{errors.lastName}</div>
+                                ) : null}
+                            </div>
+                        </div>
 
-                        <Field className="form-input" placeholder="Street Address*" name="streetAddress" />
+                        <Field className="form-input" placeholder="Address*" name="streetAddress" />
                         {errors.streetAddress && touched.streetAddress ? (
                             <div className="form-validation-input">{errors.streetAddress}</div>
                         ) : null}
 
-                        <Field className="form-input-select form-input" as="select" name="country">
-                            <option value="" label="Select a Country" />
-                            {
-                                countryNames?.map((option) => (
-                                    <option key={option.id} value={option.value}>
-                                        {option.value}
-                                    </option>
-                                ))
-                            }
-                        </Field>
-                        {errors.country && touched.country ? (
-                            <div className="form-validation-input">{errors.country}</div>
-                        ) : null}
-
-                        <Field className="form-input" placeholder="City/Town*" name="cityTown" />
+                        <Field className="form-input" placeholder="City*" name="cityTown" />
                         {errors.cityTown && touched.cityTown ? (
                             <div className="form-validation-input">{errors.cityTown}</div>
                         ) : null}
 
-
-
-                        <Field className="form-input" placeholder="Zip Code" name="zipCode" />
-                        {errors.zipCode && touched.zipCode ? (
-                            <div className="form-validation-input">{errors.zipCode}</div>
-                        ) : null}
-
+                        <div className="form-clearfix">
+                            <div className="form-50-left">
+                                <Field className="form-input-select form-input" as="select" name="country">
+                                    <option value="" label="Country/Region*" />
+                                    {
+                                        countryNames?.map((option) => (
+                                            <option key={option.id} value={option.value}>
+                                                {option.value}
+                                            </option>
+                                        ))
+                                    }
+                                </Field>
+                                {errors.country && touched.country ? (
+                                    <div className="form-validation-input">{errors.country}</div>
+                                ) : null}
+                            </div>
+                            <div className="form-50-right">
+                                <Field className="form-input" placeholder="Zip Code" name="zipCode" />
+                                {errors.zipCode && touched.zipCode ? (
+                                    <div className="form-validation-input">{errors.zipCode}</div>
+                                ) : null}
+                            </div>
+                        </div>
                         <Field className="form-input" placeholder="Phone Number*" name="phoneNumber" />
                         {errors.phoneNumber && touched.phoneNumber ? (
                             <div className="form-validation-input">{errors.phoneNumber}</div>
