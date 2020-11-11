@@ -16,8 +16,9 @@ import SidebarFilters from "./SidebarFilters";
 import { Grid } from "@material-ui/core";
 import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Pagination from "@material-ui/lab/Pagination";
-import { fetchProductsByFilter } from "../store/product";
+import {fetchProducts, fetchProductsByFilter} from "../store/product";
 import NoItem from "./NoItem";
+import TrendingProducts from "./TrendingProducts";
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -56,8 +57,9 @@ const products = [
 ]
 const Products = () => {
   const dispatch = useDispatch();
-  const { filteredProductsData } = useSelector(state => state.products);
+  const { filteredProductsData , products } = useSelector(state => state.products);
   useEffect(() => {
+    dispatch(fetchProducts())
     dispatch(fetchProductsByFilter());
   }, []);
 
@@ -111,8 +113,9 @@ const Products = () => {
                     </div>
                 </>
 
-              ) : <Typography>No Product Found</Typography>
+              ) : <Typography variant="h4" style={{ textAlign: "center", marginBottom: 150, marginTop: 150}} >No Product Found</Typography>
             }
+            <TrendingProducts products={products} />
           </Grid>
         </Grid>
       </Grid>

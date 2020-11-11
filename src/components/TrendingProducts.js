@@ -45,7 +45,7 @@ function TrendingProducts({ products }) {
             >
                 <div
                     style={{
-                        marginTop: 70,
+                        marginTop: 30,
                         marginBottom: 50,
                         display: "flex",
                         flexDirection: "row",
