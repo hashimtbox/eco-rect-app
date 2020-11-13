@@ -11,12 +11,29 @@
 	margin: 50px 0px 26px 0px;
 }
 
+
+.searchbar{
+	margin-bottom:10px;
+	height:45px !important;
+	box-shadow: none !important;
+	border: 1px solid #bbb !important;
+	width: 296px !important;
+}
+
+.product-breadcrumbs{
+	width:100vw;
+}
+
 @media only screen and (max-width: 1279px) {
 	.footer-center {
 		text-align: center !important;
 	}
 	.footer-justify {
 		justify-content: center;
+	}
+
+	.searchbar{
+		width: 100% !important;
 	}
 }
 
@@ -415,6 +432,7 @@ div.sticky {
 	.display-nav-none{
 		display: block;
 	}
+
 }
 
 
@@ -864,3 +882,4 @@ div.form-validation-input{
 		max-width: 80%;
 	}
 }
+

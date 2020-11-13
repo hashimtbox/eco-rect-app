@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.2.5",
     "axios": "^0.20.0",
     "formik": "^2.2.1",
+    "material-ui-search-bar": "^1.0.0",
     "moment": "^2.24.0",
     "react": "^16.13.0",
     "react-alice-carousel": "^1.19.3",

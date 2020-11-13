@@ -15,6 +15,7 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import '../assets/styles/style.css';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -183,6 +184,9 @@ const Header = ({ selected, children, ...props }) => {
                             </Link>
                         </Typography>
                     </div>
+
+
+
                     <IconButton style={{ marginRight: 10, marginLeft: 15 }} onClick={handlePopoverClick}>
                         <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" ><ShoppingCart display="block"></ShoppingCart></Badge>
                     </IconButton>
@@ -193,6 +197,10 @@ const Header = ({ selected, children, ...props }) => {
                             <Cart />
                         }
                     </Popover>
+
+                    <Button style={{marginLeft:10}} variant="contained" color="secondary" disableElevation>
+  Sign In
+</Button> 
                 </Toolbar>
             </AppBar>
         </div >
