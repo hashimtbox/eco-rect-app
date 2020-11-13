@@ -20,6 +20,9 @@ import PaymentError from "./components/PaymentError";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
+import ChangePassword from "./components/ChangePassword";
+import Profile from "./components/Profile";
+
 toast.configure();
 
 const App = () => {
@@ -40,6 +43,8 @@ const App = () => {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/changepassword" component={ChangePassword} />
           {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
           {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
           {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}

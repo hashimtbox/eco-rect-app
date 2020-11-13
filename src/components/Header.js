@@ -126,12 +126,18 @@ className="drawer-small-screen"
       About
       </Link>
    </List>
-   <List>
+   {/* <List>
       <Link smooth to="/#comix" className={classes.navLink}>
       Comic
       </Link>
-   </List>
+   </List> */}
+    <List>
+   <Link to="http://localhost/dashboard/" >
+            Blog
+            </Link>
+            </List>
    <List>
+
       <Link className={classes.navLink}
          onClick={() =>
       history.push({
@@ -186,9 +192,14 @@ return (
             <Link smooth to="/#about" className={classes.navLink}>
             About
             </Link>
-            <Link smooth to="/#comix" className={classes.navLink}>
+            {/* <Link smooth to="/#comix" className={classes.navLink}>
             Comic
-            </Link>
+            </Link> */}
+            {/* <a target="_blank" href="/dashboard/" className={classes.navLink}>
+            Blog
+            </a> */}
+            <a target="_blank"  className={classes.navLink} href="http://localhost/grubster_wordpress">Blog </a>
+
             <Link className={classes.navLink}
                onClick={() =>
             history.push({
@@ -204,21 +215,16 @@ return (
             </Link>
          </Typography>
       </div>
-      <Button onClick = { ()=> history.push({pathname: `/signin`})}style={{marginLeft:30}} variant="contained" color="secondary" disableElevation>
+      {/* <Button onClick = { ()=> history.push({pathname: `/signin`})}style={{marginLeft:30}} variant="contained" color="secondary" disableElevation>
       Sign In
-      </Button>  
-      {/* <div class="dropdown">
+      </Button>   */}
+      <div class="dropdown">
          <button className="dropbtn" >
             <Typography variant='h6' className="username">John Doe</Typography>
          </button>
          <ArrowDropDownIcon style={{color:"#448aff",	marginRight: 10, marginTop:5}} />
          <div className="dropdown-content">
-         <Link to="/myorders" variant="body2" style={{ color: "#000", textDecoration: "none" }} >
-            <MenuItem onClick={handleClose}>
-               <ViewListIcon className={classes.iconmargin} />
-               My Orders
-            </MenuItem>
-            </Link>
+
             <Link to="/profile" variant="body2" style={{ color: "#000", textDecoration: "none" }} >
             <MenuItem onClick={handleClose}>
                <AccountCircleIcon className={classes.iconmargin} />
@@ -236,7 +242,7 @@ return (
                {
                handleClose();
                // dispatch(signout());
-               // history.push({pathname: `/`,})
+                  history.push({pathname: `/signin`,})
                }}>
                <ExitToAppIcon className={classes.iconmargin} />
                Logout
@@ -252,7 +258,7 @@ return (
       src = ""
       style={{ width: 29, height: 29 }}
       onClick={handleClick}
-      /> */}
+      />
       <IconButton style={{ marginRight: 10, marginLeft: 10}} onClick={handlePopoverClick}>
       <Badge badgeContent={cart.length === 0 ? '0' : cart.length} color="secondary" >
       <ShoppingCart display="block"></ShoppingCart>
