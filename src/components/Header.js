@@ -242,7 +242,7 @@ return (
                {
                handleClose();
                // dispatch(signout());
-               // history.push({pathname: `/`,})
+                  history.push({pathname: `/signin`,})
                }}>
                <ExitToAppIcon className={classes.iconmargin} />
                Logout
