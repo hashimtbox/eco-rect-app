@@ -27,7 +27,7 @@ function ProductBreadcrumbs({ filterData }) {
           {(filterData && filterData?.category) ? filterData.category : "All"}
         </Typography>
       </Breadcrumbs>
-      <h1 style={{ marginTop: 15, marginBottom: 15 }}>
+      <h1 style={{ marginTop: 15, marginBottom: 15,fontSize: 25 }}>
         {(filterData && filterData?.category) ? ` ${filterData.category} - ${filterData.subCategory}` : "All Products"}
       </h1>
       
@@ -46,7 +46,7 @@ function ProductBreadcrumbs({ filterData }) {
         filters.subCategory?.name ||
         filters.color?.name ||
         filters.size?.name) &&
-        <h3>Filters : </h3>
+        <h3 style={{fontSize: 17}}>Filters : </h3>
       }
 
       {filters.category?.name &&
