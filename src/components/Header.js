@@ -195,9 +195,11 @@ return (
             {/* <Link smooth to="/#comix" className={classes.navLink}>
             Comic
             </Link> */}
-            <a href="/dashboard/" className={classes.navLink}>
+            {/* <a target="_blank" href="/dashboard/" className={classes.navLink}>
             Blog
-            </a>
+            </a> */}
+            <a target="_blank"  className={classes.navLink} href="http://localhost/grubster_wordpress">Blog </a>
+
             <Link className={classes.navLink}
                onClick={() =>
             history.push({
