@@ -8,12 +8,14 @@ import {useDispatch, useSelector} from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
 import { Button } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import SearchBar from "material-ui-search-bar";
+
 function ProductBreadcrumbs({ filterData }) {
   const { category } = useParams();
     const dispatch = useDispatch();
     const { filters } = useSelector(state => state.products);
   return (
-    <div>
+    <div className="product-breadcrumbs">
       <Breadcrumbs aria-label="breadcrumb">
         <Link className="breadcrumb-hover" to={"/"}>
           Home
@@ -28,6 +30,18 @@ function ProductBreadcrumbs({ filterData }) {
       <h1 style={{ marginTop: 15, marginBottom: 15 }}>
         {(filterData && filterData?.category) ? ` ${filterData.category} - ${filterData.subCategory}` : "All Products"}
       </h1>
+      
+    
+      <SearchBar 
+        className="searchbar"
+      />
+      {/* <SearchBar
+        className="searchbar"
+        dataSource={state.dataSource}
+        onChange={(value) => setState({dataSource: [ value, value+value, value+value+value]})}
+        onRequestSearch={() => console.log('onRequestSearch')}
+      /> */}
+
       { (filters.category?.name ||
         filters.subCategory?.name ||
         filters.color?.name ||

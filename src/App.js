@@ -17,6 +17,9 @@ import CartDetail from "./components/CartDetail";
 import Checkout from "./components/Checkout";
 import OrderConfirmed from "./components/OrderConfirmed";
 import PaymentError from "./components/PaymentError";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import ForgotPassword from "./components/ForgotPassword";
 toast.configure();
 
 const App = () => {
@@ -34,6 +37,9 @@ const App = () => {
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orderconfirmed" component={OrderConfirmed} />
           <Route exact path="/paymenterror" component={PaymentError} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/forgotpassword" component={ForgotPassword} />
           {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
           {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
           {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}

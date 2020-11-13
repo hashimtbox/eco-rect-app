@@ -7,7 +7,7 @@ function Banner() {
         <>
             <Grid item xl={12} lg={12} md={12} sm={12} xs={12} id="home">
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                    <Typography variant={"h3"} style={{ fontWeight: 300, textAlign: "center" }} color={"textSecondary"}>
+                    <Typography className="home-title-grubster" variant={"h3"} style={{ fontWeight: 300, textAlign: "center" }} color={"textSecondary"}>
                         GRUBSTERS COMICS WE ARE #GRUBSTERS
                     </Typography>
                     <Typography variant={"h6"} style={{ fontWeight: 400 }} color={"textSecondary"}>

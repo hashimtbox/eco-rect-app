@@ -11,12 +11,29 @@
 	margin: 50px 0px 26px 0px;
 }
 
+
+.searchbar{
+	margin-bottom:10px;
+	height:45px !important;
+	box-shadow: none !important;
+	border: 1px solid #bbb !important;
+	width: 296px !important;
+}
+
+.product-breadcrumbs{
+	width:100vw;
+}
+
 @media only screen and (max-width: 1279px) {
 	.footer-center {
 		text-align: center !important;
 	}
 	.footer-justify {
 		justify-content: center;
+	}
+
+	.searchbar{
+		width: 100% !important;
 	}
 }
 
@@ -162,7 +179,7 @@ input.form-button-class:focus {
 	outline: none;
 }
 
-@media only screen and (max-width: 1130px) {
+@media only screen and (max-width: 1170px) {
 	.displayLinks {
 		display: none;
 	}
@@ -415,6 +432,7 @@ div.sticky {
 	.display-nav-none{
 		display: block;
 	}
+
 }
 
 
@@ -810,7 +828,7 @@ ul.nav-categories-ul ul.visible {
     padding: 10.5px;
     padding-right: 0px;
     border-radius: 4px;
-    display: inline-block;
+
     margin-bottom: 10px;
     outline: none;
     border: 1px solid #999;
@@ -820,6 +838,22 @@ ul.nav-categories-ul ul.visible {
 	width: 100%;
 }
 
+
+.form-clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+
+.form-50-left{
+	width: calc(50% - 8px);
+	float:left;
+}
+
+.form-50-right{
+	width: calc(50% - 8px);
+	float:right;
+}
 
 div.form-validation-input{
 	color: red;
@@ -847,4 +881,66 @@ div.form-validation-input{
 	.paypalModalWidth{
 		max-width: 80%;
 	}
+}
+
+
+@media (min-width: 0px) and (orientation: landscape){
+.home-title-grubster{
+	margin-top: 50px !important;
+}
+}
+
+.dropbtn {
+
+	border: none;
+	background-color: transparent;
+	margin-left: 30px;
+outline:none;
+cursor:pointer;
+  }
+  
+  .dropdown {
+	position: relative;
+	display: inline-block;
+	margin-top:-5px;
+	cursor:pointer;
+  }
+  
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #fff;
+	min-width: 160px;
+	box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+margin-top:1px;
+  }
+  
+  .dropdown-content a {
+	color: black;
+	text-decoration: none;
+	display: block;
+  }
+  
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+
+  .MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button{
+	  padding: 10px 20px !important; 
+  }
+
+
+
+  /* @media only screen and (max-width: 599px) {
+  .dropdown-content {
+     margin-top:13px;
+  }
+} */
+
+.username{
+	padding-top: 21px;
+	padding-bottom: 17px;
+	font-size: 18px !important;
+	color:#448aff;
 }
