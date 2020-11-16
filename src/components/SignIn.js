@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
+        padding:9,
+        borderRadius:2
     },
 
 }));

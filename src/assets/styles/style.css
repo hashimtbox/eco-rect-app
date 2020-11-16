@@ -1018,5 +1018,5 @@ a{
     transition: background-color .3s,border-color .3s;
     background-color: #4c69ba;
     border: calc(.06887vw + .67769px) solid #4c69ba;
-    padding: 10px !important;
+	padding: 9px !important;
 }
