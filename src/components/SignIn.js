@@ -19,6 +19,8 @@ import { useHistory } from "react-router";
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import productSlice from "../store/product";
+import GoogleSignIn from './GoogleSignIn';
+import FacebookSignIn from './FacebookSignIn';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -123,6 +125,9 @@ export default function SignIn() {
                                 >
                                     Sign In
                         </Button>
+                        <GoogleSignIn />
+                        <FacebookSignIn/>
+                        
                             </div>
                             <Grid container>
                                 <Grid item xl={7} lg={7} md={7} sm={7} xs={7}>

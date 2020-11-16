@@ -228,7 +228,7 @@ const Header = ({ selected, children, ...props }) => {
                      <Link to="/profile" variant="body2" style={{ color: "#000", textDecoration: "none" }} >
                         <MenuItem onClick={handleClose}>
                            <AccountCircleIcon className={classes.iconmargin} />
-               Profile
+               Account Management
             </MenuItem>
                      </Link>
                      <Link to="/changepassword" variant="body2" style={{ color: "#000", textDecoration: "none" }} >
