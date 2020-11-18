@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { API_HOST } from "../config/api";
 import Template from "./Template";
 import AddIcon from "@material-ui/icons/Add";
-import { Fab, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 const ProfileSchema = Yup.object().shape({
   fullName: Yup.string()
