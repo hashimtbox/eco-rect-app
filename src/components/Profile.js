@@ -201,7 +201,7 @@ function Profile(props) {
             <div class="row">
               <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                 <Avatar
-                  alt="user_image"
+                  alt="User_image"
                   src=""
                   // src={API_HOST + "/uploads/admin_profile_pic/"+ admin?.profile_pic}
                   style={{ width: 200, height: 200 }}

@@ -309,7 +309,7 @@ const Header = ({ selected, children, ...props }) => {
           </div>
 
           <Avatar
-            alt="user_image"
+            alt="User_image"
             // src={API_HOST + "/uploads/admin_profile_pic/"+ admin?.profile_pic}
             src=""
             style={{ width: 29, height: 29 }}
