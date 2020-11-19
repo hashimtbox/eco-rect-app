@@ -22,11 +22,12 @@ import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import ChangePassword from "./components/ChangePassword";
 import Profile from "./components/Profile";
+import EditProfile from "./components/EditProfile";
 
 toast.configure();
 
 const App = () => {
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
   return (
     <MuiThemeProvider theme={lightTheme}>
       <Router>
@@ -34,7 +35,11 @@ const App = () => {
           <Route exact path="/test" component={LandingPage} />
           <SecureRoute exact path="/" component={Dashboard} />
           {/* <SecureRoute path="/products/:category" exact component={Products} /> */}
-          <Route exact path="/products/detail/:productId" component={ProductDetailPage} />
+          <Route
+            exact
+            path="/products/detail/:productId"
+            component={ProductDetailPage}
+          />
           <Route exact path="/cart" component={CartDetail} />
           <Route exact path="/products" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
@@ -44,6 +49,7 @@ const App = () => {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/editprofile" component={EditProfile} />
           <Route exact path="/changepassword" component={ChangePassword} />
           {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
           {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}

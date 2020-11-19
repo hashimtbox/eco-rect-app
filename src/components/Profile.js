@@ -1,38 +1,17 @@
 import React from "react";
 import CardBox from "../MaterialUiHelper/CardBox";
 import { Typography, Grid } from "@material-ui/core";
-import macbook from "../assets/macbook.jpg";
 import { Avatar } from "@material-ui/core";
-import CameraAltIcon from "@material-ui/icons/CameraAlt";
-import Modal from "@material-ui/core/Modal";
 import CreateIcon from "@material-ui/icons/Create";
-import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import "../assets/styles/style.css";
 import { useSelector } from "react-redux";
-import { API_HOST } from "../config/api";
 import Template from "./Template";
-import AddIcon from "@material-ui/icons/Add";
-import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
-const ProfileSchema = Yup.object().shape({
-  fullName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Full Name is Required!"),
-  email: Yup.string()
-    .email("Invalid Email Address")
-    .required("Email Address is Required!"),
-});
 function Profile(props) {
-  const [openModal, setOpenModal] = React.useState(false);
-  const { admin } = useSelector((state) => state.auth);
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  const history = useHistory();
+  // const { admin } = useSelector((state) => state.auth);
   return (
     <Template>
       <div className="container">
@@ -63,135 +42,13 @@ function Profile(props) {
                 }}
               >
                 <CreateIcon
-                  onClick={handleOpenModal}
+                  onClick={() => history.push("/editprofile")}
                   style={{
                     color: "#448aff",
                     fontSize: 25,
                     cursor: "pointer",
                   }}
                 />
-                <Modal
-                  style={{ margin: "auto" }}
-                  open={openModal}
-                  onClose={handleCloseModal}
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
-                >
-                  <div className="paypalModalWidth-2">
-                    <Formik
-                      initialValues={{
-                        fullName: admin?.name,
-                        email: admin?.email,
-                        profile_image: "",
-                      }}
-                      validationSchema={ProfileSchema}
-                      onSubmit={(values) => {
-                        console.log(values);
-                        setOpenModal(false);
-                      }}
-                    >
-                      {({
-                        values,
-                        errors,
-                        touched,
-                        handleSubmit,
-                        setFieldValue,
-                      }) => (
-                        <Form onSubmit={handleSubmit}>
-                          <div className="d-flex align-items-center justify-content-center flex-column col-12 mb-2">
-                            <Typography
-                              style={{
-                                fontSize: 15,
-                                marginBottom: 20,
-                                fontWeight: 500,
-                              }}
-                              variant="h6"
-                            >
-                              Profile Picture
-                            </Typography>
-                            <label htmlFor="profile_image">
-                              <input
-                                style={{ display: "none" }}
-                                id="profile_image"
-                                name="profile_image"
-                                type="file"
-                                accept="image/*"
-                                onChange={(event) => {
-                                  setFieldValue(
-                                    "profile_image",
-                                    event.currentTarget.files[0]
-                                  );
-                                }}
-                              />
-                              <Button
-                                color="secondary"
-                                variant="contained"
-                                component="span"
-                              >
-                                <AddIcon /> Upload photo
-                              </Button>{" "}
-                            </label>
-                          </div>
-                          <Thumb file={values.profile_image} />
-                          <div className="col-12 col-lg-8 offset-lg-2 mb-2">
-                            <Typography
-                              style={{
-                                fontSize: 15,
-                                marginBottom: 10,
-                                fontWeight: 500,
-                              }}
-                              variant="h6"
-                            >
-                              Full Name
-                            </Typography>
-                            <Field
-                              className="form-input"
-                              placeholder="Full Name"
-                              name="fullName"
-                              type="text"
-                            />
-                            {errors.fullName && touched.fullName ? (
-                              <div className="form-validation-input">
-                                {errors.fullName}
-                              </div>
-                            ) : null}
-                          </div>
-                          <div className="col-12 col-lg-8 offset-lg-2 mb-2">
-                            <Typography
-                              style={{
-                                fontSize: 15,
-                                marginBottom: 10,
-                                fontWeight: 500,
-                              }}
-                              variant="h6"
-                            >
-                              Email Address
-                            </Typography>
-                            <Field
-                              className="form-input"
-                              placeholder="Your e-mail address"
-                              name="email"
-                              type="email"
-                            />
-                            {errors.email && touched.email ? (
-                              <div className="form-validation-input">
-                                {errors.email}
-                              </div>
-                            ) : null}
-                          </div>
-                          <div className="d-flex align-items-center justify-content-center flex-column col-12 mb-4">
-                            <button
-                              type="submit"
-                              className="mt-4 btn btn-green"
-                            >
-                              Update Profile
-                            </button>
-                          </div>
-                        </Form>
-                      )}
-                    </Formik>
-                  </div>
-                </Modal>
               </Typography>
             </div>
           </div>
