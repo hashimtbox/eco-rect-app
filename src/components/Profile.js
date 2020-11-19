@@ -8,6 +8,7 @@ import "../assets/styles/style.css";
 import { useSelector } from "react-redux";
 import Template from "./Template";
 import { useHistory } from "react-router-dom";
+import MyOrdersUserManagement from "./MyOrdersUserManagement";
 
 function Profile(props) {
   const history = useHistory();
@@ -120,8 +121,9 @@ function Profile(props) {
               fontWeight: 500,
             }}
           >
-            My Orders
+            My orders
           </Typography>
+          <MyOrdersUserManagement />
         </div>
       </div>
     </Template>
