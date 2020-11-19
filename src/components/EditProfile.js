@@ -6,6 +6,7 @@ import { blue } from "@material-ui/core/colors";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { countryNames } from "../utils/countries";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -82,6 +83,7 @@ function EditProfile() {
 
         <Formik
           initialValues={{
+            profile_image: "",
             email: "",
             firstName: "",
             lastName: "",
@@ -96,8 +98,42 @@ function EditProfile() {
             console.log(values);
           }}
         >
-          {({ errors, touched }) => (
+          {({ values, errors, touched, handleSubmit, setFieldValue }) => (
             <Form className="form-profile-edit">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <Thumb file={values.profile_image} />
+                </div>
+                <label htmlFor="profile_image">
+                  <input
+                    style={{ display: "none" }}
+                    id="profile_image"
+                    name="profile_image"
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => {
+                      setFieldValue(
+                        "profile_image",
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                  />
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    component="span"
+                  >
+                    <AddIcon /> Upload photo
+                  </Button>{" "}
+                </label>
+              </div>
               <Field
                 className="form-input"
                 placeholder="Your e-mail address*"
@@ -217,3 +253,50 @@ function EditProfile() {
   );
 }
 export default EditProfile;
+
+class Thumb extends React.Component {
+  state = {
+    loading: false,
+    thumb: undefined,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.file) {
+      return;
+    }
+
+    this.setState({ loading: true }, () => {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.setState({ loading: false, thumb: reader.result });
+      };
+
+      reader.readAsDataURL(nextProps.file);
+    });
+  }
+
+  render() {
+    const { file } = this.props;
+    const { loading, thumb } = this.state;
+
+    if (!file) {
+      return null;
+    }
+
+    if (loading) {
+      return <p>loading...</p>;
+    }
+
+    return (
+      <img
+        src={thumb}
+        alt={file.name}
+        height={150}
+        width={150}
+        className="mb-3"
+        style={{ borderRadius: "50%" }}
+      />
+    );
+  }
+}
