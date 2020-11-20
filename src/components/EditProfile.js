@@ -98,7 +98,7 @@ function EditProfile() {
 
         <Formik
           initialValues={{
-            profile_image: userData[0].profile_image,
+            profile_image: "",
             email: userData[0].emailaddress,
             firstName: userData[0].firstname,
             lastName: userData[0].lastname,
