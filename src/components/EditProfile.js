@@ -1,0 +1,317 @@
+import React from "react";
+import Template from "../components/Template";
+import { Button, Grid, Typography } from "@material-ui/core";
+import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { countryNames } from "../utils/countries";
+import AddIcon from "@material-ui/icons/Add";
+
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+    marginLeft: 0,
+  },
+  width50: {
+    width: "calc(50% - 8px)",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
+  },
+  width100: {
+    width: "calc(100% - 8px)",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
+  },
+}));
+const theme = createMuiTheme({
+  palette: {
+    primary: blue,
+  },
+});
+
+const userData = [
+  {
+    id: 1,
+    profile_image: "RETURN File Object Here - Hashim",
+    emailaddress: "user@email.com",
+    firstname: "John",
+    lastname: "Doe",
+    address: "House 789 , Street 4 ...",
+    city: "Cityname",
+    country: "United States",
+    zipcode: 44444,
+    phonenumber: "9999-9999-99999",
+  },
+];
+
+const EditProfileSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid Email Address")
+    .required("Email Address is Required!"),
+  firstName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("First Name is Required!"),
+  lastName: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Last Name is Required!"),
+  streetAddress: Yup.string()
+    .min(2, "Too Short!")
+    .max(100, "Too Long!")
+    .required("Street Address is Required!"),
+  country: Yup.string().required("Country is Required!"),
+  cityTown: Yup.string()
+    .min(2, "Too Short!")
+    .max(100, "Too Long!")
+    .required("City/Town is Required!"),
+  zipCode: Yup.string()
+    .min(2, "Too Short!")
+    .max(100, "Too Long!")
+    .required("Zip Code is Required!"),
+  phoneNumber: Yup.string()
+    .min(7, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Phone Number is Required!"),
+});
+
+function EditProfile() {
+  const classes = useStyles();
+  return (
+    <Template>
+      <Grid
+        container
+        style={{ height: "100%" }}
+        style={{
+          padding: 35,
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography style={{ marginBottom: 20, fontWeight: 500 }} variant="h4">
+          Edit Profile
+        </Typography>
+
+        <Formik
+          initialValues={{
+            profile_image: "",
+            email: userData[0].emailaddress,
+            firstName: userData[0].firstname,
+            lastName: userData[0].lastname,
+            streetAddress: userData[0].address,
+            country: userData[0].country,
+            cityTown: userData[0].city,
+            zipCode: userData[0].zipcode,
+            phoneNumber: userData[0].phonenumber,
+          }}
+          validationSchema={EditProfileSchema}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        >
+          {({ values, errors, touched, handleSubmit, setFieldValue }) => (
+            <Form className="form-profile-edit">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <Thumb file={values.profile_image} />
+                </div>
+                <label htmlFor="profile_image">
+                  <input
+                    style={{ display: "none" }}
+                    id="profile_image"
+                    name="profile_image"
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => {
+                      setFieldValue(
+                        "profile_image",
+                        event.currentTarget.files[0]
+                      );
+                    }}
+                  />
+                  <Button
+                    color="secondary"
+                    variant="contained"
+                    component="span"
+                  >
+                    <AddIcon /> Upload photo
+                  </Button>{" "}
+                </label>
+              </div>
+              <Field
+                className="form-input"
+                placeholder="Your e-mail address*"
+                name="email"
+                type="email"
+              />
+              {errors.email && touched.email ? (
+                <div className="form-validation-input">{errors.email}</div>
+              ) : null}
+
+              <div className="form-clearfix">
+                <div className="form-50-left">
+                  <Field
+                    className="form-input"
+                    placeholder="First Name*"
+                    name="firstName"
+                  />
+                  {errors.firstName && touched.firstName ? (
+                    <div className="form-validation-input">
+                      {errors.firstName}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div className="form-50-right">
+                  <Field
+                    className="form-input"
+                    placeholder="Last Name*"
+                    name="lastName"
+                  />
+                  {errors.lastName && touched.lastName ? (
+                    <div className="form-validation-input">
+                      {errors.lastName}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+
+              <Field
+                className="form-input"
+                placeholder="Address*"
+                name="streetAddress"
+              />
+              {errors.streetAddress && touched.streetAddress ? (
+                <div className="form-validation-input">
+                  {errors.streetAddress}
+                </div>
+              ) : null}
+
+              <Field
+                className="form-input"
+                placeholder="City*"
+                name="cityTown"
+              />
+              {errors.cityTown && touched.cityTown ? (
+                <div className="form-validation-input">{errors.cityTown}</div>
+              ) : null}
+
+              <div className="form-clearfix">
+                <div className="form-50-left">
+                  <Field
+                    className="form-input-select form-input"
+                    as="select"
+                    name="country"
+                  >
+                    <option value="" label="Country/Region*" />
+                    {countryNames?.map((option) => (
+                      <option key={option.id} value={option.value}>
+                        {option.value}
+                      </option>
+                    ))}
+                  </Field>
+                  {errors.country && touched.country ? (
+                    <div className="form-validation-input">
+                      {errors.country}
+                    </div>
+                  ) : null}
+                </div>
+                <div className="form-50-right">
+                  <Field
+                    className="form-input"
+                    placeholder="Zip Code"
+                    name="zipCode"
+                  />
+                  {errors.zipCode && touched.zipCode ? (
+                    <div className="form-validation-input">
+                      {errors.zipCode}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              <Field
+                className="form-input"
+                placeholder="Phone Number*"
+                name="phoneNumber"
+              />
+              {errors.phoneNumber && touched.phoneNumber ? (
+                <div className="form-validation-input">
+                  {errors.phoneNumber}
+                </div>
+              ) : null}
+
+              <Button
+                type="submit"
+                className="form-input checkout-btn-primary-pay"
+                style={{ background: "#448aff" }}
+                variant="contained"
+                color="secondary"
+              >
+                Save Profile
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </Grid>
+    </Template>
+  );
+}
+export default EditProfile;
+
+class Thumb extends React.Component {
+  state = {
+    loading: false,
+    thumb: undefined,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.file) {
+      return;
+    }
+
+    this.setState({ loading: true }, () => {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.setState({ loading: false, thumb: reader.result });
+      };
+
+      reader.readAsDataURL(nextProps.file);
+    });
+  }
+
+  render() {
+    const { file } = this.props;
+    const { loading, thumb } = this.state;
+
+    if (!file) {
+      return null;
+    }
+
+    if (loading) {
+      return <p>loading...</p>;
+    }
+
+    return (
+      <img
+        src={thumb}
+        alt={file.name}
+        height={150}
+        width={150}
+        className="mb-3"
+        style={{ borderRadius: "50%" }}
+      />
+    );
+  }
+}

@@ -83,7 +83,7 @@ export default function ForgotPassword() {
                             </div>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link to="/" variant="body2" style={{ color: "#999", textDecoration: "none" }} >Back to Sign In </Link>
+                                    <Link to="/signin" variant="body2" style={{ color: "#999", textDecoration: "none" }} >Back to Sign In </Link>
                                 </Grid>
                             </Grid>
 
