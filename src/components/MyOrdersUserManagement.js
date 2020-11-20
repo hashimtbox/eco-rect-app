@@ -99,126 +99,155 @@ export default function MyOrdersUserManagement() {
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((order) => {
             return (
-              <div className="row border-bottom-item-order" key={order.id}>
-                <div class="col-lg-6">
-                  <div class="row">
-                    <div class="col-5">
-                      <AutoPlaySwipeableViews
-                        index={activeStep}
-                        onChangeIndex={handleStepChange}
-                        enableMouseEvents
-                      >
-                        {tutorialSteps.map((step, index) => (
-                          <div key={step.label}>
-                            {Math.abs(activeStep - index) <= 2 ? (
-                              <img
-                                style={{ height: 150, width: 150 }}
-                                src={step.imgPath}
-                                alt={step.label}
-                              />
-                            ) : null}
-                          </div>
-                        ))}
-                      </AutoPlaySwipeableViews>
-                    </div>
-                    <div class="col-7">
+              <div>
+                <div className="clearfix my-4">
+                  <div className="float-right">
+                    <button
+                      onClick={() =>
+                        history.push({
+                          pathname: `/orders/detail/` + order.id,
+                        })
+                      }
+                      className="btn btn-blue"
+                      style={{ background: "#448aff" }}
+                    >
                       <Typography
                         style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
+                          fontSize: 14,
+                          fontWeight: 500,
+                          display: "inline-block",
+                          lineHeight: 2,
+                          color: "white",
                         }}
-                        variant={"h6"}
+                        variant="h6"
                       >
-                        Order Number:{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_no}
-                        </span>
+                        {" "}
+                        View Order
                       </Typography>
+                    </button>
+                  </div>
+                </div>
+                <div className="row" key={order.id}>
+                  <div class="col-lg-6">
+                    <div class="row">
+                      <div class="col-5">
+                        <AutoPlaySwipeableViews
+                          index={activeStep}
+                          onChangeIndex={handleStepChange}
+                          enableMouseEvents
+                        >
+                          {tutorialSteps.map((step, index) => (
+                            <div key={step.label}>
+                              {Math.abs(activeStep - index) <= 2 ? (
+                                <img
+                                  style={{ height: 150, width: 150 }}
+                                  src={step.imgPath}
+                                  alt={step.label}
+                                />
+                              ) : null}
+                            </div>
+                          ))}
+                        </AutoPlaySwipeableViews>
+                      </div>
+                      <div class="col-7">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Order Number:{"  "}
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {order.order_no}
+                          </span>
+                        </Typography>
 
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Number of Items:{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_items}
-                        </span>
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Subtotal :{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {" "}
-                          {order.order_subtotal}
-                        </span>
-                      </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Number of Items:{"  "}
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {order.order_items}
+                          </span>
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Subtotal :{"  "}
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {" "}
+                            {order.order_subtotal}
+                          </span>
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mt-4">
+                    <div class="row">
+                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Order Date:{"  "}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {order.order_date}
+                          </span>
+                        </Typography>
+                      </div>
+                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Status:{"  "}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {order.order_status}
+                          </span>
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 mt-4">
-                  <div class="row">
-                    <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Order Date:{"  "}
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_date}
-                        </span>
-                      </Typography>
-                    </div>
-                    <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Status:{"  "}
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_status}
-                        </span>
-                      </Typography>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-bottom-item-order"></div>
+                <hr style={{ marginTop: 40, marginBottom: 40 }} />
               </div>
             );
           })}
@@ -237,7 +266,12 @@ export default function MyOrdersUserManagement() {
       </div>
     </>
   ) : (
-    <p>There are no Orders Placed </p>
+    <Typography
+      style={{ textAlign: "center", marginBottom: 100, marginTop: 100 }}
+      variant="h4"
+    >
+      There are no Orders Placed
+    </Typography>
   );
 }
 

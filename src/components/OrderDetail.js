@@ -64,7 +64,7 @@ export default function OrderDetail() {
     setActiveStep(step);
   };
 
-  return orderitemDetails && orderitemDetails.length ? (
+  return (
     <Template>
       <div class="container" style={{ paddingBottom: 35 }}>
         <div className="clearfix" style={{ marginTop: 50, marginBottom: 50 }}>
@@ -108,125 +108,127 @@ export default function OrderDetail() {
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((item) => {
             return (
-              <div className="row border-bottom-item-order" key={item.id}>
-                <div class="col-lg-6">
-                  <div class="row">
-                    <div class="col-5">
-                      <AutoPlaySwipeableViews
-                        index={activeStep}
-                        onChangeIndex={handleStepChange}
-                        enableMouseEvents
-                      >
-                        {tutorialSteps.map((step, index) => (
-                          <div key={step.label}>
-                            {Math.abs(activeStep - index) <= 2 ? (
-                              <img
-                                style={{ height: 150, width: 150 }}
-                                src={step.imgPath}
-                                alt={step.label}
-                              />
-                            ) : null}
-                          </div>
-                        ))}
-                      </AutoPlaySwipeableViews>
-                    </div>
-                    <div class="col-7">
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        <span style={{ fontWeight: 500, color: "black " }}>
-                          {item.item_name}
-                        </span>
-                      </Typography>
+              <div>
+                <div className="row" key={item.id}>
+                  <div class="col-lg-6">
+                    <div class="row">
+                      <div class="col-5">
+                        <AutoPlaySwipeableViews
+                          index={activeStep}
+                          onChangeIndex={handleStepChange}
+                          enableMouseEvents
+                        >
+                          {tutorialSteps.map((step, index) => (
+                            <div key={step.label}>
+                              {Math.abs(activeStep - index) <= 2 ? (
+                                <img
+                                  style={{ height: 150, width: 150 }}
+                                  src={step.imgPath}
+                                  alt={step.label}
+                                />
+                              ) : null}
+                            </div>
+                          ))}
+                        </AutoPlaySwipeableViews>
+                      </div>
+                      <div class="col-7">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          <span style={{ fontWeight: 500, color: "black " }}>
+                            {item.item_name}
+                          </span>
+                        </Typography>
 
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Size:{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {item.item_size}
-                        </span>
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Color :{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {" "}
-                          {item.item_color}
-                        </span>
-                      </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Size:{"  "}
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {item.item_size}
+                          </span>
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Color :{"  "}
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {" "}
+                            {item.item_color}
+                          </span>
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 mt-4">
+                    <div class="row">
+                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Quantity:{"  "}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            {item.item_quantity}
+                          </span>
+                        </Typography>
+                      </div>
+                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          Total:{"  "}
+                        </Typography>
+                        <Typography
+                          style={{
+                            fontSize: 17,
+                            marginBottom: 20,
+                            color: "#448aff",
+                          }}
+                          variant={"h6"}
+                        >
+                          <span style={{ fontWeight: 400, color: "black " }}>
+                            $ {item.item_total}
+                          </span>
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6 mt-4">
-                  <div class="row">
-                    <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Quantity:{"  "}
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {item.item_quantity}
-                        </span>
-                      </Typography>
-                    </div>
-                    <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        Total:{"  "}
-                      </Typography>
-                      <Typography
-                        style={{
-                          fontSize: 17,
-                          marginBottom: 20,
-                          color: "#448aff",
-                        }}
-                        variant={"h6"}
-                      >
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          $ {item.item_total}
-                        </span>
-                      </Typography>
-                    </div>
-                  </div>
-                </div>
-                <div className="border-bottom-item-order"></div>
+                <hr style={{ marginTop: 40, marginBottom: 40 }} />
               </div>
             );
           })}
@@ -244,8 +246,6 @@ export default function OrderDetail() {
         />
       </div>
     </Template>
-  ) : (
-    <p>There are no Orders Items found </p>
   );
 }
 

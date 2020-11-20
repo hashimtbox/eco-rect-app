@@ -253,7 +253,7 @@ function Profile(props) {
               fontWeight: 500,
             }}
           >
-            My orders
+            My Orders
           </Typography>
           <MyOrdersUserManagement />
         </div>
