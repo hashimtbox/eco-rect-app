@@ -32,6 +32,21 @@ const theme = createMuiTheme({
   },
 });
 
+const userData = [
+  {
+    id: 1,
+    profile_image: "RETURN File Object Here - Hashim",
+    emailaddress: "user@email.com",
+    firstname: "John",
+    lastname: "Doe",
+    address: "House 789 , Street 4 ...",
+    city: "Cityname",
+    country: "Countryname",
+    zipcode: 44444,
+    phonenumber: "9999-9999-99999",
+  },
+];
+
 const EditProfileSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid Email Address")
@@ -83,15 +98,15 @@ function EditProfile() {
 
         <Formik
           initialValues={{
-            profile_image: "",
-            email: "",
-            firstName: "",
-            lastName: "",
-            streetAddress: "",
-            country: "",
-            cityTown: "",
-            zipCode: "",
-            phoneNumber: "",
+            profile_image: userData[0].profile_image,
+            email: userData[0].emailaddress,
+            firstName: userData[0].firstname,
+            lastName: userData[0].lastname,
+            streetAddress: userData[0].address,
+            country: userData[0].country,
+            cityTown: userData[0].city,
+            zipCode: userData[0].zipcode,
+            phoneNumber: userData[0].phonenumber,
           }}
           validationSchema={EditProfileSchema}
           onSubmit={(values) => {
