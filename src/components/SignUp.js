@@ -44,11 +44,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignInSchema = Yup.object().shape({
-  fullname: Yup.string()
+  firstname: Yup.string()
     .required("fullname is Required!")
     .min(6, "Too Short!")
     .max(10, "Too Long!"),
-
+  lastname: Yup.string()
+    .required("fullname is Required!")
+    .min(6, "Too Short!")
+    .max(10, "Too Long!"),
   email: Yup.string()
     .email("Invalid Email Address")
     .required("Email Address is Required!"),
@@ -102,7 +105,8 @@ export default function SignUp() {
         </Typography>
         <Formik
           initialValues={{
-            fullname: "",
+            firstname: "",
+            lastname: "",
             email: "",
             password: "",
           }}
@@ -119,13 +123,23 @@ export default function SignUp() {
             <Form className={classes.form}>
               <Field
                 className="form-input"
-                placeholder="Full Name"
-                name="fullname"
+                placeholder="First Name"
+                name="firstname"
                 type="text"
               />
-              {errors.fullname && touched.fullname ? (
-                <div className="form-validation-input">{errors.fullname}</div>
+              {errors.firstname && touched.firstname ? (
+                <div className="form-validation-input">{errors.firstname}</div>
               ) : null}
+              <Field
+                className="form-input"
+                placeholder="Last Name"
+                name="lastname"
+                type="text"
+              />
+              {errors.lastname && touched.lastname ? (
+                <div className="form-validation-input">{errors.lastname}</div>
+              ) : null}
+
               <Field
                 className="form-input"
                 placeholder="Email"
