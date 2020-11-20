@@ -57,7 +57,7 @@ function Profile(props) {
         <div className="jr-card">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
+              <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
                 <Avatar
                   alt="User_image"
                   src=""
@@ -65,45 +65,177 @@ function Profile(props) {
                   style={{ width: 200, height: 200 }}
                 />
               </div>
-              <div class="col-12 col-md-8 d-flex flex-column align-items-center align-items-md-start justify-content-center justify-content-md-start">
-                <div className="d-flex justify-content-center justify-content-md-start flex-column mt-4 mt-md-0 mb-4">
-                  <Typography
-                    style={{
-                      color: "#448AFF",
-                      fontSize: 18,
-                      marginBottom: 10,
-                      fontWeight: 500,
-                    }}
-                    variant="h6"
-                  >
-                    Full Name
-                  </Typography>
-                  <Typography
-                    style={{ fontSize: 16, marginBottom: 1 }}
-                    variant="p"
-                  >
-                    {/* {admin?.name} */} Name here
-                  </Typography>
+
+              <div class="col-12 col-lg-8 text-center text-lg-left">
+                <div class="row">
+                  <div class="col-12 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mt-4 mt-lg-0 mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Email Address
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        email@address.com
+                      </Typography>
+                    </div>
+                  </div>
                 </div>
-                <div className="d-flex justify-content-center justify-content-md-start flex-column mb-4">
-                  <Typography
-                    style={{
-                      color: "#448AFF",
-                      fontSize: 18,
-                      marginBottom: 10,
-                      fontWeight: 500,
-                    }}
-                    variant="h6"
-                  >
-                    Email Address
-                  </Typography>
-                  <Typography
-                    style={{ fontSize: 16, marginBottom: 1 }}
-                    variant="p"
-                  >
-                    email@address.com
-                    {/* {admin?.email} */}
-                  </Typography>
+                <div class="row">
+                  <div class="col-12 col-md-6 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        First Name
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        First Name here
+                      </Typography>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Last Name
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        Last Name Here
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Address
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        Address Here
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        City
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        City Name Here
+                      </Typography>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Country/Region
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        Country Name Here
+                      </Typography>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Zip Code
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        Zip Code Here
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 px-0">
+                    <div className="d-flex justify-content-center justify-content-md-start flex-column mb-3">
+                      <Typography
+                        style={{
+                          color: "#448AFF",
+                          fontSize: 18,
+                          fontWeight: 500,
+                        }}
+                        variant="h6"
+                      >
+                        Phone Number
+                      </Typography>
+                      <Typography
+                        style={{ fontSize: 16, marginBottom: 1 }}
+                        variant="p"
+                      >
+                        Phone Number Here
+                      </Typography>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1016,3 +1016,7 @@ a {
     justify-content: flex-start;
   }
 }
+
+.btn-blue {
+  background: #448aff;
+}

@@ -9,65 +9,37 @@ import { useHistory } from "react-router";
 import Pagination from "@material-ui/lab/Pagination";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import Template from "./Template";
 
-export default function MyOrdersUserManagement() {
+export default function OrderDetail() {
   const history = useHistory();
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-  const orderData = [
+  const orderitemDetails = [
     {
       id: 1,
-      order_no: "GRUBS_001",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Pending",
+      item_image:
+        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
+      item_name: "Tshirt - Men",
+      item_size: "S",
+      item_color: "red",
+      item_quantity: 7,
+      item_total: 60,
     },
     {
       id: 2,
-      order_no: "GRUBS_002",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Processing",
-    },
-    {
-      id: 3,
-      order_no: "GRUBS_003",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Completed",
-    },
-    {
-      id: 4,
-      order_no: "GRUBS_004",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
-    },
-    {
-      id: 5,
-      order_no: "GRUBS_005",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
-    },
-    {
-      id: 6,
-      order_no: "GRUBS_006",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
+      item_image:
+        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
+      item_name: "Polo Pant - Men",
+      item_size: "L",
+      item_color: "blue",
+      item_quantity: 9,
+      item_total: 70,
     },
   ];
 
   const getNoOfPages = () => {
     try {
-      return Math.ceil(orderData.length / itemsPerPage);
+      return Math.ceil(orderitemDetails.length / itemsPerPage);
     } catch (e) {
       return 0;
     }
@@ -92,14 +64,51 @@ export default function MyOrdersUserManagement() {
     setActiveStep(step);
   };
 
-  return orderData && orderData.length ? (
-    <>
-      <div class="container-fluid px-0" style={{ paddingBottom: 35 }}>
-        {orderData
+  return orderitemDetails && orderitemDetails.length ? (
+    <Template>
+      <div class="container" style={{ paddingBottom: 35 }}>
+        <div className="clearfix" style={{ marginTop: 50, marginBottom: 50 }}>
+          <div className="float-left">
+            <Typography
+              className="pseudo_border1"
+              variant="h4"
+              style={{
+                fontSize: 25,
+                marginBottom: 30,
+                fontWeight: 500,
+              }}
+            >
+              Order Details
+            </Typography>
+          </div>
+          <div className="float-right">
+            <button
+              onClick={() => history.push({ pathname: `/profile` })}
+              className="btn btn-blue"
+              style={{ background: "#448aff" }}
+            >
+              <Typography
+                style={{
+                  fontSize: 14,
+                  fontWeight: 500,
+                  display: "inline-block",
+                  lineHeight: 2,
+                  color: "white",
+                }}
+                variant="h6"
+              >
+                {" "}
+                Back to Orders
+              </Typography>
+            </button>
+          </div>
+        </div>
+
+        {orderitemDetails
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-          .map((order) => {
+          .map((item) => {
             return (
-              <div className="row border-bottom-item-order" key={order.id}>
+              <div className="row border-bottom-item-order" key={item.id}>
                 <div class="col-lg-6">
                   <div class="row">
                     <div class="col-5">
@@ -130,9 +139,8 @@ export default function MyOrdersUserManagement() {
                         }}
                         variant={"h6"}
                       >
-                        Order Number:{"  "}
-                        <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_no}
+                        <span style={{ fontWeight: 500, color: "black " }}>
+                          {item.item_name}
                         </span>
                       </Typography>
 
@@ -144,9 +152,9 @@ export default function MyOrdersUserManagement() {
                         }}
                         variant={"h6"}
                       >
-                        Number of Items:{"  "}
+                        Size:{"  "}
                         <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_items}
+                          {item.item_size}
                         </span>
                       </Typography>
                       <Typography
@@ -157,10 +165,10 @@ export default function MyOrdersUserManagement() {
                         }}
                         variant={"h6"}
                       >
-                        Subtotal :{"  "}
+                        Color :{"  "}
                         <span style={{ fontWeight: 400, color: "black " }}>
                           {" "}
-                          {order.order_subtotal}
+                          {item.item_color}
                         </span>
                       </Typography>
                     </div>
@@ -177,7 +185,7 @@ export default function MyOrdersUserManagement() {
                         }}
                         variant={"h6"}
                       >
-                        Order Date:{"  "}
+                        Quantity:{"  "}
                       </Typography>
                       <Typography
                         style={{
@@ -188,7 +196,7 @@ export default function MyOrdersUserManagement() {
                         variant={"h6"}
                       >
                         <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_date}
+                          {item.item_quantity}
                         </span>
                       </Typography>
                     </div>
@@ -201,7 +209,7 @@ export default function MyOrdersUserManagement() {
                         }}
                         variant={"h6"}
                       >
-                        Status:{"  "}
+                        Total:{"  "}
                       </Typography>
                       <Typography
                         style={{
@@ -212,7 +220,7 @@ export default function MyOrdersUserManagement() {
                         variant={"h6"}
                       >
                         <span style={{ fontWeight: 400, color: "black " }}>
-                          {order.order_status}
+                          $ {item.item_total}
                         </span>
                       </Typography>
                     </div>
@@ -235,9 +243,9 @@ export default function MyOrdersUserManagement() {
           showLastButton
         />
       </div>
-    </>
+    </Template>
   ) : (
-    <p>There are no Orders Placed </p>
+    <p>There are no Orders Items found </p>
   );
 }
 

@@ -23,6 +23,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ChangePassword from "./components/ChangePassword";
 import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
+import OrderDetail from "./components/OrderDetail";
 
 toast.configure();
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route exact path="/test" component={LandingPage} />
           <SecureRoute exact path="/" component={Dashboard} />
           {/* <SecureRoute path="/products/:category" exact component={Products} /> */}
+          <Route exact path="/orders/detail/:id" component={OrderDetail} />
           <Route
             exact
             path="/products/detail/:productId"
