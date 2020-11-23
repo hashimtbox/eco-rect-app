@@ -9,13 +9,17 @@ export const initialState = {
   isReady: false,
   apiResponse : null ,
   cart: [],
-  myOrders : null
+  myOrders : null,
+  orderDetailById: null
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState: initialState,
   reducers: {
+    setOrderData: (state, action) => {
+      state.orderDetailById = action.payload;
+    },
     setMyOrders: (state, action) => {
       state.myOrders = action.payload;
     },
@@ -237,6 +241,46 @@ export const signInWithGoogle = (first_name,last_name,email, google_id) => async
     dispatch(authSlice.actions.setError("Something went wrong."));
   }
 };
+export const signInWithFacebook = (first_name,last_name,email, facebook_id) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+    const data = new URLSearchParams({
+      first_name : first_name ,
+      last_name : last_name,
+      email: email,
+      facebook_id: facebook_id
+    });
+    const res = await fetch(
+        `${API_HOST}/api/user/login_with_facebook`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: data
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setUser(response.user));
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+
 export const signout = () => async dispatch => {
   try {
 
@@ -368,7 +412,7 @@ export const getMyOrders = (email) => async dispatch => {
     const res = await fetch(
         `${API_HOST}/api/user/my_orders/${email}`,
         {
-          method: "POST",
+          method: "GET",
           credentials: "include",
           headers: {
             Accept: "application/json",
@@ -381,7 +425,38 @@ export const getMyOrders = (email) => async dispatch => {
     console.log(response);
     dispatch(authSlice.actions.setProgress(false));
     if (response.success) {
-      dispatch(authSlice.actions.setMyOrders(response));
+      dispatch(authSlice.actions.setMyOrders(response.orders));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+export const getOrder = (id) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+
+    const res = await fetch(
+        `${API_HOST}/api/user/order/${id}`,
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          }
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setOrderData(response.order));
     } else {
       dispatch(authSlice.actions.setError(response.message));
       dispatch(authSlice.actions.setApiResponse(response));

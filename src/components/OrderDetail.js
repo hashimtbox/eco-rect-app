@@ -1,41 +1,32 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Grid } from "@material-ui/core";
 import macbook from "../assets/macbook.jpg";
 import "../assets/styles/style.css";
 import NoItem from "./NoItem";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
+import {useHistory, useParams} from "react-router";
 import Pagination from "@material-ui/lab/Pagination";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import Template from "./Template";
+import {useSelector , useDispatch} from "react-redux";
+import authSlice, {getMyOrders, getOrder} from "../store/auth";
 
 export default function OrderDetail() {
   const history = useHistory();
+  const { id } = useParams()
+  const { user , orderDetailById } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authSlice.actions.setApiResponse(null));
+    dispatch(getOrder(id));
+  },[])
+
+  console.log(orderDetailById)
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-  const orderitemDetails = [
-    {
-      id: 1,
-      item_image:
-        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
-      item_name: "Tshirt - Men",
-      item_size: "S",
-      item_color: "red",
-      item_quantity: 7,
-      item_total: 60,
-    },
-    {
-      id: 2,
-      item_image:
-        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
-      item_name: "Polo Pant - Men",
-      item_size: "L",
-      item_color: "blue",
-      item_quantity: 9,
-      item_total: 70,
-    },
-  ];
+  const orderitemDetails = orderDetailById ;
 
   const getNoOfPages = () => {
     try {
@@ -113,23 +104,8 @@ export default function OrderDetail() {
                   <div class="col-lg-6">
                     <div class="row">
                       <div class="col-5">
-                        <AutoPlaySwipeableViews
-                          index={activeStep}
-                          onChangeIndex={handleStepChange}
-                          enableMouseEvents
-                        >
-                          {tutorialSteps.map((step, index) => (
-                            <div key={step.label}>
-                              {Math.abs(activeStep - index) <= 2 ? (
-                                <img
-                                  style={{ height: 150, width: 150 }}
-                                  src={step.imgPath}
-                                  alt={step.label}
-                                />
-                              ) : null}
-                            </div>
-                          ))}
-                        </AutoPlaySwipeableViews>
+                        <img src={item?.Product?.main_image } alt="" height="80px" width="80px" />
+
                       </div>
                       <div class="col-7">
                         <Typography
@@ -141,7 +117,7 @@ export default function OrderDetail() {
                           variant={"h6"}
                         >
                           <span style={{ fontWeight: 500, color: "black " }}>
-                            {item.item_name}
+                            {item?.Product.title}
                           </span>
                         </Typography>
 
@@ -155,7 +131,7 @@ export default function OrderDetail() {
                         >
                           Size:{"  "}
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {item.item_size}
+                            {item?.selected_size}
                           </span>
                         </Typography>
                         <Typography
@@ -169,7 +145,7 @@ export default function OrderDetail() {
                           Color :{"  "}
                           <span style={{ fontWeight: 400, color: "black " }}>
                             {" "}
-                            {item.item_color}
+                            {item?.select_color}
                           </span>
                         </Typography>
                       </div>
@@ -197,34 +173,34 @@ export default function OrderDetail() {
                           variant={"h6"}
                         >
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {item.item_quantity}
+                            {item?.quantity}
                           </span>
                         </Typography>
                       </div>
-                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          Total:{"  "}
-                        </Typography>
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          <span style={{ fontWeight: 400, color: "black " }}>
-                            $ {item.item_total}
-                          </span>
-                        </Typography>
-                      </div>
+                      {/*<div class="col-6  d-flex flex-column justify-content-center align-items-center">*/}
+                      {/*  <Typography*/}
+                      {/*    style={{*/}
+                      {/*      fontSize: 17,*/}
+                      {/*      marginBottom: 20,*/}
+                      {/*      color: "#448aff",*/}
+                      {/*    }}*/}
+                      {/*    variant={"h6"}*/}
+                      {/*  >*/}
+                      {/*    Total:{"  "}*/}
+                      {/*  </Typography>*/}
+                      {/*  <Typography*/}
+                      {/*    style={{*/}
+                      {/*      fontSize: 17,*/}
+                      {/*      marginBottom: 20,*/}
+                      {/*      color: "#448aff",*/}
+                      {/*    }}*/}
+                      {/*    variant={"h6"}*/}
+                      {/*  >*/}
+                      {/*    <span style={{ fontWeight: 400, color: "black " }}>*/}
+                      {/*      $ {item.item_total}*/}
+                      {/*    </span>*/}
+                      {/*  </Typography>*/}
+                      {/*</div>*/}
                     </div>
                   </div>
                 </div>

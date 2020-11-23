@@ -77,147 +77,126 @@ export default function SignIn() {
     setOpenSnackbar(false);
   };
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    return (
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
 
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        open={openSnackbar}
-        autoHideDuration={3000}
-        onClose={handleCloseSnackbar}
-      >
-        <Alert onClose={handleCloseSnackbar} severity="error">
-          {error}
-        </Alert>
-      </Snackbar>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" style={{ marginBottom: 20 }}>
-          {" "}
-          Sign in
-        </Typography>
-        <Formik
-          initialValues={{
-            email: "",
-            password: "",
-          }}
-          validationSchema={SignInSchema}
-          onSubmit={(values) => {
-            console.log(values);
-            dispatch(signin(values.email, values.password));
-            if (error) {
-              handleClickSnackbar();
-            }
-          }}
-        >
-          {({ errors, touched }) => (
-            <Form className={classes.form}>
-              <Field
-                className="form-input"
-                placeholder="Email"
-                name="email"
-                type="email"
-              />
-              {errors.email && touched.email ? (
-                <div className="form-validation-input">{errors.email}</div>
-              ) : null}
-              <Field
-                className="form-input"
-                placeholder="Password"
-                name="password"
-                type="password"
-              />
-              {errors.password && touched.password ? (
-                <div className="form-validation-input">{errors.password}</div>
-              ) : null}
-
-            <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
-                <Alert onClose={handleCloseSnackbar} severity={apiResponse?.success ? "success" : "error"}>
+            <Snackbar
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                open={openSnackbar}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackbar}
+            >
+                <Alert onClose={handleCloseSnackbar} severity="error">
                     {message_from_api}
                 </Alert>
             </Snackbar>
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}><LockOutlinedIcon /></Avatar>
-                <Typography component="h1" variant="h5" style={{ marginBottom: 20 }}> Sign in</Typography>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon />
+                </Avatar>
+                <Typography component="h1" variant="h5" style={{ marginBottom: 20 }}>
+                    {" "}
+                    Sign in
+                </Typography>
                 <Formik
                     initialValues={{
-                        email: '',
-                        password: ''
+                        email: "",
+                        password: "",
                     }}
                     validationSchema={SignInSchema}
-                    onSubmit={values => {
+                    onSubmit={(values) => {
                         console.log(values);
-                        dispatch(signin(values.email, values.password))
-                        if (!message_from_api.success) {
+                        dispatch(signin(values.email, values.password));
+                        if (error) {
                             handleClickSnackbar();
                         }
                     }}
-              <div className="px-0 d-flex align-items-center justify-content-center flex-column col-12 mb-2">
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="secondary"
-                  className={classes.submit}
                 >
-                  Sign In
-                </Button>
-                <GoogleSignIn />
-                <FacebookSignIn />
-                <span
-                  variant="body2"
-                  style={{
-                    color: "#999",
-                  }}
-                >
-                  OR
-                </span>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="secondary"
-                  style={{ marginTop: 10, marginBottom: 10 }}
-                  onClick={() => history.push({ pathname: `/` })}
-                >
-                  Continue Browsing
-                </Button>
-              </div>
-              <Grid container>
-                <Grid item xl={7} lg={7} md={7} sm={7} xs={7}>
-                  <Link
-                    to="/signup"
-                    variant="body2"
-                    style={{
-                      color: "#999",
-                      textDecoration: "none",
-                      marginRight: 30,
-                    }}
-                  >
-                    Register New Account{" "}
-                  </Link>
-                </Grid>
-                <Grid item xl={5} lg={5} md={5} sm={5} xs={5}>
-                  <Link
-                    to="/forgotpassword"
-                    variant="body2"
-                    style={{ color: "#999", textDecoration: "none" }}
-                  >
-                    Forgot password?{" "}
-                  </Link>
-                </Grid>
-              </Grid>
-            </Form>
-          )}
-        </Formik>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+                    {({ errors, touched }) => (
+                        <Form className={classes.form}>
+                            <Field
+                                className="form-input"
+                                placeholder="Email"
+                                name="email"
+                                type="email"
+                            />
+                            {errors.email && touched.email ? (
+                                <div className="form-validation-input">{errors.email}</div>
+                            ) : null}
+                            <Field
+                                className="form-input"
+                                placeholder="Password"
+                                name="password"
+                                type="password"
+                            />
+                            {errors.password && touched.password ? (
+                                <div className="form-validation-input">{errors.password}</div>
+                            ) : null}
+
+                            <div className="px-0 d-flex align-items-center justify-content-center flex-column col-12 mb-2">
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.submit}
+                                >
+                                    Sign In
+                                </Button>
+                                <GoogleSignIn />
+                                <FacebookSignIn />
+                                <span
+                                    variant="body2"
+                                    style={{
+                                        color: "#999",
+                                    }}
+                                >
+OR
+</span>
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="secondary"
+                                    style={{ marginTop: 10, marginBottom: 10 }}
+                                    onClick={() => history.push({ pathname: `/` })}
+                                >
+                                    Continue Browsing
+                                </Button>
+                            </div>
+                            <Grid container>
+                                <Grid item xl={7} lg={7} md={7} sm={7} xs={7}>
+                                    <Link
+                                        to="/signup"
+                                        variant="body2"
+                                        style={{
+                                            color: "#999",
+                                            textDecoration: "none",
+                                            marginRight: 30,
+                                        }}
+                                    >
+                                        Register New Account{" "}
+                                    </Link>
+                                </Grid>
+                                <Grid item xl={5} lg={5} md={5} sm={5} xs={5}>
+                                    <Link
+                                        to="/forgotpassword"
+                                        variant="body2"
+                                        style={{ color: "#999", textDecoration: "none" }}
+                                    >
+                                        Forgot password?{" "}
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Form>
+                    )}
+                </Formik>
+            </div>
+            <Box mt={8}>
+                <Copyright />
+            </Box>
+        </Container>
+    );
 }
 
 function Copyright() {

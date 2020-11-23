@@ -1,10 +1,16 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 
+import authSlice, { signInWithFacebook } from "../store/auth";
+import {useDispatch} from "react-redux";
 
 function FacebookSignIn() {
+  const dispatch = useDispatch();
+
   const responseFacebook = (response) => {
     console.log(response);
+    dispatch(signInWithFacebook(response.name, "", response.email, response.id));
+
   }
 
   return (

@@ -10,7 +10,7 @@ import { countryNames } from "../utils/countries";
 import AddIcon from "@material-ui/icons/Add";
 import {useDispatch, useSelector} from "react-redux";
 import {editProfile, signin} from "../store/auth";
-import { useHistory } from "react-router";
+
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -36,20 +36,6 @@ const theme = createMuiTheme({
   },
 });
 
-const userData = [
-  {
-    id: 1,
-    profile_image: "RETURN File Object Here - Hashim",
-    emailaddress: "user@email.com",
-    firstname: "John",
-    lastname: "Doe",
-    address: "House 789 , Street 4 ...",
-    city: "Cityname",
-    country: "United States",
-    zipcode: 44444,
-    phonenumber: "9999-9999-99999",
-  },
-];
 
 const EditProfileSchema = Yup.object().shape({
   firstName: Yup.string()

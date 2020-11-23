@@ -17,50 +17,15 @@ export default function MyOrdersUserManagement() {
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
   const dispatch = useDispatch();
   const {myOrders, user} = useSelector(state => state.auth);
-
   useEffect(() => {
-    if (!myOrders) return
-    dispatch(getMyOrders(user.email));
 
-  },[myOrders])
-  const orderData = [
-    {
-      id: 1,
-      order_no: "GRUBS_001",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Pending",
-    },
-    {
-      id: 2,
-      order_no: "GRUBS_002",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Processing",
-    },
-    {
-      id: 3,
-      order_no: "GRUBS_003",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Completed",
-    },
-    {
-      id: 4,
-      order_no: "GRUBS_004",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
-    },
-  ];
+  })
+  const orderData = myOrders
+  console.log("my Orders " , orderData)
 
   const getNoOfPages = () => {
     try {
-      return Math.ceil(orderData.length / itemsPerPage);
+      return Math.ceil(orderData?.length / itemsPerPage);
     } catch (e) {
       return 0;
     }
@@ -124,23 +89,23 @@ export default function MyOrdersUserManagement() {
                   <div class="col-lg-6">
                     <div class="row">
                       <div class="col-5">
-                        <AutoPlaySwipeableViews
-                          index={activeStep}
-                          onChangeIndex={handleStepChange}
-                          enableMouseEvents
-                        >
-                          {tutorialSteps.map((step, index) => (
-                            <div key={step.label}>
-                              {Math.abs(activeStep - index) <= 2 ? (
-                                <img
-                                  style={{ height: 150, width: 150 }}
-                                  src={step.imgPath}
-                                  alt={step.label}
-                                />
-                              ) : null}
-                            </div>
-                          ))}
-                        </AutoPlaySwipeableViews>
+                        {/*<AutoPlaySwipeableViews*/}
+                        {/*  index={activeStep}*/}
+                        {/*  onChangeIndex={handleStepChange}*/}
+                        {/*  enableMouseEvents*/}
+                        {/*>*/}
+                        {/*  {tutorialSteps.map((step, index) => (*/}
+                        {/*    <div key={step.label}>*/}
+                        {/*      {Math.abs(activeStep - index) <= 2 ? (*/}
+                        {/*        <img*/}
+                        {/*          style={{ height: 150, width: 150 }}*/}
+                        {/*          src={step.imgPath}*/}
+                        {/*          alt={step.label}*/}
+                        {/*        />*/}
+                        {/*      ) : null}*/}
+                        {/*    </div>*/}
+                        {/*  ))}*/}
+                        {/*</AutoPlaySwipeableViews>*/}
                       </div>
                       <div class="col-7">
                         <Typography
@@ -153,7 +118,7 @@ export default function MyOrdersUserManagement() {
                         >
                           Order Number:{"  "}
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {order.order_no}
+                            GRUBS_{order?.id}
                           </span>
                         </Typography>
 
@@ -167,7 +132,7 @@ export default function MyOrdersUserManagement() {
                         >
                           Number of Items:{"  "}
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {order.order_items}
+                            {order.number_of_items}
                           </span>
                         </Typography>
                         <Typography
@@ -181,7 +146,7 @@ export default function MyOrdersUserManagement() {
                           Subtotal :{"  "}
                           <span style={{ fontWeight: 400, color: "black " }}>
                             {" "}
-                            {order.order_subtotal}
+                            {order.subtotal_amount}
                           </span>
                         </Typography>
                       </div>
@@ -209,7 +174,7 @@ export default function MyOrdersUserManagement() {
                           variant={"h6"}
                         >
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {order.order_date}
+                            {order.createdAt}
                           </span>
                         </Typography>
                       </div>
@@ -233,7 +198,7 @@ export default function MyOrdersUserManagement() {
                           variant={"h6"}
                         >
                           <span style={{ fontWeight: 400, color: "black " }}>
-                            {order.order_status}
+                            {order.status}
                           </span>
                         </Typography>
                       </div>

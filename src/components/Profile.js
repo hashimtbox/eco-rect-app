@@ -10,7 +10,7 @@ import Template from "./Template";
 import { useHistory } from "react-router-dom";
 import MyOrdersUserManagement from "./MyOrdersUserManagement";
 import {API_HOST} from "../config/api";
-import authSlice, {getMyOrders} from "../store/auth";
+import authSlice , {getMyOrders}  from "../store/auth";
 
 function Profile(props) {
   const history = useHistory();
@@ -19,12 +19,9 @@ function Profile(props) {
   const { user , myOrders } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (!myOrders) return
     dispatch(authSlice.actions.setApiResponse(null));
-
     dispatch(getMyOrders(user.email));
-
-  },[myOrders])
+  },[])
 
   return (
     <Template>
