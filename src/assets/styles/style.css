@@ -987,6 +987,16 @@ a {
   }
 }
 
+.profile-edit {
+  width: 1080px;
+}
+
+@media only screen and (max-width: 870px) {
+  .profile-edit {
+    width: 100%;
+  }
+}
+
 .order-number {
   border-radius: 25px !important;
   box-shadow: none !important;
@@ -1020,4 +1030,14 @@ a {
 .border-order {
   border: 0.5px solid #ccc;
   margin: 30px 0;
+}
+
+.pagination-height {
+  height: 690px;
+}
+
+@media only screen and (max-width: 1279px) {
+  .pagination-height {
+    height: auto;
+  }
 }

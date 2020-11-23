@@ -19,42 +19,43 @@ import Pagination from "@material-ui/lab/Pagination";
 import {fetchProducts, fetchProductsByFilter} from "../store/product";
 import NoItem from "./NoItem";
 import TrendingProducts from "./TrendingProducts";
-const useStyles = makeStyles(theme => ({
+import SearchBar from "material-ui-search-bar";
+
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing(4)
+    paddingLeft: theme.spacing(4),
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
     width: drawerConfig.drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerConfig.drawerWidth
+    width: drawerConfig.drawerWidth,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
   drawerContent: {
-    marginTop: 60
+    marginTop: 60,
   },
   navLink: {
     color: colors.dark,
     marginLeft: 10,
     marginRight: 10,
-    cursor: "pointer"
-  }
+    cursor: "pointer",
+  },
 }));
 
-const products = [
-]
+const products = [];
 const Products = () => {
   const dispatch = useDispatch();
   const { filteredProductsData , products } = useSelector(state => state.products);
@@ -65,11 +66,11 @@ const Products = () => {
 
   const getNoOfPages = () => {
     try {
-      return Math.ceil(filteredProductsData.prducts.length / itemsPerPage)
+      return Math.ceil(filteredProductsData.prducts.length / itemsPerPage);
     } catch (e) {
-      return 0
+      return 0;
     }
-  }
+  };
   const itemsPerPage = 10;
   const [page, setPage] = React.useState(1);
   const [noOfPages] = React.useState(getNoOfPages());
@@ -81,10 +82,25 @@ const Products = () => {
   return (
     <Template>
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
-       
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
-          <ProductBreadcrumbs filterData={filteredProductsData?.filterDetails} />
+            <ProductBreadcrumbs
+              filterData={filteredProductsData?.filterDetails}
+            />
+
+            <SearchBar
+              className="searchbar"
+              dataSource={filteredProductsData?.prducts}
+              onChange={
+                (value) => console.log(value)
+
+                // setState({
+                //   dataSource: [value, value + value, value + value + value],
+                // })
+              }
+              onRequestSearch={() => console.log("onRequestSearch")}
+            />
+
             <SidebarFilters filterData={filteredProductsData} />
           </Grid>
 
@@ -94,12 +110,14 @@ const Products = () => {
               filteredProductsData.prducts &&
               filteredProductsData.prducts.length ?  (
                   <>
+                  <div className="pagination-height">
                 <EventListView
                   products={filteredProductsData.prducts.slice(
                     (page - 1) * itemsPerPage,
                     page * itemsPerPage
                   )}
                 />
+                </div>
                     <div className="product-pagination">
                       <Pagination
                           count={noOfPages}

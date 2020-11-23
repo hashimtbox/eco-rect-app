@@ -5,6 +5,7 @@ import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useHistory } from "react-router";
 import { countryNames } from "../utils/countries";
 import AddIcon from "@material-ui/icons/Add";
 import {useDispatch, useSelector} from "react-redux";
@@ -91,6 +92,31 @@ function EditProfile() {
 
   return (
     <Template>
+      <div className="profile-edit" style={{ margin: "0 auto" }}>
+        <div className="clearfix my-4">
+          <div className="float-right">
+            <button
+              onClick={() => history.push({ pathname: `/profile` })}
+              className="btn btn-blue"
+              style={{ background: "#448aff" }}
+            >
+              <Typography
+                style={{
+                  fontSize: 15,
+                  fontWeight: 500,
+                  display: "inline-block",
+                  lineHeight: 2,
+                  color: "white",
+                }}
+                variant="h6"
+              >
+                {" "}
+                Back to Profile
+              </Typography>
+            </button>
+          </div>
+        </div>
+      </div>
       <Grid
         container
         style={{ height: "100%" }}
