@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Typography, Grid } from "@material-ui/core";
 import macbook from "../assets/macbook.jpg";
@@ -9,11 +9,20 @@ import { useHistory } from "react-router";
 import Pagination from "@material-ui/lab/Pagination";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import {useDispatch, useSelector} from "react-redux";
+import authSlice, {getMyOrders} from "../store/auth";
 
 export default function MyOrdersUserManagement() {
   const history = useHistory();
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+  const dispatch = useDispatch();
+  const {myOrders, user} = useSelector(state => state.auth);
 
+  useEffect(() => {
+    if (!myOrders) return
+    dispatch(getMyOrders(user.email));
+
+  },[myOrders])
   const orderData = [
     {
       id: 1,
@@ -42,22 +51,6 @@ export default function MyOrdersUserManagement() {
     {
       id: 4,
       order_no: "GRUBS_004",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
-    },
-    {
-      id: 5,
-      order_no: "GRUBS_005",
-      order_subtotal: 130,
-      order_items: 2,
-      order_date: "4 Nov, 2020",
-      order_status: "Rejected",
-    },
-    {
-      id: 6,
-      order_no: "GRUBS_006",
       order_subtotal: 130,
       order_items: 2,
       order_date: "4 Nov, 2020",
