@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Template from "../components/Template";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
@@ -7,6 +7,9 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { countryNames } from "../utils/countries";
 import AddIcon from "@material-ui/icons/Add";
+import {useDispatch, useSelector} from "react-redux";
+import {editProfile, signin} from "../store/auth";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -48,9 +51,6 @@ const userData = [
 ];
 
 const EditProfileSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid Email Address")
-    .required("Email Address is Required!"),
   firstName: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
@@ -80,6 +80,15 @@ const EditProfileSchema = Yup.object().shape({
 
 function EditProfile() {
   const classes = useStyles();
+  const { user , apiResponse } = useSelector((state) => state.auth);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (apiResponse?.message === "User profile info Updated Successfully !") {
+      history.push({ pathname: `/profile`, })
+    }
+  })
+
   return (
     <Template>
       <Grid
@@ -98,19 +107,30 @@ function EditProfile() {
 
         <Formik
           initialValues={{
-            profile_image: "",
-            email: userData[0].emailaddress,
-            firstName: userData[0].firstname,
-            lastName: userData[0].lastname,
-            streetAddress: userData[0].address,
-            country: userData[0].country,
-            cityTown: userData[0].city,
-            zipCode: userData[0].zipcode,
-            phoneNumber: userData[0].phonenumber,
+            profile_pic: "",
+            firstName: user?.first_name,
+            lastName: user?.last_name,
+            streetAddress: user?.address  ?  user?.address : "",
+            country: user?.country ? user?.country : "" ,
+            cityTown: user?.city ? user.city : "",
+            zipCode: user?.zip_code ? user?.zip_code : "",
+            phoneNumber: user?.phone_num ? user?.phone_num : "",
           }}
           validationSchema={EditProfileSchema}
           onSubmit={(values) => {
             console.log(values);
+            dispatch(editProfile(
+                values.firstName,
+                values.lastName,
+                values.streetAddress,
+                values.zipCode,
+                values.cityTown,
+                values.country,
+                values.phoneNumber,
+                user.id,
+                values.profile_pic
+            ))
+
           }}
         >
           {({ values, errors, touched, handleSubmit, setFieldValue }) => (
@@ -124,18 +144,18 @@ function EditProfile() {
                 }}
               >
                 <div>
-                  <Thumb file={values.profile_image} />
+                  <Thumb file={values.profile_pic} />
                 </div>
-                <label htmlFor="profile_image">
+                <label htmlFor="profile_pic">
                   <input
                     style={{ display: "none" }}
-                    id="profile_image"
-                    name="profile_image"
+                    id="profile_pic"
+                    name="profile_pic"
                     type="file"
                     accept="image/*"
                     onChange={(event) => {
                       setFieldValue(
-                        "profile_image",
+                        "profile_pic",
                         event.currentTarget.files[0]
                       );
                     }}
@@ -149,16 +169,6 @@ function EditProfile() {
                   </Button>{" "}
                 </label>
               </div>
-              <Field
-                className="form-input"
-                placeholder="Your e-mail address*"
-                name="email"
-                type="email"
-              />
-              {errors.email && touched.email ? (
-                <div className="form-validation-input">{errors.email}</div>
-              ) : null}
-
               <div className="form-clearfix">
                 <div className="form-50-left">
                   <Field

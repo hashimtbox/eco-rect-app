@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../assets/styles/style.css";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import authSlice, { signin } from "../store/auth";
+import authSlice, {signin, signUp} from "../store/auth";
 import { useHistory } from "react-router";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -65,14 +65,13 @@ export default function SignUp() {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { error, admin } = useSelector((state) => state.auth);
+  const { error, user  , apiResponse} = useSelector((state) => state.auth);
   useEffect(() => {
-    if (admin !== null) {
-      console.log("admin is here now ", admin);
-      // history.push({ pathname: `/dashboard`, })
+    if (user !== null) {
+       history.push({ pathname: `/`, })
     }
   });
-
+  let message_from_api = apiResponse?.message ;
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const handleClickSnackbar = () => {
     setOpenSnackbar(true);
@@ -91,8 +90,8 @@ export default function SignUp() {
         autoHideDuration={3000}
         onClose={handleCloseSnackbar}
       >
-        <Alert onClose={handleCloseSnackbar} severity="error">
-          {error}
+        <Alert onClose={handleCloseSnackbar} severity={apiResponse?.success ? "success" : "error"}>
+          {message_from_api}
         </Alert>
       </Snackbar>
       <div className={classes.paper}>
@@ -113,7 +112,7 @@ export default function SignUp() {
           validationSchema={SignInSchema}
           onSubmit={(values) => {
             console.log(values);
-            dispatch(signin(values.email, values.password));
+            dispatch(signUp(values.firstname , values.lastname ,values.email, values.password));
             if (error) {
               handleClickSnackbar();
             }

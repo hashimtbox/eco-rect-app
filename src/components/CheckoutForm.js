@@ -44,7 +44,8 @@ const SignupSchema = Yup.object().shape({
 
 function CheckoutForm() {
     const dispatch = useDispatch();
-    const cart = useSelector(state => state.auth.cart);
+    const { cart, user  , apiResponse} = useSelector((state) => state.auth);
+
     const orderDetail = useSelector(state => state.products.orderDetail);
     const [openModal, setOpenModal] = React.useState(false);
     const handleOpenModal = () => {
@@ -59,14 +60,14 @@ function CheckoutForm() {
         <div>
             <Formik
                 initialValues={{
-                    email: '',
-                    firstName: '',
-                    lastName: '',
-                    streetAddress: '',
-                    country: '',
-                    cityTown: '',
-                    zipCode: '',
-                    phoneNumber: ''
+                    email: user?.email ? user?.email : "",
+                    firstName: user?.first_name ? user?.first_name : "",
+                    lastName: user?.last_name ? user?.last_name : "",
+                    streetAddress: user?.address ? user?.address : "",
+                    country: user?.country ? user?.country : "",
+                    cityTown: user?.city ? user?.city : "",
+                    zipCode: user?.zip_code ? user?.zip_code : "",
+                    phoneNumber: user?.phone_num ? user?.phone_num : ""
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={values => {
@@ -74,10 +75,8 @@ function CheckoutForm() {
                     data.userdata = values;
                     data.cartdata = cart;
                     data.orderdata = orderDetail;
-                    let checkoutdata = [];
-                    checkoutdata.push(data);
-                    console.log(checkoutdata);
-                    dispatch(productSlice.actions.setCheckout(checkoutdata));
+                    console.log(data);
+                    dispatch(productSlice.actions.setCheckout(data));
                 }}
             >
                 {({ errors, touched }) => (

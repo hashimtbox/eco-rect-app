@@ -30,6 +30,10 @@ const productSlice = createSlice({
   name: "productSlice",
   initialState,
   reducers: {
+
+    resetCheckout: (state, action) => {
+      state.checkout = null;
+    },
     setProducts: (state, action) => {
       state.products = action.payload;
     },

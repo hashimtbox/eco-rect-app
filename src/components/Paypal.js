@@ -3,18 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import {placeOrder} from "../store/auth";
 
 export default function Paypal() {
 
     const paypal = useRef();
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const [paid, setPaid] = React.useState(false);
     const [Paymenterror, setPaymentError] = React.useState(false);
     const cart = useSelector(state => state.auth.cart);
-    const orderDetail = useSelector(state => state.products.orderDetail);
-
+    const {orderDetail, checkout} = useSelector(state => state.products);
+    console.log({checkout})
     useEffect(() => {
+        if (!checkout) return
         window.paypal
             .Buttons({
                 createOrder: (data, actions, err) => {
@@ -33,6 +36,7 @@ export default function Paypal() {
                 },
                 onApprove: async (data, actions) => {
                     const order = await actions.order.capture();
+                    dispatch(placeOrder(JSON.stringify(checkout?.userdata) , JSON.stringify(checkout?.orderdata) ,JSON.stringify( checkout?.cartdata))) ;
                     setPaid(true);
                     console.log("Paypal Order Detail", order);
 
@@ -44,7 +48,10 @@ export default function Paypal() {
 
             })
             .render(paypal.current);
-    }, []);
+    }, [checkout]);
+
+
+
 
 
 

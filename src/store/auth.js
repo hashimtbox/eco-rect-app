@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { API_HOST } from "../config/api";
+import {useSelector} from "react-redux";
 
 export const initialState = {
   user: null,
   error: null,
   inProgress: false,
   isReady: false,
+  apiResponse : null ,
   cart: []
 };
 
@@ -24,6 +26,12 @@ const authSlice = createSlice({
     },
     setReady: (state, action) => {
       state.isReady = action.payload;
+    },
+    setApiResponse: (state, action) => {
+      state.apiResponse = action.payload;
+    },
+    resetCart: (state, action) => {
+      state.cart = [];
     },
     incrementItemQuantity: (state, action) => {
       console.log('cartttttt', JSON.stringify(state.cart, undefined, 2));
@@ -99,49 +107,57 @@ const authSlice = createSlice({
     },
   }
 });
-
 export const checkAuthorization = () => async dispatch => {
   try {
-    dispatch(authSlice.actions.setReady(false))
-    const res = await fetch(`${API_HOST}/web_api/auth/current_user`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    const response = await res.json()
-    console.log(response)
+    const {  user  } = useSelector(state => state.auth);
+    console.log("user user ",user)
     dispatch(authSlice.actions.setReady(true))
-    dispatch(response.success ? authSlice.actions.setUser(response.user) : authSlice.actions.setUser(null))
+    dispatch(user ? authSlice.actions.setUser(user) : authSlice.actions.setUser(null))
   } catch (error) {
     console.error(error)
     dispatch(authSlice.actions.setReady(true))
     dispatch(authSlice.actions.setUser(null))
   }
 }
-
-export const signout = () => async dispatch => {
+export const signUp = (first_name,last_name,email, password) => async dispatch => {
   try {
-    const res = await fetch(`${API_HOST}/web_api/auth/admin_logout`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
-    })
-    const response = await res.json()
-    console.log(response)
+    dispatch(authSlice.actions.setProgress(true));
+    const data = new URLSearchParams({
+      first_name : first_name ,
+      last_name : last_name,
+      email: email,
+      password: password
+    });
+    const res = await fetch(
+        `${API_HOST}/api/user/sign_up`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: data
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
     if (response.success) {
-      dispatch(authSlice.actions.setUser(null))
+      dispatch(authSlice.actions.setUser(response.user));
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+
     }
   } catch (e) {
-    console.log(e)
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
   }
-}
-
+};
 export const signin = (email, password) => async dispatch => {
   try {
     dispatch(authSlice.actions.setProgress(true));
@@ -150,13 +166,14 @@ export const signin = (email, password) => async dispatch => {
       password: password
     });
     const res = await fetch(
-      `${API_HOST}/web_api/auth/admin_login`,
+      `${API_HOST}/api/user/sign_in`,
       {
         method: "POST",
         credentials: "include",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          api_key: "eco-app-2SY:nPkgTTiETr-master-key"
         },
         body: data
       }
@@ -166,8 +183,173 @@ export const signin = (email, password) => async dispatch => {
     dispatch(authSlice.actions.setProgress(false));
     if (response.success) {
       dispatch(authSlice.actions.setUser(response.user));
+      dispatch(authSlice.actions.setApiResponse(response));
     } else {
       dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+export const signInWithGoogle = (first_name,last_name,email, google_id) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+    const data = new URLSearchParams({
+      first_name : first_name ,
+      last_name : last_name,
+      email: email,
+      google_id: google_id
+    });
+    const res = await fetch(
+        `${API_HOST}/api/user/login_with_google`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: data
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setUser(response.user));
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+export const signout = () => async dispatch => {
+  try {
+
+    dispatch(authSlice.actions.setUser(null));
+    dispatch(authSlice.actions.setApiResponse(null));
+    console.log("Sign out called ");
+  } catch (e) {
+    console.log(e)
+  }
+}
+export const editProfile = (first_name, last_name, address, zip_code, city, country,phone_num,user_id,profile_pic) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+    let formdata = new FormData();
+    formdata.append("first_name", first_name);
+    formdata.append("last_name", last_name);
+    formdata.append("address", address);
+    formdata.append("zip_code", zip_code);
+    formdata.append("city", city);
+    formdata.append("country", country);
+    formdata.append("phone_num", phone_num);
+    formdata.append("user_id", user_id);
+    formdata.append("profile_pic", profile_pic);
+
+    const res = await fetch(
+        `${API_HOST}/api/user/edit_profile`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: formdata
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setUser(response.user));
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+export const changePassword = (email, old_password , new_password) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+    const data = new URLSearchParams({
+      email: email,
+      old_password: old_password ,
+      new_password : new_password
+    });
+    const res = await fetch(
+        `${API_HOST}/api/user/change_password`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: data
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
+    }
+  } catch (e) {
+    console.error(e);
+    dispatch(authSlice.actions.setProgress(false));
+    dispatch(authSlice.actions.setError("Something went wrong."));
+  }
+};
+export const placeOrder = (user_data, order_data , cart_data) => async dispatch => {
+  try {
+    dispatch(authSlice.actions.setProgress(true));
+    const data = new URLSearchParams({
+      user_data: user_data,
+      order_data: order_data,
+      cart_data : cart_data
+    });
+    const res = await fetch(
+        `${API_HOST}/api/user/place_order`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+            api_key: "eco-app-2SY:nPkgTTiETr-master-key"
+          },
+          body: data
+        }
+    );
+    const response = await res.json();
+    console.log(response);
+    dispatch(authSlice.actions.setProgress(false));
+    if (response.success) {
+      dispatch(authSlice.actions.setApiResponse(response));
+    } else {
+      dispatch(authSlice.actions.setError(response.message));
+      dispatch(authSlice.actions.setApiResponse(response));
     }
   } catch (e) {
     console.error(e);

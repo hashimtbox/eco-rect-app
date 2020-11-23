@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Template from "../components/Template";
 import { Grid, Typography } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
+import authSlice, {placeOrder} from "../store/auth";
+import productSlice from "../store/product";
 
 function OrderConfirmed() {
-    const checkout = useSelector(state => state.products.checkout);
+    const {checkout , orderDetail} = useSelector(state => state.products);
+    const { error, user  , apiResponse} = useSelector((state) => state.auth);
+
     let monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
@@ -13,15 +17,18 @@ function OrderConfirmed() {
     let mm = monthNames[todayDate.getMonth()];
     let yyyy = todayDate.getFullYear();
     todayDate = mm + ' ' + dd + ', ' + yyyy;
-
-
     const cart = useSelector(state => state.auth.cart);
     const totalPrice = cart.reduce(function (prev, cur) {
         return prev + cur.total;
     }, 0);
+    const dispatch = useDispatch();
 
-    console.log('whu issue', checkout);
-
+    useEffect(() => {
+        dispatch(authSlice.actions.resetCart());
+        return () => {
+            dispatch(productSlice.actions.resetCheckout());
+        }
+    },[])
 
     return (
         <Template>
@@ -44,7 +51,7 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            {checkout[0].userdata.email}
+                            {checkout?.userdata?.email}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -56,7 +63,7 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            {`${checkout[0].userdata.firstName} ${checkout[0].userdata.lastName}`}
+                            {`${checkout?.userdata.firstName} ${checkout?.userdata.lastName}`}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -92,7 +99,7 @@ function OrderConfirmed() {
                     </Grid>
                     <Grid item xl={6} lg={6} md={6} sm={12} xs={12} className="order-confirm-bottom">
                         <Typography className="order-confirm-bottom-para" variant="h6">
-                            {checkout[0].userdata.streetAddress}
+                            {checkout?.userdata.streetAddress}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -125,7 +132,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata?.shippingPrice} $
+                                    $ {checkout?.orderdata?.shippingPrice}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -138,7 +145,7 @@ function OrderConfirmed() {
                             </Grid>
                             <Grid item xl={6} lg={6} md={6} sm={6} xs={6} className="order-double-confirm-bottom">
                                 <Typography className="order-confirm-bottom-para" variant="h6">
-                                    {checkout[0].orderdata?.subtotal} $
+                                    $ {checkout?.orderdata?.subtotal}
                                 </Typography>
                             </Grid>
                         </Grid>

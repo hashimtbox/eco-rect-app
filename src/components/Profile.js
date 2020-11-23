@@ -1,18 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import CardBox from "../MaterialUiHelper/CardBox";
 import { Typography, Grid } from "@material-ui/core";
 import { Avatar } from "@material-ui/core";
 import CreateIcon from "@material-ui/icons/Create";
 import * as Yup from "yup";
 import "../assets/styles/style.css";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Template from "./Template";
 import { useHistory } from "react-router-dom";
 import MyOrdersUserManagement from "./MyOrdersUserManagement";
+import {API_HOST} from "../config/api";
+import authSlice from "../store/auth";
 
 function Profile(props) {
   const history = useHistory();
-  // const { admin } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+  useEffect(() => {
+    dispatch(authSlice.actions.setApiResponse(null));
+  })
   return (
     <Template>
       <div className="container">
@@ -60,8 +67,7 @@ function Profile(props) {
               <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
                 <Avatar
                   alt="User_image"
-                  src=""
-                  // src={API_HOST + "/uploads/admin_profile_pic/"+ admin?.profile_pic}
+                  src={API_HOST + "/uploads/user_profile_pic/"+ user?.profile_pic}
                   style={{ width: 200, height: 200 }}
                 />
               </div>
@@ -84,7 +90,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        email@address.com
+                        {user?.email}
                       </Typography>
                     </div>
                   </div>
@@ -106,7 +112,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        First Name here
+                        {user?.first_name}
                       </Typography>
                     </div>
                   </div>
@@ -126,7 +132,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        Last Name Here
+                        {user?.last_name}
                       </Typography>
                     </div>
                   </div>
@@ -148,7 +154,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        Address Here
+                        {user?.address  ?  user?.address : "N/A"}
                       </Typography>
                     </div>
                   </div>
@@ -170,7 +176,8 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        City Name Here
+                        {user?.city  ?  user?.city : "N/A"}
+
                       </Typography>
                     </div>
                   </div>
@@ -190,7 +197,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        Country Name Here
+                        {user?.country  ?  user?.country : "N/A"}
                       </Typography>
                     </div>
                   </div>
@@ -210,7 +217,8 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        Zip Code Here
+                        {user?.zip_code  ?  user?.zip_code : "N/A"}
+
                       </Typography>
                     </div>
                   </div>
@@ -232,7 +240,7 @@ function Profile(props) {
                         style={{ fontSize: 16, marginBottom: 1 }}
                         variant="p"
                       >
-                        Phone Number Here
+                        {user?.phone_num  ?  user?.phone_num : "N/A"}
                       </Typography>
                     </div>
                   </div>

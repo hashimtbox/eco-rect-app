@@ -18,7 +18,6 @@ const LandingPage = () => {
   const { products } = useSelector(state => state.products)
   useEffect(()=> {
     dispatch(fetchProducts())
-    dispatch(fetchProductCategories())
   }, [])
 
   return (

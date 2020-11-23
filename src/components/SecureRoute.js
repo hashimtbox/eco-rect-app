@@ -4,18 +4,14 @@ import LandingPage from "./LandingPage";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import {Route} from "react-router";
 import {checkAuthorization} from "../store/auth";
+import SignIn from "./SignIn";
 
 const SecureRoute = ({ component: Comp, ...rest }) => {
-  const { user, isReady } = useSelector(state => state.auth);
+  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkAuthorization());
   }, []);
-  return isReady ? (
-    <Route {...rest} component={!user ? Comp : LandingPage} />
-  ) : (
-    <LinearProgress style={{ flexGrow: 1 }} color={'secondary'} />
-  );
+  return <Route {...rest} component={!user ? SignIn : Comp} />
 };
 
 export default SecureRoute

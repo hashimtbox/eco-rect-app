@@ -28,34 +28,25 @@ import OrderDetail from "./components/OrderDetail";
 toast.configure();
 
 const App = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector(state => state.auth);
   return (
     <MuiThemeProvider theme={lightTheme}>
       <Router>
         <Switch>
-          <Route exact path="/test" component={LandingPage} />
-          <SecureRoute exact path="/" component={Dashboard} />
-          {/* <SecureRoute path="/products/:category" exact component={Products} /> */}
+          <SecureRoute exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/" component={Dashboard} />
           <Route exact path="/orders/detail/:id" component={OrderDetail} />
-          <Route
-            exact
-            path="/products/detail/:productId"
-            component={ProductDetailPage}
-          />
+          <Route exact path="/products/detail/:productId" component={ProductDetailPage}/>
           <Route exact path="/cart" component={CartDetail} />
           <Route exact path="/products" component={Products} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orderconfirmed" component={OrderConfirmed} />
           <Route exact path="/paymenterror" component={PaymentError} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
           <Route exact path="/forgotpassword" component={ForgotPassword} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/editprofile" component={EditProfile} />
-          <Route exact path="/changepassword" component={ChangePassword} />
-          {/*<SecureRoute exact path="/create" component={CreateEventForm} />*/}
-          {/*<SecureRoute path="/electronics" exact component={Electronics} />*/}
-          {/*<SecureRoute path="/comicbooks" exact component={ComicBooks} />*/}
+          <SecureRoute exact path="/profile" component={Profile} />
+          <SecureRoute exact path="/editprofile" component={EditProfile} />
+          <SecureRoute exact path="/changepassword" component={ChangePassword} />
         </Switch>
       </Router>
     </MuiThemeProvider>
