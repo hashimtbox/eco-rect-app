@@ -1,3 +1,3 @@
-const local = 'http://localhost:8080'
-
-export const API_HOST = local   
+const local = "http://localhost:8080";
+const prod = "http://api/grubsterscomicx.com/";
+export const API_HOST = prod;
