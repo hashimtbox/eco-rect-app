@@ -145,7 +145,7 @@ const Header = ({ selected, children, ...props }) => {
       </Link>
    </List> */}
         <List>
-          <Link className={classes.navLink} to="http://localhost/dashboard/">
+          <Link className={classes.navLink} to="http://blog.grubsterscomicx.com/">
             Blog
           </Link>
         </List>
@@ -224,7 +224,7 @@ const Header = ({ selected, children, ...props }) => {
               <a
                 target="_blank"
                 className={classes.navLink}
-                href="http://localhost/grubster_wordpress"
+                href="http://blog.grubsterscomicx.com/"
               >
                 Blog
               </a>
