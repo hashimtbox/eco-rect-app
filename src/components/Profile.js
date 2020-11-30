@@ -4,7 +4,7 @@ import "../assets/styles/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import Template from "./Template";
 import { useHistory } from "react-router-dom";
-import MyOrdersUserManagement from "./MyOrdersUserManagement";
+import OrdersUsers from "./OrdersUsers";
 import authSlice, { getMyOrders } from "../store/auth";
 import ProfileUser from "./ProfileUser";
 
@@ -22,42 +22,8 @@ function Profile(props) {
   return (
     <Template>
       <div className="container">
-        <div className="d-block">
-          <div class="clearfix">
-            <div class="float-left">
-              <Typography
-                className="pseudo_border1"
-                variant="h4"
-                style={{
-                  fontSize: 25,
-                  marginTop: 50,
-                  marginBottom: 30,
-                  fontWeight: 500,
-                }}
-              >
-                Profile
-              </Typography>
-            </div>
-          </div>
-        </div>
-
         <ProfileUser />
-
-        <div className="d-block">
-          <Typography
-            className="pseudo_border1"
-            variant="h4"
-            style={{
-              fontSize: 25,
-              marginTop: 50,
-              marginBottom: 30,
-              fontWeight: 500,
-            }}
-          >
-            My Orders
-          </Typography>
-          <MyOrdersUserManagement />
-        </div>
+        <OrdersUsers />
       </div>
     </Template>
   );

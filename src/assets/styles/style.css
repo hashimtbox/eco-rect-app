@@ -1091,3 +1091,12 @@ a {
 /* .profile-text-color {
   color: #448aff !important;
 } */
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
+.MuiTableCell-root {
+  padding: 30px !important;
+  font-size: 15px !important;
+}

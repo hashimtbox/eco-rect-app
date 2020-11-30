@@ -4,7 +4,7 @@ import "../assets/styles/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import Template from "./Template";
 import { useHistory } from "react-router-dom";
-
+import { Typography, Grid } from "@material-ui/core";
 import { API_HOST } from "../config/api";
 import authSlice, { getMyOrders } from "../store/auth";
 
@@ -21,18 +21,29 @@ export default function Profile(props) {
 
   return (
     <>
+      <div className="d-block">
+        <div class="clearfix">
+          <div class="float-left">
+            <Typography
+              className="pseudo_border1"
+              variant="h4"
+              style={{
+                fontSize: 25,
+                marginTop: 50,
+                marginBottom: 30,
+                fontWeight: 500,
+              }}
+            >
+              Profile
+            </Typography>
+          </div>
+        </div>
+      </div>
       <div class="row gutters-sm">
         <div class="col-lg-4 mb-3">
           <div class="card-profile h-100">
             <div class="card-profile-body">
               <div class="d-flex flex-column align-items-center justify-content-center text-center">
-                {/* <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  alt="Admin"
-                  class="rounded-circle"
-                  width="150"
-                /> */}
-
                 <Avatar
                   alt="User_image"
                   src={
