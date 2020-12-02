@@ -17,16 +17,16 @@ const EventView = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <Card style={{ height: "100%" }}>
-      <Link
+      <a
         style={{ textDecoration: "none", color: "black" }}
-        to={`/products/detail/${product?.id}`}
+        href={`http://grubsterscomicx.com/products/detail/${product?.id}`}
       >
         <CardMedia
           style={{ height: 150, minWidth: 200 }}
           image={product?.main_image || jeans}
           title={product?.title}
         />
-      </Link>
+      </a>
 
       <CardContent style={{ paddingBottom: 0 }}>
         <div style={{ display: "flex", flexGrow: 1 }}>

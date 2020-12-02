@@ -239,7 +239,7 @@ const Header = ({ selected, children, ...props }) => {
               >
                 Blog
               </a>
-
+              {/* 
               <Link
                 className={classes.navLink}
                 onClick={() =>
@@ -249,7 +249,13 @@ const Header = ({ selected, children, ...props }) => {
                 }
               >
                 Products
-              </Link>
+              </Link> */}
+              <a
+                className={classes.navLink}
+                href="http://grubsterscomicx.com/products"
+              >
+                Products
+              </a>
               <Link smooth to="/#trending" className={classes.navLink}>
                 Trending Products
               </Link>
