@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Cart from "./Cart";
 import { useHistory } from "react-router";
+import { URL, URL_BLOG } from "../config/api.js";
 import {
   AppBar,
   CssBaseline,
@@ -235,7 +236,7 @@ const Header = ({ selected, children, ...props }) => {
               <a
                 target="_blank"
                 className={classes.navLink}
-                href="http://blog.grubsterscomicx.com/"
+                href={`${URL_BLOG}`}
               >
                 Blog
               </a>
@@ -250,10 +251,7 @@ const Header = ({ selected, children, ...props }) => {
               >
                 Products
               </Link> */}
-              <a
-                className={classes.navLink}
-                href="http://grubsterscomicx.com/products"
-              >
+              <a className={classes.navLink} href={`${URL}/products`}>
                 Products
               </a>
               <Link smooth to="/#trending" className={classes.navLink}>

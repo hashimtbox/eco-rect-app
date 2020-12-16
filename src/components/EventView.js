@@ -12,14 +12,14 @@ import { useDispatch } from "react-redux";
 import authSlice from "../store/auth";
 import jeans from "../assets/jeans.jpg";
 import { Link } from "react-router-dom";
-
+import { URL, URL_BLOG } from "../config/api.js";
 const EventView = ({ product }) => {
   const dispatch = useDispatch();
   return (
     <Card style={{ height: "100%" }}>
       <a
         style={{ textDecoration: "none", color: "black" }}
-        href={`http://grubsterscomicx.com/products/detail/${product?.id}`}
+        href={`${URL}/products/detail/${product?.id}`}
       >
         <CardMedia
           style={{ height: 150, minWidth: 200 }}

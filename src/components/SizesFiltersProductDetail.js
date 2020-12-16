@@ -1,7 +1,7 @@
 import React from "react";
-import {Button, Typography} from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import "../assets/styles/style.css";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import productSlice, { fetchProductsByFilter } from "../store/product";
 
 const buttonSizes = [
@@ -10,36 +10,45 @@ const buttonSizes = [
   { id: 3, size: "SM" },
   { id: 4, size: "MD" },
   { id: 5, size: "XXL" },
-  { id: 6, size: "XXXL" }
+  { id: 6, size: "XXXL" },
 ];
 function SizesFiltersProductDetail({ buttonSizes }) {
   const dispatch = useDispatch();
-  const { selectedProductColor , selectedProductSize } = useSelector(state => state.products);
+  const { selectedProductColor, selectedProductSize } = useSelector(
+    (state) => state.products
+  );
   return (
     <>
       <ul className="nav-categories-ul">
         {buttonSizes &&
-          buttonSizes.map(buttonitem => {
+          buttonSizes.map((buttonitem) => {
             return (
               <Button
                 onClick={() => {
-                    if(selectedProductColor !== null) {
-                        dispatch(productSlice.actions.setAllowToAddToCart(true));
-                    }
-                  dispatch(productSlice.actions.setSelectedProductSize(buttonitem?.Size));
+                  if (selectedProductColor !== null) {
+                    dispatch(productSlice.actions.setAllowToAddToCart(true));
+                  }
+                  dispatch(
+                    productSlice.actions.setSelectedProductSize(
+                      buttonitem?.Size
+                    )
+                  );
                 }}
                 key={buttonitem.id}
                 variant="outlined"
                 style={{ marginRight: 5, marginBottom: 5 }}
               >
-                {buttonitem.Size.name}
+                {buttonitem?.Size?.name}
               </Button>
             );
           })}
       </ul>
-      <Typography style={{marginBottom : 10 , marginTop : 10 }}>Selected Color : {selectedProductColor}  </Typography>
-      <Typography style={{marginBottom : 10 , marginTop : 10 }}>Selected Size : {selectedProductSize?.name}  </Typography>
-
+      <Typography style={{ marginBottom: 10, marginTop: 10 }}>
+        Selected Color : {selectedProductColor}{" "}
+      </Typography>
+      <Typography style={{ marginBottom: 10, marginTop: 10 }}>
+        Selected Size : {selectedProductSize?.name}{" "}
+      </Typography>
     </>
   );
 }
