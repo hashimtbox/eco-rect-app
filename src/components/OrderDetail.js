@@ -1,77 +1,107 @@
-import React, {useEffect} from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Typography, Grid } from "@material-ui/core";
-import macbook from "../assets/macbook.jpg";
-import "../assets/styles/style.css";
-import NoItem from "./NoItem";
-import { Link } from "react-router-dom";
-import {useHistory, useParams} from "react-router";
-import Pagination from "@material-ui/lab/Pagination";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
-import Template from "./Template";
-import {useSelector , useDispatch} from "react-redux";
-import authSlice, {getMyOrders, getOrder} from "../store/auth";
-
-export default function OrderDetail() {
+import React, { useState } from "react";
+import { Button, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import MUIDataTable from "mui-datatables";
+import Template from "./Template.js";
+export default function OrderDetail(props) {
   const history = useHistory();
-  const { id } = useParams()
-  const { user , orderDetailById } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(authSlice.actions.setApiResponse(null));
-    dispatch(getOrder(id));
-  },[])
+  const columns = [
+    {
+      name: "id",
+      options: {
+        display: false,
+        filter: false,
+      },
+    },
+    {
+      name: "Item Image",
+      options: {
+        filter: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return <img height="60" src={tableMeta.rowData[1]} />;
+        },
+      },
+    },
+    {
+      name: "Item Name",
+      options: {
+        filter: false,
+      },
+    },
+    {
+      name: "Size",
+      options: {
+        filter: false,
+      },
+    },
+    {
+      name: "Color",
+      options: {
+        filter: false,
+      },
+    },
+    {
+      name: "Quantity",
+      options: {
+        filter: false,
+      },
+    },
+    {
+      name: "Total",
+      options: {
+        filter: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <span style={{ fontWeight: 500, fontSize: 17, color: "#000000" }}>
+              $ {tableMeta.rowData[6]}
+            </span>
+          );
+        },
+      },
+    },
+  ];
 
-  console.log(orderDetailById)
-  const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-  const orderitemDetails = orderDetailById ;
-
-  const getNoOfPages = () => {
-    try {
-      return Math.ceil(orderitemDetails.length / itemsPerPage);
-    } catch (e) {
-      return 0;
-    }
-  };
-  const itemsPerPage = 4;
-  const [page, setPage] = React.useState(1);
-  const [noOfPages] = React.useState(getNoOfPages());
-
-  const handleChange = (event, value) => {
-    setPage(value);
+  const options = {
+    filter: false,
+    sort: false,
+    print: false,
+    download: false,
+    viewColumns: false,
+    selectableRows: false,
+    filterType: "checkbox",
+    responsive: "standard",
   };
 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = tutorialSteps.length;
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+  const orderitemDetails = [
+    {
+      id: 1,
+      item_image:
+        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
+      item_name: "Tshirt - Men",
+      item_size: "S",
+      item_color: "red",
+      item_quantity: 7,
+      item_total: 60,
+    },
+    {
+      id: 2,
+      item_image:
+        "https://image.spreadshirtmedia.com/image-server/v1/products/T1007A204PA3623PT17X36Y28D1034069736FS1873/views/1,width=500,height=500,appearanceId=204,backgroundColor=121212/the-m-unisex-contrast-hoodie.jpg",
+      item_name: "Polo Pant - Men",
+      item_size: "L",
+      item_color: "blue",
+      item_quantity: 9,
+      item_total: 70,
+    },
+  ];
+
+  const [orderitem, setOrderItem] = useState(orderitemDetails);
 
   return (
     <Template>
-      <div class="container" style={{ paddingBottom: 35 }}>
-        <div className="clearfix" style={{ marginTop: 50, marginBottom: 50 }}>
-          <div className="float-left">
-            <Typography
-              className="pseudo_border1"
-              variant="h4"
-              style={{
-                fontSize: 25,
-                marginBottom: 30,
-                fontWeight: 500,
-              }}
-            >
-              Order Details
-            </Typography>
-          </div>
+      <div className="container" style={{ marginTop: 40, marginBottom: 40 }}>
+        <div className="clearfix mb-2">
           <div className="float-right">
             <button
               onClick={() => history.push({ pathname: `/profile` })}
@@ -94,156 +124,42 @@ export default function OrderDetail() {
             </button>
           </div>
         </div>
+        <div className="d-block">
+          <div class="clearfix">
+            <div class="float-left">
+              <Typography
+                className="pseudo_border1"
+                variant="h4"
+                style={{
+                  fontSize: 25,
+                  marginTop: 50,
+                  marginBottom: 30,
+                  fontWeight: 500,
+                }}
+              >
+                Order Details
+              </Typography>
+            </div>
+          </div>
+        </div>
 
-        {orderitemDetails
-          .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-          .map((item) => {
-            return (
-              <div>
-                <div className="row" key={item.id}>
-                  <div class="col-lg-6">
-                    <div class="row">
-                      <div class="col-5">
-                        <img src={item?.Product?.main_image } alt="" height="80px" width="80px" />
-
-                      </div>
-                      <div class="col-7">
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          <span style={{ fontWeight: 500, color: "black " }}>
-                            {item?.Product.title}
-                          </span>
-                        </Typography>
-
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          Size:{"  "}
-                          <span style={{ fontWeight: 400, color: "black " }}>
-                            {item?.selected_size}
-                          </span>
-                        </Typography>
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          Color :{"  "}
-                          <span style={{ fontWeight: 400, color: "black " }}>
-                            {" "}
-                            {item?.select_color}
-                          </span>
-                        </Typography>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 mt-4">
-                    <div class="row">
-                      <div class="col-6  d-flex flex-column justify-content-center align-items-center">
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          Quantity:{"  "}
-                        </Typography>
-                        <Typography
-                          style={{
-                            fontSize: 17,
-                            marginBottom: 20,
-                            color: "#448aff",
-                          }}
-                          variant={"h6"}
-                        >
-                          <span style={{ fontWeight: 400, color: "black " }}>
-                            {item?.quantity}
-                          </span>
-                        </Typography>
-                      </div>
-                      {/*<div class="col-6  d-flex flex-column justify-content-center align-items-center">*/}
-                      {/*  <Typography*/}
-                      {/*    style={{*/}
-                      {/*      fontSize: 17,*/}
-                      {/*      marginBottom: 20,*/}
-                      {/*      color: "#448aff",*/}
-                      {/*    }}*/}
-                      {/*    variant={"h6"}*/}
-                      {/*  >*/}
-                      {/*    Total:{"  "}*/}
-                      {/*  </Typography>*/}
-                      {/*  <Typography*/}
-                      {/*    style={{*/}
-                      {/*      fontSize: 17,*/}
-                      {/*      marginBottom: 20,*/}
-                      {/*      color: "#448aff",*/}
-                      {/*    }}*/}
-                      {/*    variant={"h6"}*/}
-                      {/*  >*/}
-                      {/*    <span style={{ fontWeight: 400, color: "black " }}>*/}
-                      {/*      $ {item.item_total}*/}
-                      {/*    </span>*/}
-                      {/*  </Typography>*/}
-                      {/*</div>*/}
-                    </div>
-                  </div>
-                </div>
-                <hr style={{ marginTop: 40, marginBottom: 40 }} />
-              </div>
-            );
+        <MUIDataTable
+          title={""}
+          data={orderitem?.map((item) => {
+            return [
+              item.id,
+              item.item_image,
+              item.item_name,
+              item.item_size,
+              item.item_color,
+              item.item_quantity,
+              item.item_total,
+            ];
           })}
-      </div>
-      <div className="product-pagination" style={{ marginBottom: 40 }}>
-        <Pagination
-          count={noOfPages}
-          page={page}
-          onChange={handleChange}
-          defaultPage={1}
-          color="secondary"
-          size="large"
-          showFirstButton
-          showLastButton
+          columns={columns}
+          options={options}
         />
       </div>
     </Template>
   );
 }
-
-const tutorialSteps = [
-  {
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80",
-  },
-  {
-    imgPath:
-      "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-  {
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
-  },
-];

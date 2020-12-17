@@ -24,7 +24,9 @@ function ProductBreadcrumbs({ filterData }) {
           Products
         </Link>
         <Typography color="textPrimary">
-          {filterData && filterData?.category ? filterData.category : "All"}
+          {filterData && filterData?.category === "Products"
+            ? "All Products"
+            : filterData?.category}
         </Typography>
       </Breadcrumbs>
       <h1 style={{ marginTop: 15, marginBottom: 15, fontSize: 25 }}>

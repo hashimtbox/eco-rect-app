@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Cart from "./Cart";
 import { useHistory } from "react-router";
+import { URL, URL_BLOG } from "../config/api.js";
 import {
   AppBar,
   CssBaseline,
@@ -8,7 +9,7 @@ import {
   Typography,
   Badge,
   Box,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -37,52 +38,52 @@ import { NavLink } from "react-router-dom";
 import { signin, signout } from "../store/auth";
 import { useDispatch } from "react-redux";
 import { API_HOST } from "../config/api";
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
   },
   nested: {
-    paddingLeft: theme.spacing(4)
+    paddingLeft: theme.spacing(4),
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
   },
   drawer: {
     width: drawerConfig.drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerConfig.drawerWidth
+    width: drawerConfig.drawerWidth,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   toolbar: theme.mixins.toolbar,
   drawerContent: {
-    marginTop: 60
+    marginTop: 60,
   },
   navLink: {
     color: colors.dark,
     marginLeft: 10,
     marginRight: 10,
     cursor: "pointer",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   iconmargin: {
-    marginRight: 20
-  }
+    marginRight: 20,
+  },
 }));
 const Header = ({ selected, children, ...props }) => {
   const classes = useStyles();
   const ref = useRef();
   const dispatch = useDispatch();
 
-  const { cart, user } = useSelector(state => state.auth);
-  const { categories } = useSelector(state => state.products);
+  const { cart, user } = useSelector((state) => state.auth);
+  const { categories } = useSelector((state) => state.products);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handlePopoverClick = event => {
+  const handlePopoverClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handlePopoverClose = () => {
@@ -100,7 +101,7 @@ const Header = ({ selected, children, ...props }) => {
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const [state, setState] = React.useState({ left: false });
-  const toggleDrawer = (anchor, open) => event => {
+  const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
@@ -110,13 +111,13 @@ const Header = ({ selected, children, ...props }) => {
     setState({ ...state, [anchor]: open });
   };
   const [anchorElll, setAnchorElll] = React.useState(null);
-  const handleClick = event => {
+  const handleClick = (event) => {
     setAnchorElll(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorElll(null);
   };
-  const list = anchor => (
+  const list = (anchor) => (
     <div
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -145,9 +146,19 @@ const Header = ({ selected, children, ...props }) => {
       </Link>
    </List> */}
         <List>
-          <Link className={classes.navLink} to="http://localhost/dashboard/">
+          {/* <Link
+            className={classes.navLink}
+            to="http://blog.grubsterscomicx.com/"
+          >
             Blog
-          </Link>
+          </Link> */}
+          <a
+            target="_blank"
+            className={classes.navLink}
+            href="http://blog.grubsterscomicx.com/"
+          >
+            Blog
+          </a>
         </List>
 
         <List>
@@ -155,7 +166,7 @@ const Header = ({ selected, children, ...props }) => {
             className={classes.navLink}
             onClick={() =>
               history.push({
-                pathname: `/products`
+                pathname: `/products`,
               })
             }
           >
@@ -181,7 +192,7 @@ const Header = ({ selected, children, ...props }) => {
       <TopMenu ref={ref} />
       <AppBar className={classes.appBar} variant="outlined" position={"fixed"}>
         <Toolbar style={{ backgroundColor: "white" }}>
-          {["left"].map(anchor => (
+          {["left"].map((anchor) => (
             <React.Fragment key={anchor}>
               <Box display={{ xs: "block", lg: "none" }}>
                 <IconButton
@@ -221,24 +232,28 @@ const Header = ({ selected, children, ...props }) => {
               <Link smooth to="/#about" className={classes.navLink}>
                 About
               </Link>
+
               <a
                 target="_blank"
                 className={classes.navLink}
-                href="http://localhost/grubster_wordpress"
+                href={`${URL_BLOG}`}
               >
                 Blog
               </a>
-
+              {/* 
               <Link
                 className={classes.navLink}
                 onClick={() =>
                   history.push({
-                    pathname: `/products`
+                    pathname: `/products`,
                   })
                 }
               >
                 Products
-              </Link>
+              </Link> */}
+              <a className={classes.navLink} href={`${URL}/products`}>
+                Products
+              </a>
               <Link smooth to="/#trending" className={classes.navLink}>
                 Trending Products
               </Link>
@@ -260,7 +275,7 @@ const Header = ({ selected, children, ...props }) => {
                     color: "#448aff",
                     marginRight: 10,
                     marginTop: -5,
-                    marginLeft: -5
+                    marginLeft: -5,
                   }}
                 />
                 <div className="dropdown-content">
@@ -275,21 +290,20 @@ const Header = ({ selected, children, ...props }) => {
                     </MenuItem>
                   </Link>
 
-                  { user?.google_id || user?.facebook_id ?
-                       <> </>
-                      : <Link
-                          to="/changepassword"
-                          variant="body2"
-                          style={{ color: "#000", textDecoration: "none" }}
-                      >
-                        <MenuItem onClick={handleClose}>
-                          <SettingsIcon className={classes.iconmargin} />
-                          Change Password
-                        </MenuItem>
-                      </Link>
-
-                  }
-
+                  {user?.google_id || user?.facebook_id ? (
+                    <> </>
+                  ) : (
+                    <Link
+                      to="/changepassword"
+                      variant="body2"
+                      style={{ color: "#000", textDecoration: "none" }}
+                    >
+                      <MenuItem onClick={handleClose}>
+                        <SettingsIcon className={classes.iconmargin} />
+                        Change Password
+                      </MenuItem>
+                    </Link>
+                  )}
 
                   <Link
                     to="#"
@@ -300,6 +314,7 @@ const Header = ({ selected, children, ...props }) => {
                       onClick={() => {
                         handleClose();
                         dispatch(signout());
+                        history.push({ pathname: `/` });
                       }}
                     >
                       <ExitToAppIcon className={classes.iconmargin} />
@@ -311,7 +326,9 @@ const Header = ({ selected, children, ...props }) => {
 
               <Avatar
                 alt="User_image"
-                src={API_HOST + "/uploads/user_profile_pic/"+ user?.profile_pic}
+                src={
+                  API_HOST + "/uploads/user_profile_pic/" + user?.profile_pic
+                }
                 style={{ width: 29, height: 29 }}
                 onClick={handleClick}
               />
@@ -354,7 +371,7 @@ const Header = ({ selected, children, ...props }) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  alignItems: "center"
+                  alignItems: "center",
                 }}
               >
                 <Typography variant={"h6"}>Your Cart is Empty</Typography>
