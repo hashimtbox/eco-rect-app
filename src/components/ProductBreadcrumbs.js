@@ -60,7 +60,7 @@ function ProductBreadcrumbs({ filterData }) {
       )}
       {(filters.category?.name ||
         filters.subCategory?.name ||
-        filters.color?.name ||
+        filters.color ||
         filters.size?.name) && (
         <Button
           onClick={() => {

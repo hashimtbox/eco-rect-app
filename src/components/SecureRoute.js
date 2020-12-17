@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 
 const SecureRoute = ({ component: Comp, ...rest }) => {
   const { user } = useSelector(state => state.auth);
+  console.log(user)
   const dispatch = useDispatch();
   useEffect(() => {
   }, []);

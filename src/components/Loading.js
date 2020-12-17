@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgress, Typography } from "@material-ui/core";
+import { LinearProgress, Typography } from "@material-ui/core";
 
 const Loading = () => {
   return (
@@ -10,7 +10,7 @@ const Loading = () => {
         alignItems: "center"
       }}
     >
-      <CircularProgress size={25} />
+      <LinearProgress  />
       <span style={{ width: 10 }} />
       <Typography>Loading, Please wait ...</Typography>
     </div>

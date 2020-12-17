@@ -64,6 +64,7 @@ export default function SignIn() {
     const { error, user , apiResponse } = useSelector(state => state.auth);
     let message_from_api = apiResponse?.message ;
     useEffect(() => {
+        console.log(user)
         if (user !== null) {
             history.push({ pathname: `/`, })
         }

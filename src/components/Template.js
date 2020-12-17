@@ -49,7 +49,7 @@ const Template = ({ selected, children, ...props }) => {
       <main style={{ width: "100%" }}>
         <div className={classes.toolbar} />
         {children}
-        {routepath == "/" ? <Footer /> : <FooterMerchandise />}
+        <FooterMerchandise />
       </main>
     </div >
   );

@@ -20,6 +20,8 @@ import {fetchProducts, fetchProductsByFilter} from "../store/product";
 import NoItem from "./NoItem";
 import TrendingProducts from "./TrendingProducts";
 import SearchBar from "material-ui-search-bar";
+import Loading from "./Loading";
+import ProgressDialog from "./ProgressDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 const products = [];
 const Products = () => {
   const dispatch = useDispatch();
-  const { filteredProductsData , products } = useSelector(state => state.products);
+  const { filteredProductsData , products, inProgress } = useSelector(state => state.products);
   useEffect(() => {
     dispatch(fetchProducts())
     dispatch(fetchProductsByFilter());
@@ -81,6 +83,7 @@ const Products = () => {
 
   return (
     <Template>
+      {inProgress ? <ProgressDialog open={inProgress}/> : null}
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>

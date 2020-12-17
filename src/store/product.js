@@ -168,7 +168,6 @@ export const fetchProducts = () => async dispatch => {
     dispatch(productSlice.actions.setProducts(response.featuredProducts));
   } catch (e) {
     console.error(e);
-    dispatch(productSlice.actions.setProgress(false));
     dispatch(productSlice.actions.setError("Something gone wrong."));
   } finally {
     dispatch(productSlice.actions.setProgress(false));

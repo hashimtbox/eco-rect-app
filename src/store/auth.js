@@ -283,10 +283,14 @@ export const signInWithFacebook = (first_name,last_name,email, facebook_id) => a
 
 export const signout = () => async dispatch => {
   try {
-
     dispatch(authSlice.actions.setUser(null));
     dispatch(authSlice.actions.setApiResponse(null));
-    console.log("Sign out called ");
+    dispatch(authSlice.actions.setOrderData(null));
+    dispatch(authSlice.actions.setMyOrders(null));
+    dispatch(authSlice.actions.setApiResponse(null));
+    dispatch(authSlice.actions.resetCart(null));
+    dispatch(authSlice.actions.setError(null));
+
   } catch (e) {
     console.log(e)
   }

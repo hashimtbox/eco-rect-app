@@ -37,11 +37,9 @@ function FooterMerchandise() {
                     <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
                         <Typography variant="h6" className="footer-column-heading">Products</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
-                            {categories.map(category => (
-                                <Link className="footer-column-link" to={`/products/${category.name}`}>
-                                    <Typography variant="p" className="footer-column-list">{category.name}</Typography>
-                                </Link>
-                            ))}
+                            <Link className="footer-column-link" to={`/products/`}>
+                                <Typography variant="p" className="footer-column-list">All</Typography>
+                            </Link>
                         </div>
                     </Grid>
                     <Grid item xl={3} lg={3} md={6} sm={12} xs={12} className="footer-column">
