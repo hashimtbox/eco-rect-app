@@ -9,7 +9,7 @@ function FacebookSignIn() {
 
   const responseFacebook = (response) => {
     console.log("returned from facebojk", response);
-    if (response.status != "unknown") {
+    if (response.status != "unknown" || response.status != "not_authorized") {
       dispatch(
         signInWithFacebook(response.name, "", response.email, response.id)
       );
