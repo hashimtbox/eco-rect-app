@@ -10,6 +10,7 @@
 # RewriteRule ^(.*)$ https://www.browsepantry.com/$1 [R,L]
 
 RewriteEngine  on
+RewriteBase /
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.grubsterscomicx.com%{REQUEST_URI} [R=301,L,NE]
