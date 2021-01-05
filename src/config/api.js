@@ -11,5 +11,3 @@ const local_blog_url = "http://localhost/grubstar_wordpress/";
 const live_blog_url = "https://blog.grubsterscomicx.com";
 
 export const URL_BLOG = live_blog_url;
-
-// import { URL, URL_BLOG} from "../config/api.js";

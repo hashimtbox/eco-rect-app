@@ -7,13 +7,13 @@ import authSlice, { signInWithGoogle } from "../store/auth";
 function GoogleSignIn() {
   const dispatch = useDispatch();
 
-  const onSuccess = res => {
+  const onSuccess = (res) => {
     const { email, givenName, familyName, googleId } = res.profileObj;
     dispatch(signInWithGoogle(givenName, familyName, email, googleId));
     console.log("Google Login Successful", res.profileObj);
     // refreshTokenSetup(res);
   };
-  const onFailure = res => {
+  const onFailure = (res) => {
     console.log("Google Login failed", res);
   };
   return (
@@ -23,9 +23,10 @@ function GoogleSignIn() {
         buttonText="SignIn with Google"
         onSuccess={onSuccess}
         onFailure={onFailure}
+        prompt={"consent"}
         cookiePolicy={"single_host_origin"}
         style={{ marginTop: "100px" }}
-        render={renderProps => (
+        render={(renderProps) => (
           <button
             className="google-button-styling"
             type="button"
@@ -37,7 +38,7 @@ function GoogleSignIn() {
                 marginRight: 10,
                 background: "transparent",
                 padding: 10,
-                borderRadius: 2
+                borderRadius: 2,
               }}
             >
               <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg">
