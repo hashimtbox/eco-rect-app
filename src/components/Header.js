@@ -126,7 +126,11 @@ const Header = ({ selected, children, ...props }) => {
     >
       <Typography variant="h6">
         <List>
-          <Link smooth to="/" className={classes.navLink}>
+          <Link
+            smooth
+            to={window.location.pathname === "/" ? "/#home" : "/"}
+            className={classes.navLink}
+          >
             Home
           </Link>
         </List>
@@ -155,23 +159,16 @@ const Header = ({ selected, children, ...props }) => {
           <a
             target="_blank"
             className={classes.navLink}
-            href="http://blog.grubsterscomicx.com/"
+            href="https://blog.grubsterscomicx.com/"
           >
             Blog
           </a>
         </List>
 
         <List>
-          <Link
-            className={classes.navLink}
-            onClick={() =>
-              history.push({
-                pathname: `/products`,
-              })
-            }
-          >
+          <a className={classes.navLink} href={`${URL}/products`}>
             Products
-          </Link>
+          </a>
         </List>
         <List>
           <Link smooth to="/#trending" className={classes.navLink}>
@@ -223,7 +220,11 @@ const Header = ({ selected, children, ...props }) => {
           <span style={{ flexGrow: 1 }} />
           <div className="displayLinks">
             <Typography variant="h6">
-              <Link smooth to="/" className={classes.navLink}>
+              <Link
+                smooth
+                to={window.location.pathname === "/" ? "/#home" : "/"}
+                className={classes.navLink}
+              >
                 Home
               </Link>
               <Link smooth to="/#characters" className={classes.navLink}>
@@ -336,7 +337,7 @@ const Header = ({ selected, children, ...props }) => {
           ) : (
             <Button
               onClick={() => history.push({ pathname: `/signin` })}
-              style={{ marginLeft: 30 }}
+              className="signin-header"
               variant="contained"
               color="secondary"
               disableElevation
@@ -349,7 +350,7 @@ const Header = ({ selected, children, ...props }) => {
             onClick={handlePopoverClick}
           >
             <Badge
-              badgeContent={cart.length === 0 ? "0" : cart.length}
+              badgeContent={cart?.length === 0 ? "0" : cart?.length}
               color="secondary"
             >
               <ShoppingCart display="block"></ShoppingCart>
@@ -363,7 +364,7 @@ const Header = ({ selected, children, ...props }) => {
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             transformOrigin={{ vertical: "top", horizontal: "center" }}
           >
-            {cart.length === 0 ? (
+            {cart?.length === 0 ? (
               <Box
                 m={2}
                 width={318}
