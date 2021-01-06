@@ -73,11 +73,15 @@ function MaterialSlider({ mainimage, variantimages }) {
   console.log("final image array", imagesArrNew);
 
   return (
-    <Carousel autoPlay={false}>
-      {imagesArrNew &&
-        imagesArrNew.length &&
-        imagesArrNew.map((item, i) => <Item key={i} item={item} />)}
-    </Carousel>
+    <>
+      {imagesArrNew && imagesArrNew.length && (
+        <Carousel autoPlay={false}>
+          {imagesArrNew.map((item, i) => (
+            <Item key={i} item={item} />
+          ))}
+        </Carousel>
+      )}
+    </>
   );
 }
 
@@ -89,15 +93,16 @@ function Item(props) {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        height: "70%",
-        width: "70%",
+        // height: "60%",
+        // width: "60%",
         margin: "auto",
       }}
     >
       <img
         style={{
-          height: "90%",
-          width: "90%",
+          height: "500px",
+          width: "600px",
+          objectFit: "scale-down",
         }}
         src={props.item.src}
       />
