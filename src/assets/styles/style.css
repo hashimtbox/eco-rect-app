@@ -175,7 +175,7 @@ input.form-button-class:focus {
 }
 
 .signin-header {
-  margin-left: 30px;
+  margin-left: 30px !important;
 }
 
 @media only screen and (max-width: 1170px) {
@@ -1114,6 +1114,11 @@ a {
 }
 
 @media only screen and (max-width: 465px) {
+  .signin-header {
+    padding: 5px 10px !important;
+    margin-left: 0px !important;
+  }
+
   .display-large-dropdown {
     display: none !important;
   }
