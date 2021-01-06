@@ -1,31 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@material-ui/core";
-
+import minilogo from "../assets/minilogo.png";
 import "../assets/styles/style.css";
-import { Link } from "react-router-dom";
-
-const categories = [
-  {
-    id: 1,
-    name: "All",
-    subcategories: [],
-  },
-  {
-    id: 2,
-    name: "Men",
-    subcategories: ["Shirts", "Tshirts", "Pants"],
-  },
-  {
-    id: 3,
-    name: "Women",
-    subcategories: ["Shirts", "Tshirts", "Pants", "Wears"],
-  },
-  {
-    id: 4,
-    name: "Kids",
-    subcategories: ["Shirts", "Tshirts", "Pants", "Wears"],
-  },
-];
+// import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 function FooterMerchandise() {
   return (
@@ -58,9 +36,9 @@ function FooterMerchandise() {
 
           <Grid
             item
-            xl={3}
-            lg={3}
-            md={6}
+            xl={4}
+            lg={4}
+            md={4}
             sm={12}
             xs={12}
             className="footer-column"
@@ -69,34 +47,41 @@ function FooterMerchandise() {
               Shop
             </Typography>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link className="footer-column-link" to={`#`}>
+              <Link
+                className="footer-column-link"
+                smooth
+                to={window.location.pathname === "/" ? "/#home" : "/"}
+              >
                 <Typography variant="p" className="footer-column-list">
-                  About us
+                  Home
                 </Typography>
               </Link>
-              <Link className="footer-column-link" to={`#`}>
+              <Link className="footer-column-link" smooth to="/#characters">
                 <Typography variant="p" className="footer-column-list">
-                  Privacy
+                  Characters
                 </Typography>
               </Link>
-              {/* <Link className="footer-column-link" to={`#`}>
-                                <Typography variant="p" className="footer-column-list">Tracking</Typography>
-                            </Link> */}
-              <Link className="footer-column-link" to={`#`}>
+              <Link className="footer-column-link" smooth to="/#about">
                 <Typography variant="p" className="footer-column-list">
-                  Legal Info
+                  About
                 </Typography>
               </Link>
-              <Link className="footer-column-link" to={`#`}>
+              <a
+                className="footer-column-link"
+                href="https://blog.grubsterscomicx.com/"
+              >
                 <Typography variant="p" className="footer-column-list">
-                  Copyright Information
+                  Blog
                 </Typography>
-              </Link>
-              <Link className="footer-column-link" to={`#`}>
+              </a>
+              <a
+                className="footer-column-link"
+                href="https://www.grubsterscomicx.com/products"
+              >
                 <Typography variant="p" className="footer-column-list">
-                  Terms & Conditions
+                  Products
                 </Typography>
-              </Link>
+              </a>
             </div>
           </Grid>
 
@@ -141,9 +126,9 @@ function FooterMerchandise() {
 
           <Grid
             item
-            xl={3}
-            lg={3}
-            md={6}
+            xl={4}
+            lg={4}
+            md={4}
             sm={12}
             xs={12}
             className="footer-column"
@@ -174,6 +159,40 @@ function FooterMerchandise() {
                   Not 100% satisfied? Send it back! <b>30 day return policy</b>
                 </Typography>
               </Link>
+            </div>
+          </Grid>
+
+          <Grid
+            item
+            xl={4}
+            lg={4}
+            md={4}
+            sm={12}
+            xs={12}
+            className="footer-column"
+          >
+            <Typography
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              variant="h6"
+              className="footer-column-heading"
+            >
+              Grubsters Comics
+            </Typography>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <img
+                src={minilogo}
+                alt="minilogo"
+                style={{ objectFit: "scale-down" }}
+              />
             </div>
           </Grid>
         </Grid>

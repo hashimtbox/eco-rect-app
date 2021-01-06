@@ -64,7 +64,7 @@ function MaterialSlider({ mainimage, variantimages }) {
     imagesArr = [mainimage, ...variantimagesArr];
   }
 
-  console.log("final image array", imagesArr);
+  // console.log('final image array', imagesArr);
 
   return (
     <Carousel autoPlay={false}>
