@@ -127,7 +127,12 @@ const ProductDetailPage = () => {
               <Typography variant="h6">Size Chart</Typography>
               <img
                 src={productDetail?.sizeChart}
-                style={{ width: "100%", height: "auto" }}
+                style={{
+                  marginTop: 19,
+                  height: "500px",
+                  width: "600px",
+                  objectFit: "scale-down",
+                }}
               />
             </div>
           </Grid>
