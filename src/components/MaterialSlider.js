@@ -32,29 +32,29 @@ const responsive = {
 };
 
 function MaterialSlider({ mainimage, variantimages }) {
-  // var items = [
-  //     {
-  //         src: slide1
-  //     },
-  //     {
-  //         src: slide2
-  //     },
-  //     {
-  //         src: slide3
-  //     },
-  //     {
-  //         src: slide4
-  //     },
-  //     {
-  //         src: slide5
-  //     },
-  //     {
-  //         src: slide6
-  //     },
-  //     {
-  //         src: slide7
-  //     },
-  // ]
+  var imagesArrNewB = [
+    {
+      src: slide1,
+    },
+    {
+      src: slide2,
+    },
+    {
+      src: slide3,
+    },
+    {
+      src: slide4,
+    },
+    {
+      src: slide5,
+    },
+    {
+      src: slide6,
+    },
+    {
+      src: slide7,
+    },
+  ];
 
   console.log("we are receving", variantimages);
   const variantimagesArr = variantimages?.map((item) => item.image);
@@ -64,13 +64,19 @@ function MaterialSlider({ mainimage, variantimages }) {
     imagesArr = [mainimage, ...variantimagesArr];
   }
 
-  // console.log('final image array', imagesArr);
+  let imagesArrNew = [];
+
+  for (var i = 0; i < imagesArr.length; i++) {
+    imagesArrNew.push({ src: imagesArr[i] });
+  }
+
+  console.log("final image array", imagesArrNew);
 
   return (
     <Carousel autoPlay={false}>
-      {imagesArr &&
-        imagesArr.length &&
-        imagesArr.map((item, i) => <Item key={i} item={item} />)}
+      {imagesArrNew &&
+        imagesArrNew.length &&
+        imagesArrNew.map((item, i) => <Item key={i} item={item} />)}
     </Carousel>
   );
 }
@@ -93,7 +99,7 @@ function Item(props) {
           height: "90%",
           width: "90%",
         }}
-        src={props.item}
+        src={props.item.src}
       />
     </div>
   );
