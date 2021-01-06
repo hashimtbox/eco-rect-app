@@ -11,7 +11,7 @@ const initialState = {
     category: null,
     subCategory: null,
     size: null,
-    color: null
+    color: null,
   },
   selectedProductColor: null,
   selectedProductSize: null,
@@ -20,17 +20,15 @@ const initialState = {
   error: null,
   orderDetail: {
     subtotal: null,
-    shippingPrice: 0
+    shippingPrice: 0,
   },
-  checkout: null
-
+  checkout: null,
 };
 
 const productSlice = createSlice({
   name: "productSlice",
   initialState,
   reducers: {
-
     resetCheckout: (state, action) => {
       state.checkout = null;
     },
@@ -68,6 +66,7 @@ const productSlice = createSlice({
       state.categories = action.payload;
     },
     setColorFilter: (state, action) => {
+      console.log("payload", action.payload);
       state.filters.color = action.payload;
     },
     setSizeFilter: (state, action) => {
@@ -96,24 +95,21 @@ const productSlice = createSlice({
     },
     setorderDetail: (state, action) => {
       state.orderDetail.subtotal = action.payload;
-    }
-  }
+    },
+  },
 });
 export const fetchProductById = (product_id) => async (dispatch, getState) => {
   try {
     dispatch(productSlice.actions.setProgress(true));
 
     // const { product_id } = getState().products;
-    const res = await fetch(
-      `${API_HOST}/api/product/${product_id}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          api_key: "eco-app-2SY:nPkgTTiETr-master-key"
-        }
-      }
-    );
+    const res = await fetch(`${API_HOST}/api/product/${product_id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        api_key: "eco-app-2SY:nPkgTTiETr-master-key",
+      },
+    });
     const response = await res.json();
     console.log("response of product detail", response);
     dispatch(productSlice.actions.setProductDetailData(response.product));
@@ -132,17 +128,21 @@ export const fetchProductsByFilter = () => async (dispatch, getState) => {
 
     const { filters } = getState().products;
     const res = await fetch(
-      `${API_HOST}/api/product/by_filter?category=${filters.category?.id}&subCategory=${filters.subCategory?.id}&color=${filters.color ? filters.color : "undefined"}&size=${filters.size?.id}`,
+      `${API_HOST}/api/product/by_filter?category=${
+        filters.category?.id
+      }&subCategory=${filters.subCategory?.id}&color=${
+        filters.color ? filters.color : "undefined"
+      }&size=${filters.size?.id}`,
       {
         method: "GET",
         headers: {
           Accept: "application/json",
-          api_key: "eco-app-2SY:nPkgTTiETr-master-key"
-        }
+          api_key: "eco-app-2SY:nPkgTTiETr-master-key",
+        },
       }
     );
     const response = await res.json();
-    console.log(response);
+    console.log("response recevied", response);
     dispatch(productSlice.actions.setFilteredProductsData(response.data));
   } catch (e) {
     console.error(e);
@@ -153,15 +153,15 @@ export const fetchProductsByFilter = () => async (dispatch, getState) => {
   }
 };
 
-export const fetchProducts = () => async dispatch => {
+export const fetchProducts = () => async (dispatch) => {
   try {
     dispatch(productSlice.actions.setProgress(true));
     const res = await fetch(`${API_HOST}/api/product/featured`, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        api_key: "eco-app-2SY:nPkgTTiETr-master-key"
-      }
+        api_key: "eco-app-2SY:nPkgTTiETr-master-key",
+      },
     });
     const response = await res.json();
     console.log(response);
@@ -174,15 +174,15 @@ export const fetchProducts = () => async dispatch => {
   }
 };
 
-export const fetchProductCategories = () => async dispatch => {
+export const fetchProductCategories = () => async (dispatch) => {
   try {
     dispatch(productSlice.actions.setProgress(true));
     const res = await fetch(`${API_HOST}/api/product_categories`, {
       method: "GET",
       headers: {
         Accept: "application/json",
-        api_key: "eco-app-2SY:nPkgTTiETr-master-key"
-      }
+        api_key: "eco-app-2SY:nPkgTTiETr-master-key",
+      },
     });
     const response = await res.json();
     console.log(response);

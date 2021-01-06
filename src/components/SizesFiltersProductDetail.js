@@ -13,6 +13,16 @@ const buttonSizes = [
   { id: 6, size: "XXXL" },
 ];
 function SizesFiltersProductDetail({ buttonSizes }) {
+  console.log("button Sizes", buttonSizes);
+  const UniqueSizes = buttonSizes?.reduce((acc, current) => {
+    const x = acc.find((item) => item.Size.id === current.Size.id);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
+
   const dispatch = useDispatch();
   const { selectedProductColor, selectedProductSize } = useSelector(
     (state) => state.products
@@ -20,8 +30,8 @@ function SizesFiltersProductDetail({ buttonSizes }) {
   return (
     <>
       <ul className="nav-categories-ul">
-        {buttonSizes &&
-          buttonSizes.map((buttonitem) => {
+        {UniqueSizes &&
+          UniqueSizes.map((buttonitem) => {
             return (
               <Button
                 onClick={() => {

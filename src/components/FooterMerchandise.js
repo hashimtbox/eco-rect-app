@@ -35,7 +35,7 @@ function FooterMerchandise() {
           container
           style={{ marginTop: 50, paddingLeft: 50, paddingRight: 50 }}
         >
-          <Grid
+          {/* <Grid
             item
             xl={3}
             lg={3}
@@ -54,7 +54,8 @@ function FooterMerchandise() {
                 </Typography>
               </Link>
             </div>
-          </Grid>
+          </Grid> */}
+
           <Grid
             item
             xl={3}
@@ -98,7 +99,8 @@ function FooterMerchandise() {
               </Link>
             </div>
           </Grid>
-          <Grid
+
+          {/* <Grid
             item
             xl={3}
             lg={3}
@@ -131,11 +133,12 @@ function FooterMerchandise() {
                   Help
                 </Typography>
               </Link>
-              {/* <Link className="footer-column-link" to={`#`}>
+              <Link className="footer-column-link" to={`#`}>
                                 <Typography variant="p" className="footer-column-list">United States</Typography>
-                            </Link> */}
+                            </Link>
             </div>
-          </Grid>
+          </Grid> */}
+
           <Grid
             item
             xl={3}
