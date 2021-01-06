@@ -137,18 +137,21 @@ function FooterMerchandise() {
               Contact
             </Typography>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              <Link className="footer-column-link" to={`#`}>
+              <a
+                className="footer-column-link"
+                href="mailto:service@spreadshirt.com"
+              >
                 <Typography variant="p" className="footer-column-list">
                   service@spreadshirt.com
                 </Typography>
-              </Link>
-              <Link className="footer-column-link" to={`#`}>
+              </a>
+              <a className="footer-column-link" href="tel:+1 800 381 0815">
                 <Typography variant="p" className="footer-column-list">
                   +1 800 381 0815
                   <br />
                   (Call us! Mon - Fri: 9am - 6pm ET)
                 </Typography>
-              </Link>
+              </a>
               <Link className="footer-column-link" to={`#`}>
                 <Typography variant="p" className="footer-column-list">
                   Printing, shipping and <b>service by Spreadshirt</b>
@@ -182,18 +185,20 @@ function FooterMerchandise() {
             >
               Grubsters Comics
             </Typography>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <img
-                src={minilogo}
-                alt="minilogo"
-                style={{ objectFit: "scale-down" }}
-              />
-            </div>
+            <a href="https://www.grubsterscomicx.com/">
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <img
+                  src={minilogo}
+                  alt="minilogo"
+                  style={{ objectFit: "scale-down" }}
+                />
+              </div>
+            </a>
           </Grid>
         </Grid>
       </Grid>

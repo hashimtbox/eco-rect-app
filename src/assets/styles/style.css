@@ -902,6 +902,7 @@ div.form-validation-input {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   margin-top: 1px;
+  right: -60px;
 }
 
 .dropdown-content a {
@@ -1106,4 +1107,17 @@ a {
 .MuiTableCell-root {
   padding: 30px !important;
   font-size: 15px !important;
+}
+
+.display-small-dropdown {
+  display: none !important;
+}
+
+@media only screen and (max-width: 465px) {
+  .display-large-dropdown {
+    display: none !important;
+  }
+  .display-small-dropdown {
+    display: block !important;
+  }
 }

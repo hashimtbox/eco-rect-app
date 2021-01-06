@@ -265,7 +265,7 @@ const Header = ({ selected, children, ...props }) => {
           </div>
           {user ? (
             <>
-              <div class="dropdown">
+              <div className="dropdown display-large-dropdown">
                 <button className="dropbtn">
                   <Typography variant="h6" className="username">
                     {user?.first_name}
@@ -324,15 +324,73 @@ const Header = ({ selected, children, ...props }) => {
                   </Link>
                 </div>
               </div>
-
               <Avatar
-                alt="User_image"
+                className="display-large-dropdown"
                 src={
                   API_HOST + "/uploads/user_profile_pic/" + user?.profile_pic
                 }
                 style={{ width: 29, height: 29 }}
                 onClick={handleClick}
               />
+
+              <div class="display-small-dropdown">
+                <div class="dropdown">
+                  <Avatar
+                    className="dropbtn"
+                    src={
+                      API_HOST +
+                      "/uploads/user_profile_pic/" +
+                      user?.profile_pic
+                    }
+                    style={{ width: 29, height: 29 }}
+                    onClick={handleClick}
+                  />
+                  <div className="dropdown-content">
+                    <Link
+                      to="/profile"
+                      variant="body2"
+                      style={{ color: "#000", textDecoration: "none" }}
+                    >
+                      <MenuItem onClick={handleClose}>
+                        <AccountCircleIcon className={classes.iconmargin} />
+                        Account Management
+                      </MenuItem>
+                    </Link>
+
+                    {user?.google_id || user?.facebook_id ? (
+                      <> </>
+                    ) : (
+                      <Link
+                        to="/changepassword"
+                        variant="body2"
+                        style={{ color: "#000", textDecoration: "none" }}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <SettingsIcon className={classes.iconmargin} />
+                          Change Password
+                        </MenuItem>
+                      </Link>
+                    )}
+
+                    <Link
+                      to="#"
+                      variant="body2"
+                      style={{ color: "#000", textDecoration: "none" }}
+                    >
+                      <MenuItem
+                        onClick={() => {
+                          handleClose();
+                          dispatch(signout());
+                          history.push({ pathname: `/` });
+                        }}
+                      >
+                        <ExitToAppIcon className={classes.iconmargin} />
+                        Logout
+                      </MenuItem>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </>
           ) : (
             <Button
