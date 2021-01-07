@@ -16,7 +16,7 @@ import SidebarFilters from "./SidebarFilters";
 import { Grid } from "@material-ui/core";
 import ProductBreadcrumbs from "./ProductBreadcrumbs";
 import Pagination from "@material-ui/lab/Pagination";
-import {fetchProducts, fetchProductsByFilter} from "../store/product";
+import { fetchProducts, fetchProductsByFilter } from "../store/product";
 import NoItem from "./NoItem";
 import TrendingProducts from "./TrendingProducts";
 import SearchBar from "material-ui-search-bar";
@@ -60,9 +60,11 @@ const useStyles = makeStyles((theme) => ({
 const products = [];
 const Products = () => {
   const dispatch = useDispatch();
-  const { filteredProductsData , products, inProgress } = useSelector(state => state.products);
+  const { filteredProductsData, products, inProgress } = useSelector(
+    (state) => state.products
+  );
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchProducts());
     dispatch(fetchProductsByFilter());
   }, []);
 
@@ -76,14 +78,45 @@ const Products = () => {
   const itemsPerPage = 10;
   const [page, setPage] = React.useState(1);
   const [noOfPages] = React.useState(getNoOfPages());
-
   const handleChange = (event, value) => {
     setPage(value);
   };
 
+  const [productItems, setProductItems] = React.useState([]);
+  useEffect(() => {
+    setProductItems(filteredProductsData?.prducts);
+  }, [filteredProductsData]);
+  async function doSomethingWithSearch(value) {
+    const boolvalue = /^[a-zA-Z0-9]*$/.test(value);
+
+    console.log("boolvalue", boolvalue);
+
+    setProductItems(filteredProductsData?.prducts);
+
+    if (value && boolvalue) {
+      let searchItemsReturned = productItems.filter(function(item) {
+        return (
+          item.title.toLowerCase().search(value.toLowerCase()) !== -1 ||
+          item.description.toLowerCase().search(value.toLowerCase()) !== -1 ||
+          item.price
+            .toString()
+            .toLowerCase()
+            .search(value.toLowerCase()) !== -1
+        );
+      });
+      await setProductItems([...searchItemsReturned]);
+    }
+
+    if (!boolvalue) {
+      setProductItems([]);
+    }
+  }
+
+  console.log("after setting state", productItems);
+
   return (
     <Template>
-      {inProgress ? <ProgressDialog open={inProgress}/> : null}
+      {inProgress ? <ProgressDialog open={inProgress} /> : null}
       <Grid container style={{ height: "100%" }} style={{ padding: 35 }}>
         <Grid container spacing={4}>
           <Grid item xl={3} lg={3} md={12} sm={12} xs={12}>
@@ -93,50 +126,51 @@ const Products = () => {
 
             <SearchBar
               className="searchbar"
-              dataSource={filteredProductsData?.prducts}
-              onChange={
-                (value) => console.log(value)
-
-                // setState({
-                //   dataSource: [value, value + value, value + value + value],
-                // })
-              }
-              onRequestSearch={() => console.log("onRequestSearch")}
+              onChange={(value) => {
+                doSomethingWithSearch(value);
+              }}
             />
 
+            {console.log("uuuu", productItems)}
             <SidebarFilters filterData={filteredProductsData} />
           </Grid>
 
           <Grid item xl={9} lg={9} md={12} sm={12} xs={12}>
-            {
-              filteredProductsData &&
-              filteredProductsData.prducts &&
-              filteredProductsData.prducts.length ?  (
-                  <>
-                  <div className="pagination-height">
-                <EventListView
-                  products={filteredProductsData.prducts.slice(
-                    (page - 1) * itemsPerPage,
-                    page * itemsPerPage
-                  )}
-                />
+            {productItems && productItems.length ? (
+              <>
+                <div className="pagination-height">
+                  <EventListView
+                    products={productItems?.slice(
+                      (page - 1) * itemsPerPage,
+                      page * itemsPerPage
+                    )}
+                  />
                 </div>
-                    <div className="product-pagination">
-                      <Pagination
-                          count={noOfPages}
-                          page={page}
-                          onChange={handleChange}
-                          defaultPage={1}
-                          color="secondary"
-                          size="large"
-                          showFirstButton
-                          showLastButton
-                      />
-                    </div>
-                </>
-
-              ) : <Typography variant="h4" style={{ textAlign: "center", marginBottom: 150, marginTop: 150}} >No Product Found</Typography>
-            }
+                <div className="product-pagination">
+                  <Pagination
+                    count={noOfPages}
+                    page={page}
+                    onChange={handleChange}
+                    defaultPage={1}
+                    color="secondary"
+                    size="large"
+                    showFirstButton
+                    showLastButton
+                  />
+                </div>
+              </>
+            ) : (
+              <Typography
+                variant="h4"
+                style={{
+                  textAlign: "center",
+                  marginBottom: 150,
+                  marginTop: 150,
+                }}
+              >
+                No Product Found
+              </Typography>
+            )}
             <TrendingProducts products={products} />
           </Grid>
         </Grid>
@@ -147,3 +181,44 @@ const Products = () => {
 };
 
 export default Products;
+
+{
+  /* const people = [
+  {
+    name: 'James',
+    age: 31,
+    description:"women"
+  },
+  {
+    name: 'John',
+    age: 45,
+        description:"men"
+  },
+  {
+    name: 'Paul',
+    age: 65,
+        description:"women"
+  },
+  {
+    name: 'Ringo',
+    age: 49,
+        description:"kids"
+  },
+  {
+    name: 'Hamza',
+    age: 34,
+        description:"women"
+  }
+];
+
+const value = "9"
+
+  console.log(people.filter(
+    function(item){ 
+      return (item.name.toLowerCase().search(value.toLowerCase()) !== -1 || item.description.toLowerCase().search(value.toLowerCase())!== -1 ||  item.age.toString().toLowerCase().search(value.toLowerCase()) !== -1);
+    
+    
+    }
+))
+*/
+}
