@@ -66,6 +66,7 @@ const Products = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchProductsByFilter());
+    setProductItems(filteredProductsData?.prducts);
   }, []);
 
   const getNoOfPages = () => {
@@ -86,15 +87,17 @@ const Products = () => {
   useEffect(() => {
     setProductItems(filteredProductsData?.prducts);
   }, [filteredProductsData]);
+
   async function doSomethingWithSearch(value) {
     const boolvalue = /^[a-zA-Z0-9]*$/.test(value);
 
     console.log("boolvalue", boolvalue);
 
-    setProductItems(filteredProductsData?.prducts);
-
+    console.log("before if p ", productItems);
+    let productItemss = filteredProductsData?.prducts;
+    await setProductItems([...productItemss]);
     if (value && boolvalue) {
-      let searchItemsReturned = productItems.filter(function(item) {
+      let searchItemsReturned = productItemss.filter(function(item) {
         return (
           item.title.toLowerCase().search(value.toLowerCase()) !== -1 ||
           item.description.toLowerCase().search(value.toLowerCase()) !== -1 ||
@@ -104,6 +107,7 @@ const Products = () => {
             .search(value.toLowerCase()) !== -1
         );
       });
+      console.log(searchItemsReturned);
       await setProductItems([...searchItemsReturned]);
     }
 
