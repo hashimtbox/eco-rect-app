@@ -115,8 +115,6 @@ export default function OrderDetail(props) {
     },
   ];
 
-  const [orderitem, setOrderItem] = useState(orderDetailById);
-
   return (
     <Template>
       <div className="container" style={{ marginTop: 40, marginBottom: 40 }}>
@@ -164,7 +162,7 @@ export default function OrderDetail(props) {
 
         <MUIDataTable
           title={""}
-          data={orderitem?.map((item) => {
+          data={orderDetailById?.map((item) => {
             return [
               item.id,
               item.Product.main_image,

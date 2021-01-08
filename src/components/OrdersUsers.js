@@ -5,8 +5,10 @@ import { useHistory } from "react-router-dom";
 import { Typography, Grid } from "@material-ui/core";
 
 export default function OrdersUsers(props) {
-  console.log("myOrders", props.myOrders);
+  console.log("props received", props.myOrders);
+
   const history = useHistory();
+
   const columns = [
     {
       name: "id",
@@ -231,8 +233,6 @@ export default function OrdersUsers(props) {
     },
   ];
 
-  const [order, setOrder] = useState(props.myOrders);
-
   return (
     <>
       <div style={{ marginBottom: 40 }}>
@@ -257,7 +257,7 @@ export default function OrdersUsers(props) {
 
         <MUIDataTable
           title={""}
-          data={order?.map((item) => {
+          data={props?.myOrders?.map((item) => {
             return [
               item.id,
               item.id,
