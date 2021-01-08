@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 import MUIDataTable from "mui-datatables";
 import Template from "./Template.js";
+import { useDispatch, useSelector } from "react-redux";
+import authSlice, { getOrder } from "../store/auth";
+
 export default function OrderDetail(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const { orderDetailById } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(authSlice.actions.setApiResponse(null));
+    dispatch(getOrder(id));
+  }, []);
 
   const columns = [
     {
@@ -96,7 +109,7 @@ export default function OrderDetail(props) {
     },
   ];
 
-  const [orderitem, setOrderItem] = useState(orderitemDetails);
+  const [orderitem, setOrderItem] = useState(orderDetailById);
 
   return (
     <Template>
@@ -148,12 +161,12 @@ export default function OrderDetail(props) {
           data={orderitem?.map((item) => {
             return [
               item.id,
-              item.item_image,
-              item.item_name,
-              item.item_size,
-              item.item_color,
-              item.item_quantity,
-              item.item_total,
+              item.Product.main_image,
+              item.Product.title,
+              item.selected_size,
+              item.select_color,
+              item.quantity,
+              item.quantity * item.Product.price,
             ];
           })}
           columns={columns}

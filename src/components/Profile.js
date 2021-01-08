@@ -16,14 +16,14 @@ function Profile(props) {
 
   useEffect(() => {
     dispatch(authSlice.actions.setApiResponse(null));
-    dispatch(getMyOrders(user.email));
+    dispatch(getMyOrders(user?.email));
   }, []);
 
   return (
     <Template>
       <div className="container">
         <ProfileUser />
-        <OrdersUsers />
+        <OrdersUsers myOrders={myOrders} />
       </div>
     </Template>
   );

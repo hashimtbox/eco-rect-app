@@ -49,7 +49,7 @@ const authSlice = createSlice({
         (item) =>
           item.id === action.payload.id &&
           item.selectedColor === action.payload.selectedColor &&
-            item.selectedSize === action.payload.selectedSize
+          item.selectedSize === action.payload.selectedSize
       );
 
       const incrementedItem = {
@@ -69,7 +69,7 @@ const authSlice = createSlice({
         (item) =>
           item.id === action.payload.id &&
           item.selectedColor === action.payload.selectedColor &&
-            item.selectedSize === action.payload.selectedSize
+          item.selectedSize === action.payload.selectedSize
       );
 
       const decrementedItem = {
@@ -89,7 +89,7 @@ const authSlice = createSlice({
         (item) =>
           item.id === action.payload.id &&
           item.selectedColor === action.payload.selectedColor &&
-            item.selectedSize === action.payload.selectedSize
+          item.selectedSize === action.payload.selectedSize
       );
 
       if (updatedItemIndex < 0) {
@@ -117,7 +117,7 @@ const authSlice = createSlice({
         (item) =>
           item.id === action.payload.id &&
           item.selectedColor === action.payload.selectedColor &&
-            item.selectedSize === action.payload.selectedSize
+          item.selectedSize === action.payload.selectedSize
       );
       updatedCart.splice(updatedItemIndex, 1);
       return { ...state, cart: updatedCart };

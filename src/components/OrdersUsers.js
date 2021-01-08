@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MUIDataTable from "mui-datatables";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import { useHistory } from "react-router-dom";
 import { Typography, Grid } from "@material-ui/core";
 
 export default function OrdersUsers(props) {
+  console.log("myOrders", props.myOrders);
   const history = useHistory();
   const columns = [
     {
@@ -19,6 +20,13 @@ export default function OrdersUsers(props) {
       name: "Order No",
       options: {
         filter: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return (
+            <span style={{ fontWeight: 500, fontSize: 17, color: "#000000" }}>
+              {`GRUB_${tableMeta.rowData[0]}`}
+            </span>
+          );
+        },
       },
     },
     {
@@ -45,9 +53,18 @@ export default function OrdersUsers(props) {
       options: {
         filter: false,
         customBodyRender: (value, tableMeta, updateValue) => {
+          const date = new Date(tableMeta.rowData[4]);
+          const fullDate =
+            date.getDate() +
+            "/" +
+            date.getMonth() +
+            1 +
+            "/" +
+            date.getFullYear().toString();
+
           return (
             <span style={{ fontWeight: 500, fontSize: 17, color: "#000000" }}>
-              {tableMeta.rowData[4]}
+              {fullDate}
             </span>
           );
         },
@@ -61,25 +78,25 @@ export default function OrdersUsers(props) {
         customBodyRender: (value, tableMeta, updateValue) => {
           let status = tableMeta.rowData[5];
 
-          if (status == "Pending") {
+          if (status == "pending") {
             return (
               <span style={{ fontWeight: 500, fontSize: 17, color: "black" }}>
                 {status}
               </span>
             );
-          } else if (status === "Completed") {
+          } else if (status === "completed") {
             return (
               <span style={{ fontWeight: 500, fontSize: 17, color: "green" }}>
                 {status}
               </span>
             );
-          } else if (status == "Rejected") {
+          } else if (status == "rejected") {
             return (
               <span style={{ fontWeight: 500, fontSize: 17, color: "red" }}>
                 {status}
               </span>
             );
-          } else if (status == "Processing") {
+          } else if (status == "processing") {
             return (
               <span style={{ fontWeight: 500, fontSize: 17, color: "brown" }}>
                 {status}
@@ -214,7 +231,7 @@ export default function OrdersUsers(props) {
     },
   ];
 
-  const [order, setOrder] = useState(orderData);
+  const [order, setOrder] = useState(props.myOrders);
 
   return (
     <>
@@ -243,11 +260,11 @@ export default function OrdersUsers(props) {
           data={order?.map((item) => {
             return [
               item.id,
-              item.order_no,
-              item.order_items,
-              item.order_subtotal,
-              item.order_date,
-              item.order_status,
+              item.id,
+              item.number_of_items,
+              item.subtotal_amount,
+              item.createdAt,
+              item.status,
             ];
           })}
           columns={columns}
