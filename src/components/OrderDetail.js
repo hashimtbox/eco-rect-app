@@ -32,7 +32,13 @@ export default function OrderDetail(props) {
       options: {
         filter: false,
         customBodyRender: (value, tableMeta, updateValue) => {
-          return <img height="60" src={tableMeta.rowData[1]} />;
+          return (
+            <img
+              style={{ objectFit: "scale-down" }}
+              height="60"
+              src={tableMeta.rowData[1]}
+            />
+          );
         },
       },
     },
