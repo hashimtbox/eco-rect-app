@@ -150,12 +150,11 @@ function FooterMerchandise() {
                   +1 305 967 3720
                 </Typography>
               </a>
-              <Link className="footer-column-link" to={`#`}>
-                <Typography variant="p" className="footer-column-list">
-                  Grubsters Comics P. O. BOX 817851 <br />
-                  HOLLYWOOD FL, 33021
-                </Typography>
-              </Link>
+
+              <Typography variant="p" className="footer-column-list">
+                Grubsters Comics P. O. BOX 817851 <br />
+                HOLLYWOOD FL, 33021
+              </Typography>
             </div>
           </Grid>
 
