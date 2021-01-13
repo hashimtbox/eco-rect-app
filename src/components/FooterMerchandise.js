@@ -139,27 +139,21 @@ function FooterMerchandise() {
             <div style={{ display: "flex", flexDirection: "column" }}>
               <a
                 className="footer-column-link"
-                href="mailto:service@spreadshirt.com"
+                href="mailto:info@grubsterscomics.com"
               >
                 <Typography variant="p" className="footer-column-list">
-                  service@spreadshirt.com
+                  info@grubsterscomics.com
                 </Typography>
               </a>
-              <a className="footer-column-link" href="tel:+1 800 381 0815">
+              <a className="footer-column-link" href="tel:+1 305 967 3720">
                 <Typography variant="p" className="footer-column-list">
-                  +1 800 381 0815
-                  <br />
-                  (Call us! Mon - Fri: 9am - 6pm ET)
+                  +1 305 967 3720
                 </Typography>
               </a>
               <Link className="footer-column-link" to={`#`}>
                 <Typography variant="p" className="footer-column-list">
-                  Printing, shipping and <b>service by Spreadshirt</b>
-                </Typography>
-              </Link>
-              <Link className="footer-column-link" to={`#`}>
-                <Typography variant="p" className="footer-column-list">
-                  Not 100% satisfied? Send it back! <b>30 day return policy</b>
+                  Grubsters Comics P. O. BOX 817851 <br />
+                  HOLLYWOOD FL, 33021
                 </Typography>
               </Link>
             </div>
